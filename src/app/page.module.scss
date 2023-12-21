@@ -72,6 +72,19 @@
   max-width: 30ch;
 }
 
+.errorWrapper {
+  text-align: center;
+  transform: translateY(-50%);
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 50vh;
+}
+.error-code {
+  color: red;
+}
+
+
+
 .center {
   display: flex;
   justify-content: center;
