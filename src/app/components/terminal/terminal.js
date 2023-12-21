@@ -16,7 +16,6 @@ const Input = ({ onSubmit }) => {
     if (e.key === 'Enter') {
       onSubmit(inputValue)
 
-
       setInputValue('')
     }
   }
@@ -30,6 +29,15 @@ const Input = ({ onSubmit }) => {
   )
 }
 
+const Prompt = ({path}) => {
+  return (
+    <div className={styles.prompt}>
+      <p>{'>'}</p>
+      <p>{path}</p>
+      <strong>$</strong>
+    </div>
+  )
+}
 
 
 const Terminal = () => {
@@ -37,18 +45,29 @@ const Terminal = () => {
   const [path, setPath] = useState('home')
 
   const handleInputSubmit = (text) => {
-    const localLines = lines.concat([text])
-    setLines(localLines)
+    if (/clear *$/.test(text)) {
+      setLines([])
+      console.log(lines);
+    } else {
+      const localLines = lines.concat([[text, path]])
+      setLines(localLines)
+    }
   }
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.linesContainer}>
         {lines.map((line, index) => (
-            <Line key={index} content={line}/>
+            <div key={index} className={styles.lineWrapper}>
+              <Prompt path={line[1]}/>
+              <Line content={line[0]}/>
+            </div>
           ))}
       </div>
-      <Input onSubmit={handleInputSubmit}/>
+      <div className={styles.inputWrapper}>
+        <Prompt path={path}/>
+        <Input onSubmit={handleInputSubmit}/>
+      </div>
     </div>
   )
 }

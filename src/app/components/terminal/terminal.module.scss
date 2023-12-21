@@ -1,39 +1,20 @@
 @import '../../config/utilities.scss';
 @import '../../config/colors.scss';
 
+$textSeperationAnim: 250ms linear 0s infinite alternate running textSeperation;
+$devBorder: 0px;
+
 .wrapper {
   position: fixed;
   left: 0px;
   top: 0px;
   width: 100%;
   max-width: 600px;
-  border: 2px dashed green;
+  border: $devBorder dashed green;
   font-size: 20px;
   color: $hacker-green;
   padding: 20px 0px 0px 20px;
-}
-
-.linesContainer {
-  border: 1px dashed orange;
-  font-size: inherit;
-  max-height: 70vh;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  animation: 250ms linear 0s infinite alternate running textSeperation;
-}
-
-.input {
-  @include boxResets;
-  border: 1px dashed red;
-  width: 100%;
-  height: fit-content;
-  font-size: inherit;
-  color: inherit;
-  resize: none;
-  height: fit-content;
-  overflow: hidden;
+  animation: $textSeperationAnim;
 }
 
 @keyframes textSeperation {
@@ -52,4 +33,43 @@
   100% {
     text-shadow: -1px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
   }
+}
+
+.linesContainer {
+  border: $devBorder dashed orange;
+  font-size: inherit;
+  max-height: 70vh;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+.inputWrapper, .lineWrapper {
+  display: flex;
+  column-gap: 8px;
+  border: $devBorder dashed blue;
+}
+
+.prompt {
+  display: flex;
+  border: $devBorder dashed purple;
+  column-gap: 5px;
+  strong {
+    font-weight: 100;
+  }
+}
+
+.input {
+  @include boxResets;
+  border: $devBorder dashed red;
+  width: 100%;
+  height: fit-content;
+  font-size: inherit;
+  color: inherit;
+  resize: none;
+  height: fit-content;
+  overflow: hidden;
+  animation: $textSeperationAnim;
 }
