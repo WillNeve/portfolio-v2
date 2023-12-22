@@ -7,6 +7,7 @@ export default function Home() {
     <main className={styles.main}>
       <CrtScreen/>
       <Terminal/>
+      
     </main>
   )
 }
