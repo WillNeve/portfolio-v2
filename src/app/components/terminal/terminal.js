@@ -42,7 +42,6 @@ const Prompt = ({path}) => {
 
 
 const Terminal = () => {
-  const inputRef = useRef(null)
   const [lines, setLines] = useState([])
   const [path, setPath] = useState('home')
   const paths = ['~', 'home', 'test']
@@ -80,14 +79,8 @@ const Terminal = () => {
     }
   }
 
-  const focusInput = () => {
-    // Focus on the textarea when the wrapper is clicked
-    alert('focusing')
-    inputRef.current.focus();
-  };
-
   return (
-    <div className={styles.wrapper} onClick={focusInput}>
+    <div className={styles.wrapper}>
       <div className={styles.linesContainer}>
         {lines.map((line, index) => (
             <div key={index} className={styles.lineWrapper}>
@@ -98,7 +91,7 @@ const Terminal = () => {
       </div>
       <div className={styles.inputWrapper}>
         <Prompt path={path}/>
-        <Input onSubmit={handleInputSubmit} ref={inputRef}/>
+        <Input onSubmit={handleInputSubmit}/>
       </div>
     </div>
   )
