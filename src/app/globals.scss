@@ -23,6 +23,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: $hacker-orange;
+  animation: $orangeSeperationAnim;
   text-decoration: none;
 }
