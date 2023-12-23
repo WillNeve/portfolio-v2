@@ -1,0 +1,45 @@
+@import './config/colors.scss';
+@import './config/utilities.scss';
+
+// main app section layout styling done here
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+  padding: 20px;
+}
+
+.viewWrapper {
+  // border: 1px dashed yellow;
+  width: 100%;
+  height: 80%;
+  flex-grow: 1;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.terminalWrapper {
+  // border: 1px dashed green;
+  position: relative;
+  width: 100%;
+  height: 20%;
+  max-width: 600px;
+  padding-top: 20px;
+  color: $hacker-green;
+  overflow-y: scroll;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: $hacker-green;
+    animation: $greenBoxSeperationAnim;
+  }
+}

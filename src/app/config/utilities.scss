@@ -4,3 +4,100 @@
   outline: none;
   background: none;
 }
+
+$greenSeperationAnim: 250ms linear 0s infinite alternate running greenSeperation;
+$blueSeperationAnim: 250ms linear 0s infinite alternate running cyanSeperation;
+$cyanSeperationAnim: 250ms linear 0s infinite alternate running blueSeperation;
+$whiteSeperationAnim: 250ms linear 0s infinite alternate running whiteSeperation;
+
+$greenBoxSeperationAnim: 250ms linear 0s infinite alternate running greenBoxSeperation;
+
+@keyframes whiteSeperation {
+  0% {
+    text-shadow: 0px 0px 3px rgba($color: $foreground-white, $alpha: 0.5);
+  }
+
+  33% {
+    text-shadow: 1px 0px 3px rgba($color: $foreground-white, $alpha: 0.5);
+  }
+
+  66% {
+    text-shadow: 0px 0px 3px rgba($color: $foreground-white, $alpha: 0.5);
+  }
+
+  100% {
+    text-shadow: -1px 0px 3px rgba($color: $foreground-white, $alpha: 0.5);
+  }
+}
+
+@keyframes greenSeperation {
+  0% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+
+  33% {
+    text-shadow: 1px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+
+  66% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+
+  100% {
+    text-shadow: -1px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+}
+
+@keyframes greenBoxSeperation {
+  0% {
+    box-shadow: 0px 0px 3px 0px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+
+  33% {
+    box-shadow: 1px 0px 3px 0px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+
+  66% {
+    box-shadow: 0px 0px 3px 0px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+
+  100% {
+    box-shadow: -1px 0px 3px 0px rgba($color: $hacker-green, $alpha: 0.5);
+  }
+}
+
+@keyframes cyanSeperation {
+  0% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-cyan, $alpha: 0.5);
+  }
+
+  33% {
+    text-shadow: 1px 0px 3px rgba($color: $hacker-cyan, $alpha: 0.5);
+  }
+
+  66% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-cyan, $alpha: 0.5);
+  }
+
+  100% {
+    text-shadow: -1px 0px 3px rgba($color: $hacker-cyan, $alpha: 0.5);
+  }
+}
+
+@keyframes blueSeperation {
+  0% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-blue, $alpha: 0.5);
+  }
+
+  33% {
+    text-shadow: 1px 0px 3px rgba($color: $hacker-blue, $alpha: 0.5);
+  }
+
+  66% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-blue, $alpha: 0.5);
+  }
+
+  100% {
+    text-shadow: -1px 0px 3px rgba($color: $hacker-blue, $alpha: 0.5);
+  }
+}

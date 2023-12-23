@@ -1,39 +1,7 @@
-@import '../../config/utilities.scss';
 @import '../../config/colors.scss';
+@import '../../config/utilities.scss';
 
-$textSeperationAnim: 250ms linear 0s infinite alternate running textSeperation;
 $devBorder: 0px;
-
-.wrapper {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  max-width: 600px;
-  border: $devBorder dashed green;
-  font-size: 20px;
-  color: $hacker-green;
-  padding: 20px 0px 0px 20px;
-  animation: $textSeperationAnim;
-}
-
-@keyframes textSeperation {
-  0% {
-    text-shadow: 0px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
-  }
-
-  33% {
-    text-shadow: 1px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
-  }
-
-  66% {
-    text-shadow: 0px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
-  }
-
-  100% {
-    text-shadow: -1px 0px 3px rgba($color: $hacker-green, $alpha: 0.5);
-  }
-}
 
 .linesContainer {
   border: $devBorder dashed orange;
@@ -50,6 +18,7 @@ $devBorder: 0px;
   display: flex;
   column-gap: 8px;
   border: $devBorder dashed blue;
+  animation: $greenSeperationAnim;
 }
 
 .prompt {
@@ -71,5 +40,29 @@ $devBorder: 0px;
   resize: none;
   height: fit-content;
   overflow: hidden;
-  animation: $textSeperationAnim;
+  animation: $greenSeperationAnim;
+}
+
+
+.suggestionBox {
+  display: none;
+  width: 100%;
+  height: fit-content;
+  flex-wrap: wrap;
+  column-gap: 15px;
+  border: $devBorder dashed blueviolet;
+  &.visible {
+    display: flex;
+  }
+}
+
+.suggestion {
+  color: cyan;
+  animation: $cyanSeperationAnim;
+  &.highlighted {
+    color: blue;
+    -webkit-text-stroke: 1px black;
+    background-color: white;
+    animation: $blueSeperationAnim;
+  }
 }
