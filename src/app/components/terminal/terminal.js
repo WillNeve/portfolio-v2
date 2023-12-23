@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, forwardRef } from 'react';
 
 import styles from './terminal.module.scss'
 import windowStyles from '../../window.module.scss'
@@ -10,7 +10,7 @@ const Line = ({content}) => {
   )
 }
 
-const Input = ({ onSubmit, onTab, onBackSpace }) => {
+const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleKeyDown = (e) => {
@@ -32,14 +32,18 @@ const Input = ({ onSubmit, onTab, onBackSpace }) => {
   }
 
   return (
-    <textarea className={styles.input} onKeyDown={handleKeyDown}
+    <textarea ref={inputRef}
+              className={styles.input} onKeyDown={handleKeyDown}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               rows='1'
               autoCapitalize='none'>
     </textarea>
   )
-}
+
+})
+
+Input.displayName = 'Input';
 
 const Suggestion = ({paths, active, highlighted}) => {
   return (
@@ -145,8 +149,15 @@ const Terminal = ({onPageChange}) => {
     setHighlightedSuggestion(-1)
   }
 
+  const inputRef = useRef(null)
+
+  const handleWrapperClick = (e) => {
+    inputRef.current.focus()
+  }
+
   return (
-    <div className={windowStyles.terminalWrapper}>
+    <div className={windowStyles.terminalWrapper}
+         onClick={handleWrapperClick}>
       <div className={styles.linesContainer}>
         {lines.map((line, index) => (
             <div key={index} className={styles.lineWrapper}>
@@ -158,6 +169,7 @@ const Terminal = ({onPageChange}) => {
       <div className={styles.inputWrapper}>
         <Prompt path={path[0]}/>
         <Input onSubmit={handleInputSubmit}
+               ref={inputRef}
                onTab={handleInputTab}
                onBackSpace={handleInputBackspace}/>
       </div>
