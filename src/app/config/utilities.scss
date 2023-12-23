@@ -9,8 +9,27 @@ $greenSeperationAnim: 250ms linear 0s infinite alternate running greenSeperation
 $blueSeperationAnim: 250ms linear 0s infinite alternate running cyanSeperation;
 $cyanSeperationAnim: 250ms linear 0s infinite alternate running blueSeperation;
 $whiteSeperationAnim: 250ms linear 0s infinite alternate running whiteSeperation;
+$orangeSeperationAnim: 250ms linear 0s infinite alternate running orangeSeperation;
 
 $greenBoxSeperationAnim: 250ms linear 0s infinite alternate running greenBoxSeperation;
+
+@keyframes orangeSeperation {
+  0% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5);
+  }
+
+  33% {
+    text-shadow: 1px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5);
+  }
+
+  66% {
+    text-shadow: 0px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5);
+  }
+
+  100% {
+    text-shadow: -1px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5);
+  }
+}
 
 @keyframes whiteSeperation {
   0% {
