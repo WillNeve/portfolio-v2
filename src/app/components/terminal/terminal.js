@@ -68,19 +68,40 @@ const Prompt = ({path}) => {
 
 const Terminal = ({onPageChange}) => {
   const [lines, setLines] = useState([])
+
   const paths = {
     '~': {
+      pwd: '~',
       // 'home': {back: '~'},
-      'about': {back: '~'},
-      'contact': {back: '~'}
+      'about': {back: '~',
+                pwd: '~/about'
+                },
+      'contact': {back: '~',
+                  pwd: '~/contact'}
     }
   }
+
   const [path, setPath] = useState(['~', paths['~']])
-  const [suggestedPaths, setSuggestedPaths] = useState(Object.keys(paths['~']))
+  const [suggestedPaths, setSuggestedPaths] = useState(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'))
   const [suggestionsActive, setSuggestionsActive] = useState(false)
   const [highlightedSuggestion, setHighlightedSuggestion] = useState(-1);
+
   const [inputStoredValue, setInputStoredValue] = useState(null)
 
+  const commands = {
+    'help': {
+      help: 'help; usage: help | help {command}'
+    },
+    'ls': {
+      help: 'ls - list (files/directories); usage: ls | ls {path}'
+    },
+    'pwd': {
+      help: 'pwd - print working directory; usage: pwd'
+    },
+    'cd': {
+      help: 'cd - change directory; usage: cd {path} | cd ../ (back one level)'
+    },
+  }
   const appendNewLine = (text, response) => {
     let localLines;
     if (response) {
@@ -92,13 +113,16 @@ const Terminal = ({onPageChange}) => {
   }
 
   useEffect(() => {
-    setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back'))
+    setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'))
   }, [path])
 
   const handleInputSubmit = (text) => {
     const clearCommand = /^\s?clear *$/;
     const cDCommand = /^\s?cd ((\w+|~)\/?|\.\.\/) *$/;
     const lsCommand = /^\s?ls *$/;
+    const helpCommand = /^\s?help ?(\w+)? *$/;
+    const pwdCommand = /^\s?pwd *$/
+
     setSuggestionsActive(false)
 
     if (clearCommand.test(text)) {
@@ -116,13 +140,28 @@ const Terminal = ({onPageChange}) => {
         appendNewLine(text)
         setPath([newPath, path[1][newPath]])
         onPageChange(newPath)
-        console.log(path);
       } else {
         const errorMessage = `no such file or directory: ${newPath}`
         appendNewLine(text, errorMessage)
       }
     } else if (lsCommand.test(text)) {
       appendNewLine(text, suggestedPaths.join(' '))
+    } else if (helpCommand.test(text)) {
+      const argument = text.match(helpCommand)[1];
+      const commandNames = Object.keys(commands);
+      let message;
+      if (argument) {
+        if (commands[argument]) {
+          message = commands[argument].help
+        } else {
+          message = `unknown command: ${argument}`
+        }
+      } else {
+        message = `available commands: ${commandNames.join(', ')}, for more information on a particular command type help {command}`;
+      }
+      appendNewLine(text, message)
+    } else if (pwdCommand.test(text)) {
+      appendNewLine(text, path[1].pwd)
     } else {
       const errorMessage = `command not found: ${text}`
       appendNewLine(text, errorMessage)
