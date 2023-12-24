@@ -1,3 +1,19 @@
+@mixin responsive {
+  // border: 2px dotted blue;
+  width: 95%;
+  @media (min-width: 600px) {
+    width: 80%;
+  }
+  @media (min-width: 1000px) {
+    width: 75%;
+  }
+  margin: 0 auto;
+}
+
+.r-container {
+  @include responsive;
+}
+
 @mixin boxResets {
   margin: 0;
   border: none;
@@ -10,6 +26,7 @@ $blueSeperationAnim: 250ms linear 0s infinite alternate running cyanSeperation;
 $cyanSeperationAnim: 250ms linear 0s infinite alternate running blueSeperation;
 $whiteSeperationAnim: 250ms linear 0s infinite alternate running whiteSeperation;
 $orangeSeperationAnim: 250ms linear 0s infinite alternate running orangeSeperation;
+$orangeSeperationSvgAnim: 250ms linear 0s infinite alternate running orangeSeperationSvg;
 
 $greenBoxSeperationAnim: 250ms linear 0s infinite alternate running greenBoxSeperation;
 
@@ -28,6 +45,24 @@ $greenBoxSeperationAnim: 250ms linear 0s infinite alternate running greenBoxSepe
 
   100% {
     text-shadow: -1px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5);
+  }
+}
+
+@keyframes orangeSeperationSvg {
+  0% {
+    filter: drop-shadow(0px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5));
+  }
+
+  33% {
+    filter: drop-shadow(1px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5));
+  }
+
+  66% {
+    filter: drop-shadow(0px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5));
+  }
+
+  100% {
+    filter: drop-shadow(-1px 0px 3px rgba($color: $hacker-orange, $alpha: 0.5));
   }
 }
 

@@ -129,6 +129,8 @@ const Terminal = ({onPageChange}) => {
     }
   }
 
+  const wrapper = useRef(null)
+
   const handleInputTab = (value, setValue) => {
     if (suggestionsActive && suggestedPaths.length > 0) {
       let localHighlightedSuggestion = highlightedSuggestion + 1
@@ -144,6 +146,10 @@ const Terminal = ({onPageChange}) => {
     }
   }
 
+  useEffect(() => {
+    wrapper.current.scrollTop = wrapper.current.scrollHeight - wrapper.current.offsetHeight;
+  }, [suggestionsActive])
+
   const handleInputBackspace = (value) => {
     setSuggestionsActive(false)
     setHighlightedSuggestion(-1)
@@ -157,7 +163,8 @@ const Terminal = ({onPageChange}) => {
 
   return (
     <div className={windowStyles.terminalWrapper}
-         onClick={handleWrapperClick}>
+         onClick={handleWrapperClick}
+         ref={wrapper}>
       <div className={styles.linesContainer}>
         {lines.map((line, index) => (
             <div key={index} className={styles.lineWrapper}>

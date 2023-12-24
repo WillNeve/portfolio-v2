@@ -7,8 +7,14 @@ import CrtScreen from './components/crt_screen/CrtScreen.js'
 import Viewer from './components/viewer/viewer.js'
 import { useState } from 'react';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEnvelope, faS } from '@fortawesome/free-solid-svg-icons';
+import { fab, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
+
+library.add(fab, faLinkedin, faS, faEnvelope, faGithub)
+
 export default function Home() {
-  const [page, setPage] = useState('~')
+  const [page, setPage] = useState('contact')
 
   const handlePageChange = (page) => {
     setPage(page)
@@ -18,7 +24,9 @@ export default function Home() {
     <main className={windowStyles.main}>
       <CrtScreen/>
       <Viewer page={page}/>
-      <Terminal onPageChange={handlePageChange}/>
+        <div className={windowStyles.terminalSection}>
+          <Terminal onPageChange={handlePageChange}/>
+        </div>
     </main>
   )
 }

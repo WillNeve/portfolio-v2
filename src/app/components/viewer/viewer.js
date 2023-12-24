@@ -39,7 +39,9 @@ const Viewer = ({page}) => {
 
   return (
       <div className={windowStyles.viewWrapper}>
-        {inner}
+        <div className='r-container'>
+          {inner}
+        </div>
       </div>
   )
 }
