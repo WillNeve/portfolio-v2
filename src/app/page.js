@@ -14,7 +14,7 @@ import { fab, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 library.add(fab, faLinkedin, faS, faEnvelope, faGithub)
 
 export default function Home() {
-  const [page, setPage] = useState('contact')
+  const [page, setPage] = useState('~')
 
   const handlePageChange = (page) => {
     setPage(page)
