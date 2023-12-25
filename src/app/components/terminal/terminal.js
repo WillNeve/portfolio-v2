@@ -157,7 +157,7 @@ const Terminal = ({onPageChange}) => {
           message = `unknown command: ${argument}`
         }
       } else {
-        message = `available commands: ${commandNames.join(', ')}, for more information on a particular command type help {command}`;
+        message = (<div>available commands: <br/>{'-' + commandNames.join(' -')} <br/> for more information on a particular command type help {'{'}command{'}'}</div>);
       }
       appendNewLine(text, message)
     } else if (pwdCommand.test(text)) {
