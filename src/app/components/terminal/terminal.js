@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect, forwardRef } from 'react';
 
 import styles from './terminal.module.scss'
-import windowStyles from '../../window.module.scss'
 
 const Line = ({content}) => {
   return (
@@ -17,9 +16,8 @@ const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
     // console.log(e.key);
     switch (e.key) {
       case 'Enter':
-        onSubmit(inputValue)
-
-        setInputValue('')
+        e.preventDefault()
+        onSubmit(inputValue, setInputValue)
         break;
       case 'Tab':
         e.preventDefault()
@@ -66,7 +64,7 @@ const Prompt = ({path}) => {
 }
 
 
-const Terminal = ({onPageChange}) => {
+const Terminal = ({onPageChange, className}) => {
   const [lines, setLines] = useState([])
 
   const paths = {
@@ -85,6 +83,7 @@ const Terminal = ({onPageChange}) => {
   const [suggestedPaths, setSuggestedPaths] = useState(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'))
   const [suggestionsActive, setSuggestionsActive] = useState(false)
   const [highlightedSuggestion, setHighlightedSuggestion] = useState(-1);
+  const [formedPath, setFormedPath] = useState(['', false]) // path, ready
 
   const [inputStoredValue, setInputStoredValue] = useState(null)
 
@@ -101,6 +100,9 @@ const Terminal = ({onPageChange}) => {
     'cd': {
       help: 'cd - change directory; usage: cd {path} | cd ../ (back one level)'
     },
+    'clear': {
+      help: 'clear - clears terminal history; usage: clear'
+    },
   }
   const appendNewLine = (text, response) => {
     let localLines;
@@ -113,10 +115,14 @@ const Terminal = ({onPageChange}) => {
   }
 
   useEffect(() => {
-    setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'))
-  }, [path])
+    if (formedPath[0] && formedPath[1]) {
+      setSuggestedPaths(Object.keys(path[1][formedPath[0]]).filter(path => path !== 'back' && path !== 'pwd'))
+    } else {
+      setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'))
+    }
+  }, [path, formedPath])
 
-  const handleInputSubmit = (text) => {
+  const handleInputSubmit = (value, setValue) => {
     const clearCommand = /^\s?clear *$/;
     const cDCommand = /^\s?cd ((\w+|~)\/?|\.\.\/) *$/;
     const lsCommand = /^\s?ls *$/;
@@ -125,33 +131,37 @@ const Terminal = ({onPageChange}) => {
 
     setSuggestionsActive(false)
 
-    if (clearCommand.test(text)) {
+    if (clearCommand.test(value)) {
       setLines([])
-    } else if (cDCommand.test(text)) { // cd command
-      if (!tempPath) {
-        // lock current suggestion in as tempPath, 
+    } else if (cDCommand.test(value)) { // cd command
+      if (highlightedSuggestion !== -1 && suggestionsActive)  {
+        // lock selection to formedPath if suggestions are open
+        setSuggestionsActive(false)
+        setFormedPath([suggestedPaths[highlightedSuggestion], true])
         return;
       }
-      const newPath = text.match(cDCommand)[1]
+      if (formedPath[1]) console.log(`'${formedPath[0]}'`);
+      const newPath = formedPath[0] && formedPath[1] ? formedPath[0] : value.match(cDCommand)[1]
       if (newPath === '../') {
-        appendNewLine(text)
+        appendNewLine(value)
         const previousPath = path[1].back
         if (path[1].back) {
           setPath([previousPath, paths[previousPath]])
           onPageChange(previousPath)
         }
-      } else if (suggestedPaths.includes(newPath)) {
-        appendNewLine(text)
+      } else if (Object.keys(path[1]).includes(newPath)) {
+        appendNewLine(value)
         setPath([newPath, path[1][newPath]])
         onPageChange(newPath)
       } else {
         const errorMessage = `no such file or directory: ${newPath}`
-        appendNewLine(text, errorMessage)
+        appendNewLine(value, errorMessage)
       }
-    } else if (lsCommand.test(text)) {
-      appendNewLine(text, suggestedPaths.join(' '))
-    } else if (helpCommand.test(text)) {
-      const argument = text.match(helpCommand)[1];
+      setFormedPath(['', false])
+    } else if (lsCommand.test(value)) {
+      appendNewLine(value, suggestedPaths.join(' '))
+    } else if (helpCommand.test(value)) {
+      const argument = value.match(helpCommand)[1];
       const commandNames = Object.keys(commands);
       let message;
       if (argument) {
@@ -163,18 +173,18 @@ const Terminal = ({onPageChange}) => {
       } else {
         message = (<div>available commands: <br/>{'-' + commandNames.join(' -')} <br/> for more information on a particular command type help {'{'}command{'}'}</div>);
       }
-      appendNewLine(text, message)
-    } else if (pwdCommand.test(text)) {
-      appendNewLine(text, path[1].pwd)
+      appendNewLine(value, message)
+    } else if (pwdCommand.test(value)) {
+      appendNewLine(value, path[1].pwd)
     } else {
-      const errorMessage = `command not found: ${text}`
-      appendNewLine(text, errorMessage)
+      const errorMessage = `command not found: ${value}`
+      appendNewLine(value, errorMessage)
     }
+    setValue('')
   }
 
   const wrapper = useRef(null)
 
-  let tempPath = null;
   const handleInputTab = (value, setValue) => {
     if (suggestionsActive && suggestedPaths.length > 0) {
       let localHighlightedSuggestion = highlightedSuggestion + 1
@@ -206,7 +216,7 @@ const Terminal = ({onPageChange}) => {
   }
 
   return (
-    <div className={windowStyles.terminalWrapper}
+    <div className={className}
          onClick={handleWrapperClick}
          ref={wrapper}>
       <div className={styles.linesContainer}>

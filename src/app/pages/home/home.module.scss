@@ -1,8 +1,58 @@
 .title {
   display: flex;
   flex-direction: column;
-  a {
-    // border: 2px solid green;
-    margin-top: 5px;
+}
+
+.links {
+  display: flex;
+  column-gap: 5px;
+  margin: 5px 0px;
+}
+
+.icons {
+  display: none;
+  margin: 5px 0px;
+  font-size: 40px;
+}
+
+.intro {
+  width: 100%;
+  // border: 1px dashed red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  column-gap: 20px;
+  .text {
+    width: 100%;
+  }
+  img {
+    width: 100%;
+    max-width: 310px;
+    flex-grow: 1;
+    object-fit: container;
+  }
+  @media (min-width: 600px) {
+    flex-direction: row;
+    .text {
+      width: 70%;
+    }
+    img {
+      width: 20%;
+    }
+    .icons {
+      display: flex;
+    }
+  }
+  margin-bottom: 10px;
+}
+
+.headshot {
+  max-width: 450px;
+  object-fit: contain;
+  filter: saturate(0);
+  transition: filter .2s ease;
+  &:hover {
+    filter: saturate(1);
   }
 }
