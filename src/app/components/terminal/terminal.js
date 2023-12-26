@@ -128,6 +128,10 @@ const Terminal = ({onPageChange}) => {
     if (clearCommand.test(text)) {
       setLines([])
     } else if (cDCommand.test(text)) { // cd command
+      if (!tempPath) {
+        // lock current suggestion in as tempPath, 
+        return;
+      }
       const newPath = text.match(cDCommand)[1]
       if (newPath === '../') {
         appendNewLine(text)
@@ -170,6 +174,7 @@ const Terminal = ({onPageChange}) => {
 
   const wrapper = useRef(null)
 
+  let tempPath = null;
   const handleInputTab = (value, setValue) => {
     if (suggestionsActive && suggestedPaths.length > 0) {
       let localHighlightedSuggestion = highlightedSuggestion + 1
