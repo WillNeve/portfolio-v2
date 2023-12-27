@@ -24,7 +24,7 @@ const Viewer = ({page, className}) => {
           {inner}
         </div>
       </div>
-  )
+  );
 }
 
 export default Viewer;

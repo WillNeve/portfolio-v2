@@ -5,7 +5,7 @@
 A portfolio site built on Nextjs (React), following a retro theme.
 
 ## Navigation
-This site was designed to be traversed using the bespoke built in terminal, while remaining accessable to users to want a more standard navigation practices - if thats you I apologise for the inconvenience ;)
+This site was designed to be traversed using the bespoke built in terminal, while remaining accessable to users to want a more standard navigation practices - if thats you I apologise for the inconvenience ;\)
 
 ## Technologies
 NextJS - ReactJS - SASS/SCSS

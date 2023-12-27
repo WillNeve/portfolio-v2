@@ -8,6 +8,7 @@ const sassOptions = {
 
 const nextConfig = {
   sassOptions,
+  reactStrictMode: false,
 }
 
 module.exports = nextConfig

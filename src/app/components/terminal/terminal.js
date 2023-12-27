@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 
 //sub-components
 import Input from './input';
@@ -9,7 +9,12 @@ import Suggestion from './suggestion';
 
 import styles from './terminal.module.scss';
 
-const Terminal = ({onPageChange, className}) => {
+const Terminal = React.memo(({onPageChange, className}) => {
+  //refs
+  const inputRef = useRef(null);
+  const wrapper = useRef(null);
+
+  //state
   const [lines, setLines] = useState([]);
 
   const paths = {
@@ -49,6 +54,9 @@ const Terminal = ({onPageChange, className}) => {
       help: 'clear - clears terminal history; usage: clear',
     },
   }
+
+  //logic
+
   const appendNewLine = (text, response) => {
     let localLines;
     if (response) {
@@ -59,6 +67,34 @@ const Terminal = ({onPageChange, className}) => {
     setLines(localLines);
   }
 
+  const typeLine = (text, speed) => {
+    // lock input for no interference during message
+    console.log('locking input');
+    const typingSpeed = speed ? speed : 50;
+
+    const chars = text.split('');
+    for (let i = 0; i < chars.length; i++) {
+      setTimeout(() => {
+        inputRef.current.value += chars[i];
+      }, i * typingSpeed);
+    }
+
+    // unlock input after message appended and cleared
+    setTimeout(() => {
+      console.log('input unlocked');
+    }, chars.length * typingSpeed);
+  }
+  //effects
+
+  useEffect(() => {
+    console.log('Component rendered:', onPageChange, className);
+    typeLine('Hello there, welcome to my portfolio site, I hope you enjoy your stay', 40)
+  }, [])
+
+  useEffect(() => {
+    wrapper.current.scrollTop = wrapper.current.scrollHeight - wrapper.current.offsetHeight;
+  }, [suggestionsActive]);
+
   useEffect(() => {
     if (formedPath[0] && formedPath[1]) {
       setSuggestedPaths(Object.keys(path[1][formedPath[0]]).filter(path => path !== 'back' && path !== 'pwd'));
@@ -66,6 +102,8 @@ const Terminal = ({onPageChange, className}) => {
       setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'));
     }
   }, [path, formedPath]);
+
+  //handlers
 
   const handleInputSubmit = (value, setValue) => {
     const clearCommand = /^\s?clear *$/;
@@ -129,8 +167,6 @@ const Terminal = ({onPageChange, className}) => {
       setValue('');
   };
 
-  const wrapper = useRef(null);
-
   const handleInputTab = (value, setValue) => {
     if (suggestionsActive && suggestedPaths.length > 0) {
       let localHighlightedSuggestion = highlightedSuggestion + 1;
@@ -146,20 +182,16 @@ const Terminal = ({onPageChange, className}) => {
     }
   };
 
-  useEffect(() => {
-    wrapper.current.scrollTop = wrapper.current.scrollHeight - wrapper.current.offsetHeight;
-  }, [suggestionsActive]);
-
   const handleInputBackspace = (value) => {
     setSuggestionsActive(false);
     setHighlightedSuggestion(-1);
   };
 
-  const inputRef = useRef(null);
-
   const handleWrapperClick = (e) => {
     inputRef.current.focus();
   };
+
+  //view
 
   return (
     <div className={className}
@@ -183,6 +215,8 @@ const Terminal = ({onPageChange, className}) => {
       <Suggestion paths={suggestedPaths} active={suggestionsActive} highlighted={highlightedSuggestion}/>
     </div>
   );
-};
+});
+
+Terminal.displayName = 'Terminal';
 
 export default Terminal;
