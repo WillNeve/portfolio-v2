@@ -1,4 +1,4 @@
-import styles from './terminal.module.scss'
+import styles from './terminal.module.scss';
 
 
 const Prompt = ({path}) => {
@@ -8,7 +8,7 @@ const Prompt = ({path}) => {
       <p>{path}</p>
       <strong>$</strong>
     </div>
-  )
+  );
 }
 
 export default Prompt;

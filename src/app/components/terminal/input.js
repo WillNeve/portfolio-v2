@@ -9,15 +9,15 @@ const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
     // console.log(e.key);
     switch (e.key) {
       case 'Enter':
-        e.preventDefault()
-        onSubmit(inputValue, setInputValue)
+        e.preventDefault();
+        onSubmit(inputValue, setInputValue);
         break;
       case 'Tab':
-        e.preventDefault()
-        onTab(inputValue, setInputValue)
+        e.preventDefault();
+        onTab(inputValue, setInputValue);
         break;
       case 'Backspace':
-        onBackSpace(inputValue)
+        onBackSpace(inputValue);
         break;
     }
   }
@@ -30,8 +30,7 @@ const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
               rows='1'
               autoCapitalize='none'>
     </textarea>
-  )
-
+  );
 })
 
 Input.displayName = 'Input';

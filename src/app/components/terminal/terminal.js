@@ -127,62 +127,62 @@ const Terminal = ({onPageChange, className}) => {
         appendNewLine(value, errorMessage);
       }
       setValue('');
-      };
+  };
 
-      const wrapper = useRef(null);
+  const wrapper = useRef(null);
 
-      const handleInputTab = (value, setValue) => {
-        if (suggestionsActive && suggestedPaths.length > 0) {
-          let localHighlightedSuggestion = highlightedSuggestion + 1;
-          if (localHighlightedSuggestion > (suggestedPaths.length - 1)) {
-            localHighlightedSuggestion = 0;
-          }
-          setValue(inputStoredValue + suggestedPaths[localHighlightedSuggestion]);
-          setHighlightedSuggestion(localHighlightedSuggestion);
-        } else {
-          setInputStoredValue(value);
-          setSuggestionsActive(true);
-          // setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back'))
-        }
-      };
+  const handleInputTab = (value, setValue) => {
+    if (suggestionsActive && suggestedPaths.length > 0) {
+      let localHighlightedSuggestion = highlightedSuggestion + 1;
+      if (localHighlightedSuggestion > (suggestedPaths.length - 1)) {
+        localHighlightedSuggestion = 0;
+      }
+      setValue(inputStoredValue + suggestedPaths[localHighlightedSuggestion]);
+      setHighlightedSuggestion(localHighlightedSuggestion);
+    } else {
+      setInputStoredValue(value);
+      setSuggestionsActive(true);
+      // setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back'))
+    }
+  };
 
-      useEffect(() => {
-        wrapper.current.scrollTop = wrapper.current.scrollHeight - wrapper.current.offsetHeight;
-      }, [suggestionsActive]);
+  useEffect(() => {
+    wrapper.current.scrollTop = wrapper.current.scrollHeight - wrapper.current.offsetHeight;
+  }, [suggestionsActive]);
 
-      const handleInputBackspace = (value) => {
-        setSuggestionsActive(false);
-        setHighlightedSuggestion(-1);
-      };
+  const handleInputBackspace = (value) => {
+    setSuggestionsActive(false);
+    setHighlightedSuggestion(-1);
+  };
 
-      const inputRef = useRef(null);
+  const inputRef = useRef(null);
 
-      const handleWrapperClick = (e) => {
-        inputRef.current.focus();
-      };
+  const handleWrapperClick = (e) => {
+    inputRef.current.focus();
+  };
 
-      return (
-        <div className={className}
-             onClick={handleWrapperClick}
-             ref={wrapper}>
-          <div className={styles.linesContainer}>
-            {lines.map((line, index) => (
-                <div key={index} className={styles.lineWrapper}>
-                  {line[2] ? ('') : (<Prompt path={line[1]}/>)}
-                  <Line content={line[0]}/>
-                </div>
-              ))}
-          </div>
-          <div className={styles.inputWrapper}>
-            <Prompt path={path[0]}/>
-            <Input onSubmit={handleInputSubmit}
-                   ref={inputRef}
-                   onTab={handleInputTab}
-                   onBackSpace={handleInputBackspace}/>
-          </div>
-          <Suggestion paths={suggestedPaths} active={suggestionsActive} highlighted={highlightedSuggestion}/>
-        </div>
-      );
-      };
+  return (
+    <div className={className}
+          onClick={handleWrapperClick}
+          ref={wrapper}>
+      <div className={styles.linesContainer}>
+        {lines.map((line, index) => (
+            <div key={index} className={styles.lineWrapper}>
+              {line[2] ? ('') : (<Prompt path={line[1]}/>)}
+              <Line content={line[0]}/>
+            </div>
+          ))}
+      </div>
+      <div className={styles.inputWrapper}>
+        <Prompt path={path[0]}/>
+        <Input onSubmit={handleInputSubmit}
+                ref={inputRef}
+                onTab={handleInputTab}
+                onBackSpace={handleInputBackspace}/>
+      </div>
+      <Suggestion paths={suggestedPaths} active={suggestionsActive} highlighted={highlightedSuggestion}/>
+    </div>
+  );
+};
 
-      export default Terminal;
+export default Terminal;

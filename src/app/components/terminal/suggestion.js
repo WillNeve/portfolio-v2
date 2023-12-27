@@ -1,4 +1,4 @@
-import styles from './terminal.module.scss'
+import styles from './terminal.module.scss';
 
 
 const Suggestion = ({paths, active, highlighted}) => {
@@ -8,7 +8,7 @@ const Suggestion = ({paths, active, highlighted}) => {
         <p key={index} className={`${styles.suggestion} ${(index === highlighted ? styles.highlighted : '')}`}>{path}</p>
       ))}
     </div>
-  )
+  );
 }
 
 export default Suggestion;
