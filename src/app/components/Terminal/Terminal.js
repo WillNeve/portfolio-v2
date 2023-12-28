@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 //sub-components
 import Input from './input';
@@ -9,7 +9,7 @@ import Suggestion from './suggestion';
 
 import styles from './terminal.module.scss';
 
-const Terminal = React.memo(({onPageChange, className}) => {
+const Terminal = ({onPageChange, className}) => {
   //refs
   const inputRef = useRef(null);
   const wrapper = useRef(null);
@@ -236,7 +236,7 @@ const Terminal = React.memo(({onPageChange, className}) => {
       <Suggestion paths={suggestedPaths} active={suggestionsActive} highlighted={highlightedSuggestion}/>
     </div>
   );
-});
+};
 
 Terminal.displayName = 'Terminal';
 
