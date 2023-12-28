@@ -30,6 +30,13 @@ const Home = () => {
 
       <p>I&apos;v built this portfolio page to be navigated by terminal below - If you prefer a more traditional navigation style please use the menu <em>?</em> above above to switch pages</p>
 
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
     </div>
   )
 }
