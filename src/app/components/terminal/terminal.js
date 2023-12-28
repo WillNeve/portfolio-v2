@@ -67,28 +67,49 @@ const Terminal = React.memo(({onPageChange, className}) => {
     setLines(localLines);
   }
 
+  const resizeInput = () => {
+    inputRef.current.style.height = "1px";
+
+    inputRef.current.style.height = inputRef.current.scrollHeight + "px";
+  }
+
   const typeLine = (text, speed) => {
     // lock input for no interference during message
     console.log('locking input');
+    inputRef.current.disabled = true;
     const typingSpeed = speed ? speed : 50;
+    const removalDelay = 2000;
 
     const chars = text.split('');
     for (let i = 0; i < chars.length; i++) {
       setTimeout(() => {
         inputRef.current.value += chars[i];
+        resizeInput();
       }, i * typingSpeed);
     }
+
+    setTimeout(() => {
+      for (let i = 1; i <= chars.length; i++) {
+        setTimeout(() => {
+          inputRef.current.value = inputRef.current.value.slice(0,-1);
+          resizeInput();
+        }, (typingSpeed * 0.5) * (i - 1));
+      }
+    }, ((chars.length - 1) * typingSpeed) + removalDelay);
 
     // unlock input after message appended and cleared
     setTimeout(() => {
       console.log('input unlocked');
-    }, chars.length * typingSpeed);
+      inputRef.current.disabled = false;
+    }, (typingSpeed * (chars.length * 1.5) + removalDelay));
   }
   //effects
 
   useEffect(() => {
     console.log('Component rendered:', onPageChange, className);
-    typeLine('Hello there, welcome to my portfolio site, I hope you enjoy your stay', 40)
+    setTimeout(() => {
+      typeLine('Hello there, welcome to my portfolio site, I hope you enjoy your stay', 40)
+    }, 250);
   }, [])
 
   useEffect(() => {

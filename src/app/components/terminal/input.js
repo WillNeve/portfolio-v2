@@ -5,8 +5,19 @@ import styles from './terminal.module.scss';
 const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
   const [inputValue, setInputValue] = useState('');
 
+  const resize = () => {
+    inputRef.current.style.height = "1px";
+
+    inputRef.current.style.height = inputRef.current.scrollHeight + "px";
+  }
+
+  const test = () => {
+    alert('ref func called')
+  }
+
   const handleKeyDown = (e) => {
     // console.log(e.key);
+    resize();
     switch (e.key) {
       case 'Enter':
         e.preventDefault();
