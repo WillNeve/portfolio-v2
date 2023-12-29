@@ -14,7 +14,6 @@ const NavWrapper = styled.div`
   color: ${props => props.theme.hackerGreen};
   background: ${props => props.theme.backgroundBlack};
   transition: height .2s ease;
-  margin-bottom: 25px;
   padding-bottom: 10px;
   & > div:nth-child(1) {
     display: flex;
@@ -30,7 +29,7 @@ const NavWrapper = styled.div`
     width: 100%;
     height: 2px;
     background: ${props => props.theme.hackerGreen};
-    animation: 250ms linear 0s infinite alternate running ${props => boxSeperation(props.theme.hackerGreen)};
+    animation: 250ms linear 0s infinite alternate running ${props => boxSeperation(props.theme.hackerGreen, 0.5)};
   }
 `;
 
@@ -54,7 +53,7 @@ const NavMenuToggle = styled.button`
     width: 90%;
     height: 2px;
     background: ${props => props.theme.hackerGreen};
-    animation: 250ms linear 0s infinite alternate running ${props => boxSeperation(props.theme.hackerGreen)};
+    animation: 250ms linear 0s infinite alternate running ${props => boxSeperation(props.theme.hackerGreen, 0.5)};
     transform-origin: center;
     transition: all 0.1s linear;
     position: absolute;
@@ -95,12 +94,12 @@ const NavMenuButton = styled.button`
   cursor: pointer;
   color: cyan;
   padding: 5px;
-  animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerCyan)};
+  animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerCyan, 0.5)};
   &:hover {
     color: blue;
     -webkit-text-stroke: 1px black;
     background-color: white;
-    animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerBlue)};
+    animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerBlue, 0.5)};
   }
 `;
 

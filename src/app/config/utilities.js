@@ -14,42 +14,42 @@ export const hexToRgba = (hex, alpha) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha ? alpha : 1})`;
 }
 
-export const textSeperation = (color) => {
+export const textSeperation = (color, alpha) => {
   return keyframes`
   0% {
-      text-shadow: 0px 0px 3px ${hexToRgba(color)};
+      text-shadow: 0px 0px 3px ${hexToRgba(color, alpha)};
     }
 
   33% {
-    text-shadow: 1px 0px 3px ${hexToRgba(color)};
+    text-shadow: 1px 0px 3px ${hexToRgba(color, alpha)};
   }
 
   66% {
-    text-shadow: 0px 0px 3px ${hexToRgba(color)};
+    text-shadow: 0px 0px 3px ${hexToRgba(color, alpha)};
   }
 
   100% {
-    text-shadow: -1px 0px 3px ${hexToRgba(color)};
+    text-shadow: -1px 0px 3px ${hexToRgba(color, alpha)};
   }
 `;
 }
 
-export const boxSeperation = (color) => {
+export const boxSeperation = (color, alpha) => {
   return keyframes`
   0% {
-    box-shadow: 0px 0px 3px 0px ${hexToRgba(color)};
+    box-shadow: 0px 0px 3px 0px ${hexToRgba(color, alpha)};
   }
 
   33% {
-    box-shadow: 1px 0px 3px 0px ${hexToRgba(color)};
+    box-shadow: 1px 0px 3px 0px ${hexToRgba(color, alpha)};
   }
 
   66% {
-    box-shadow: 0px 0px 3px 0px ${hexToRgba(color)};
+    box-shadow: 0px 0px 3px 0px ${hexToRgba(color, alpha)};
   }
 
   100% {
-    box-shadow: -1px 0px 3px 0px ${hexToRgba(color)};
+    box-shadow: -1px 0px 3px 0px ${hexToRgba(color, alpha)};
   }
 `;
 }
