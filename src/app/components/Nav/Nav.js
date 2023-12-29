@@ -90,6 +90,7 @@ const NavMenuButton = styled.button`
   background: none;
   border: none;
   color: ${props => props.theme.hackerGreen};
+  border: ${props => props.current ? '1px' : '0px'} solid red;
   font-size: 20px;
   cursor: pointer;
   color: cyan;
@@ -105,13 +106,18 @@ const NavMenuButton = styled.button`
 
 const Nav = ({activePage, onPageChange}) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {pages, page, setPage} = useContext(PagesContext);
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
     console.log('menu clicked');
   }
 
-  const pages = useContext(PagesContext);
+  const handlePageChange = (page) => {
+    setPage(page)
+    onPageChange(page)
+  }
+
 
   return (
     <NavWrapper className={styles.wrapper}>
@@ -124,8 +130,8 @@ const Nav = ({activePage, onPageChange}) => {
       </div>
       <NavMenu active={menuOpen}>
         <NavMenuButtonList>
-          {pages.map((page, index) => (
-            <li key={index}><NavMenuButton type='text' onClick={() => {onPageChange(page)}}>{page === '~' ? 'home' : page}</NavMenuButton></li>
+          {pages.map((pageName, index) => (
+            <li key={index}><NavMenuButton current={pageName === page} type='text' onClick={() => {handlePageChange(pageName)}}>{pageName === '~' ? 'home' : pageName}</NavMenuButton></li>
           ))}
         </NavMenuButtonList>
       </NavMenu>

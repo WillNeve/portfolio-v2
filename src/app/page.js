@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <StyledComponentsConfig>
-      <PagesContext.Provider value={pages}>
+      <PagesContext.Provider value={{pages, page, setPage}}>
       <main onClick={handleMainClick}
             className={styles.main}>
         <CrtScreen/>

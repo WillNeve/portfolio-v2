@@ -1,5 +1,19 @@
+// TODO
+//simplify and stop passing in functions etc when you can use context
+// nuke this code and implement styled components for non dynamic comps
+
+
+
+
+
+
+
+
+
+
 "use client";
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import { PagesContext } from '../../page.js';
 
 //sub-components
 import Input from './input';
@@ -30,7 +44,7 @@ const Terminal = ({onPageChange, className}) => {
   }
 
   const [path, setPath] = useState(['~', paths['~']]);
-  const [suggestedPaths, setSuggestedPaths] = useState(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'));
+  const [suggestedPaths, setSuggestedPaths] = useState([]);
   const [suggestionsActive, setSuggestionsActive] = useState(false);
   const [highlightedSuggestion, setHighlightedSuggestion] = useState(-1);
   const [formedPath, setFormedPath] = useState(['', false]); // path, ready
@@ -105,8 +119,10 @@ const Terminal = ({onPageChange, className}) => {
   }
   //effects
 
+  const {pages, page, setPage} = useContext(PagesContext);
+
+
   useEffect(() => {
-    console.log('Component rendered:', onPageChange, className);
     setTimeout(() => {
       typeLine('Hello there, welcome to my portfolio site, I hope you enjoy your stay', 40)
     }, 250);
@@ -117,13 +133,23 @@ const Terminal = ({onPageChange, className}) => {
   }, [suggestionsActive]);
 
   useEffect(() => {
+    console.log('setting suggested paths');
     if (formedPath[0] && formedPath[1]) {
       setSuggestedPaths(Object.keys(path[1][formedPath[0]]).filter(path => path !== 'back' && path !== 'pwd'));
     } else {
+      console.log(path[1]);
       setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'));
     }
   }, [path, formedPath]);
 
+  useEffect(() => {
+    console.log('setting page');
+    if (page === '~') {
+      setPath([page, paths[page]])
+    } else {
+      setPath([page, path[1][page]])
+    }
+  }, [page])
   //handlers
 
   const handleInputSubmit = (value, setValue) => {
