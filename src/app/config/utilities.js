@@ -1,16 +1,13 @@
 import { keyframes } from 'styled-components';
 
 export const hexToRgba = (hex, alpha) => {
-  // Remove the # character if present
   hex = hex.replace(/^#/, '');
 
-  // Parse the hex color into its RGB components
   const bigint = parseInt(hex, 16);
   const r = (bigint >> 16) & 255;
   const g = (bigint >> 8) & 255;
   const b = bigint & 255;
 
-  // Return the RGBA string
   return `rgba(${r}, ${g}, ${b}, ${alpha ? alpha : 1})`;
 }
 

@@ -13,17 +13,28 @@ import Nav from './components/Nav/Nav.js';
 export const PagesContext = createContext();
 
 export default function Home() {
-  const [page, setPage] = useState('~');
   const [terminalExpanded, setTerminalExpanded] = useState(false);
-  const pages = ['~', 'about', 'contact'];
+  const [page, setPage] = useState('~');
+  const pages = {
+    '~': {
+      pwd: '~',
+    },
+    'about': {
+      pwd: '~/about'
+    },
+    'contact': {
+      pwd: '~/contact'
+    }
+  };
+
+  pages['about'].parent = '~';
+  pages['contact'].parent = '~';
 
   const handlePageChange = (page) => {
-    console.log(page);
     setPage(page);
   }
 
   const handleTerminalClick = () => {
-    console.log('terminal clicked');
     setTerminalExpanded(true);
   }
 

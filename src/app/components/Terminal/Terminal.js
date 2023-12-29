@@ -1,16 +1,3 @@
-// TODO
-//simplify and stop passing in functions etc when you can use context
-// nuke this code and implement styled components for non dynamic comps
-
-
-
-
-
-
-
-
-
-
 "use client";
 import { useState, useRef, useEffect, useContext } from 'react';
 import { PagesContext } from '../../page.js';
@@ -27,69 +14,106 @@ const Terminal = ({onPageChange, className}) => {
   //refs
   const inputRef = useRef(null);
   const wrapper = useRef(null);
-
+  //context
+  const {pages, page, setPage} = useContext(PagesContext);
   //state
+  const [inputStoredValue, setInputStoredValue] = useState(null); // convert this to context
   const [lines, setLines] = useState([]);
-
-  const paths = {
-    '~': {
-      pwd: '~',
-      // 'home': {back: '~'},
-      'about': {back: '~',
-                pwd: '~/about'
-                },
-      'contact': {back: '~',
-                  pwd: '~/contact'}
-    }
-  }
-
-  const [path, setPath] = useState(['~', paths['~']]);
-  const [suggestedPaths, setSuggestedPaths] = useState([]);
-  const [suggestionsActive, setSuggestionsActive] = useState(false);
-  const [highlightedSuggestion, setHighlightedSuggestion] = useState(-1);
-  const [formedPath, setFormedPath] = useState(['', false]); // path, ready
-
-  const [inputStoredValue, setInputStoredValue] = useState(null);
+  //suggestions local
+  const [pageSuggestions, setPageSuggestions] = useState([]);
+  const [highlightedPageSuggestion, setHighlightedPageSuggestion] = useState(-1);
+  const [pageSuggestionsActive, setPageSuggestionsActive] = useState(false);
 
   const commands = {
     'help': {
+      expression: /^\s?help ?(\w+)? *$/,
       help: 'help; usage: help | help {command}',
+      run(value) {
+        const command = value.match(this.expression)[1];
+        const commandNames = Object.keys(commands);
+        let message;
+        if (command) {
+          if (commands[command]) {
+            message = commands[command].help;
+          } else {
+            message = `unknown command: ${command}`;
+          }
+        } else {
+          message = (<div>available commands: <br/>{'-' + commandNames.join(' -')} <br/> for more information on a particular command type help {'{'}command{'}'}</div>);
+        }
+        appendNewLine(value, message);
+      }
     },
     'ls': {
+      expression: /^\s?ls *$/,
       help: 'ls - list (files/directories); usage: ls | ls {path}',
+      run(value) {
+        appendNewLine(value, pageSuggestions.join(' '));
+      }
     },
     'pwd': {
+      expression: /^\s?pwd *$/,
       help: 'pwd - print working directory; usage: pwd',
+      run(value) {
+        appendNewLine(value, pages[page].pwd);
+      }
     },
     'cd': {
+      expression: /^\s?cd ((\w+|~)\/?|\.\.\/) *$/,
       help: 'cd - change directory; usage: cd {path} | cd ../ (back one level)',
+      run(value) {
+        const requestedPage = value.match(this.expression)[1];
+        if (Object.keys(pages).includes(requestedPage)) {
+          setPage(requestedPage);
+          appendNewLine(value);
+        } else if (requestedPage === '../') {
+          if (pages[page].parent) {
+            setPage(pages[page].parent);
+          }
+          appendNewLine(value);
+        } else {
+          appendNewLine(value, `no such file or directory: ${requestedPage}`);
+        }
+      },
     },
     'clear': {
+      expression: /^\s?clear *$/,
       help: 'clear - clears terminal history; usage: clear',
+      run() {
+        setLines([]);
+      }
     },
   }
 
   //logic
+  const routeCommand = (value) => {
+    for (const command in commands) {
+      if (commands[command].expression.test(value)) {
+        commands[command].run(value);
+        return;
+      }
+    }
+    const errorMessage = `command not found: ${value}`;
+    appendNewLine(value, errorMessage);
+  }
 
   const appendNewLine = (text, response) => {
     let localLines;
     if (response) {
-      localLines = lines.concat([[text, path[0], false], [response, path[0], true]]);
+      localLines = lines.concat([[text, page, false], [response, page, true]]);
     } else {
-      localLines = lines.concat([[text, path[0], false]]);
+      localLines = lines.concat([[text, page, false]]);
     }
     setLines(localLines);
   }
 
   const resizeInput = () => {
     inputRef.current.style.height = "1px";
-
     inputRef.current.style.height = inputRef.current.scrollHeight + "px";
   }
 
   const typeLine = (text, speed) => {
     // lock input for no interference during message
-    console.log('locking input');
     inputRef.current.disabled = true;
     const typingSpeed = speed ? speed : 50;
     const removalDelay = 2000;
@@ -113,125 +137,56 @@ const Terminal = ({onPageChange, className}) => {
 
     // unlock input after message appended and cleared
     setTimeout(() => {
-      console.log('input unlocked');
       inputRef.current.disabled = false;
     }, (typingSpeed * (chars.length * 1.5) + removalDelay));
   }
   //effects
 
-  const {pages, page, setPage} = useContext(PagesContext);
-
-
   useEffect(() => {
     setTimeout(() => {
-      typeLine('Hello there, welcome to my portfolio site, I hope you enjoy your stay', 40)
-    }, 250);
-  }, [])
+      typeLine('Welcome to my portfolio, I hope you enjoy your stay')
+    }, 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   useEffect(() => {
-    wrapper.current.scrollTop = wrapper.current.scrollHeight - wrapper.current.offsetHeight;
-  }, [suggestionsActive]);
-
-  useEffect(() => {
-    console.log('setting suggested paths');
-    if (formedPath[0] && formedPath[1]) {
-      setSuggestedPaths(Object.keys(path[1][formedPath[0]]).filter(path => path !== 'back' && path !== 'pwd'));
-    } else {
-      console.log(path[1]);
-      setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back' && path !== 'pwd'));
+    const calculateSuggestions = () => {
+      const childPages = [];
+      for (const others in pages) {
+        if (pages[others].parent === page) {
+          childPages.push(others);
+        }
+      }
+      setPageSuggestions(childPages);
     }
-  }, [path, formedPath]);
 
-  useEffect(() => {
-    console.log('setting page');
-    if (page === '~') {
-      setPath([page, paths[page]])
-    } else {
-      setPath([page, path[1][page]])
-    }
-  }, [page])
+    calculateSuggestions();
+  }, [page, pages]);
   //handlers
 
   const handleInputSubmit = (value, setValue) => {
-    const clearCommand = /^\s?clear *$/;
-    const cDCommand = /^\s?cd ((\w+|~)\/?|\.\.\/) *$/;
-    const lsCommand = /^\s?ls *$/;
-    const helpCommand = /^\s?help ?(\w+)? *$/;
-    const pwdCommand = /^\s?pwd *$/;
-
-    setSuggestionsActive(false);
-
-    if (clearCommand.test(value)) {
-      setLines([]);
-    } else if (cDCommand.test(value)) { // cd command
-      if (highlightedSuggestion !== -1 && suggestionsActive)  {
-        // lock selection to formedPath and back out
-        setSuggestionsActive(false);
-        setFormedPath([suggestedPaths[highlightedSuggestion], true]);
-        return;
-      }
-
-      if (formedPath[1]) console.log(`'${formedPath[0]}'`);
-      const newPath = formedPath[0] && formedPath[1] ? formedPath[0] : value.match(cDCommand)[1];
-      if (newPath === '../') {
-        appendNewLine(value);
-        const previousPath = path[1].back;
-        if (path[1].back) {
-          setPath([previousPath, paths[previousPath]]);
-          onPageChange(previousPath);
-        }
-      } else if (Object.keys(path[1]).includes(newPath)) {
-        appendNewLine(value);
-        setPath([newPath, path[1][newPath]]);
-        onPageChange(newPath);
-      } else {
-        const errorMessage = `no such file or directory: ${newPath}`;
-        appendNewLine(value, errorMessage);
-      }
-      setFormedPath(['', false]);
-      } else if (lsCommand.test(value)) {
-        appendNewLine(value, suggestedPaths.join(' '));
-      } else if (helpCommand.test(value)) {
-        const argument = value.match(helpCommand)[1];
-        const commandNames = Object.keys(commands);
-        let message;
-        if (argument) {
-          if (commands[argument]) {
-            message = commands[argument].help;
-          } else {
-            message = `unknown command: ${argument}`;
-          }
-        } else {
-          message = (<div>available commands: <br/>{'-' + commandNames.join(' -')} <br/> for more information on a particular command type help {'{'}command{'}'}</div>);
-        }
-        appendNewLine(value, message);
-      } else if (pwdCommand.test(value)) {
-        appendNewLine(value, path[1].pwd);
-      } else {
-        const errorMessage = `command not found: ${value}`;
-        appendNewLine(value, errorMessage);
-      }
-      setValue('');
+    setPageSuggestionsActive(false);
+    routeCommand(value);
+    setValue('');
   };
 
   const handleInputTab = (value, setValue) => {
-    if (suggestionsActive && suggestedPaths.length > 0) {
-      let localHighlightedSuggestion = highlightedSuggestion + 1;
-      if (localHighlightedSuggestion > (suggestedPaths.length - 1)) {
-        localHighlightedSuggestion = 0;
+    if (pageSuggestionsActive && pageSuggestions.length > 0) {
+      let suggestionIndex = highlightedPageSuggestion + 1;
+      if (suggestionIndex > (pageSuggestions.length - 1)) {
+        suggestionIndex = 0;
       }
-      setValue(inputStoredValue + suggestedPaths[localHighlightedSuggestion]);
-      setHighlightedSuggestion(localHighlightedSuggestion);
+      setValue(inputStoredValue + pageSuggestions[suggestionIndex]);
+      setHighlightedPageSuggestion(suggestionIndex);
     } else {
       setInputStoredValue(value);
-      setSuggestionsActive(true);
-      // setSuggestedPaths(Object.keys(path[1]).filter(path => path !== 'back'))
+      setPageSuggestionsActive(true);
     }
   };
 
   const handleInputBackspace = (value) => {
-    setSuggestionsActive(false);
-    setHighlightedSuggestion(-1);
+    setPageSuggestionsActive(false);
+    setHighlightedPageSuggestion(-1);
   };
 
   const handleWrapperClick = (e) => {
@@ -242,8 +197,8 @@ const Terminal = ({onPageChange, className}) => {
 
   return (
     <div className={className}
-          onClick={handleWrapperClick}
-          ref={wrapper}>
+    onClick={handleWrapperClick}
+    ref={wrapper}>
       <div className={styles.linesContainer}>
         {lines.map((line, index) => (
             <div key={index} className={styles.lineWrapper}>
@@ -253,13 +208,15 @@ const Terminal = ({onPageChange, className}) => {
           ))}
       </div>
       <div className={styles.inputWrapper}>
-        <Prompt path={path[0]}/>
+        <Prompt path={page}/>
         <Input onSubmit={handleInputSubmit}
                 ref={inputRef}
                 onTab={handleInputTab}
                 onBackSpace={handleInputBackspace}/>
       </div>
-      <Suggestion paths={suggestedPaths} active={suggestionsActive} highlighted={highlightedSuggestion}/>
+      <Suggestion paths={pageSuggestions}
+                  active={pageSuggestionsActive}
+                  highlighted={highlightedPageSuggestion}/>
     </div>
   );
 };

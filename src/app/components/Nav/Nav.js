@@ -58,21 +58,21 @@ const NavMenuToggle = styled.button`
     transition: all 0.1s linear;
     position: absolute;
     &:nth-child(1) {
-      transform: ${props => props.active ? `rotate(-45deg)` : `translateY(-${gap}px)`}
+      transform: ${props => props.$active ? `rotate(-45deg)` : `translateY(-${gap}px)`}
     }
     &:nth-child(2) {
-      transform: translateX(${props => props.active ? '200px' : '0px'});
+      transform: translateX(${props => props.$active ? '200px' : '0px'});
     }
     &:nth-child(3) {
-      transform: ${props => props.active ? `rotate(45deg)` : `translateY(${gap}px)`}
+      transform: ${props => props.$active ? `rotate(45deg)` : `translateY(${gap}px)`}
     }
   }
 `;
 
 const NavMenu = styled.div`
-  opacity: ${props => props.active ? 1 : 0};
-  height: ${props => props.active ? 'fit-content' : '0px'};
-  padding: ${props => props.active ? '10px' : '0px'};
+  opacity: ${props => props.$active ? 1 : 0};
+  height: ${props => props.$active ? 'fit-content' : '0px'};
+  padding: ${props => props.$active ? '10px' : '0px'};
   transition: opacity 0.1s linear;
   display: flex;
   flex-direction: column;
@@ -86,14 +86,14 @@ const NavMenuButtonList = styled.ul`
 `;
 
 const NavMenuButton = styled.button`
+  position: relative;
   outline: none;
   background: none;
   border: none;
   color: ${props => props.theme.hackerGreen};
-  border: ${props => props.current ? '1px' : '0px'} solid red;
   font-size: 20px;
   cursor: pointer;
-  color: cyan;
+  color: ${props => props.$current ? 'inherit' : 'cyan'};
   padding: 5px;
   animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerCyan, 0.5)};
   &:hover {
@@ -101,6 +101,14 @@ const NavMenuButton = styled.button`
     -webkit-text-stroke: 1px black;
     background-color: white;
     animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerBlue, 0.5)};
+  }
+  &::before {
+    display: ${props => props.$current ? 'block' : 'none'};
+    content: '>';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(calc(-100% - 10px), -50%);
   }
 `;
 
@@ -110,7 +118,6 @@ const Nav = ({activePage, onPageChange}) => {
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
-    console.log('menu clicked');
   }
 
   const handlePageChange = (page) => {
@@ -122,16 +129,22 @@ const Nav = ({activePage, onPageChange}) => {
   return (
     <NavWrapper className={styles.wrapper}>
       <div>
-        <NavMenuToggle active={menuOpen} onClick={handleMenuClick}>
+        <NavMenuToggle $active={menuOpen}
+                        onClick={handleMenuClick}>
           <span></span>
           <span></span>
           <span></span>
         </NavMenuToggle>
       </div>
-      <NavMenu active={menuOpen}>
+      <NavMenu $active={menuOpen}>
         <NavMenuButtonList>
-          {pages.map((pageName, index) => (
-            <li key={index}><NavMenuButton current={pageName === page} type='text' onClick={() => {handlePageChange(pageName)}}>{pageName === '~' ? 'home' : pageName}</NavMenuButton></li>
+          {Object.keys(pages).map((pageName, index) => (
+            <li key={index}>
+              <NavMenuButton $current={pageName === page}
+                             type='text'
+                             onClick={() => {handlePageChange(pageName)}}>
+                {pageName === '~' ? 'home' : pageName}
+              </NavMenuButton></li>
           ))}
         </NavMenuButtonList>
       </NavMenu>
