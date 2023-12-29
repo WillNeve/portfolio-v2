@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import { PagesContext } from '../../page.js';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import styles from './nav.module.scss';
-import { boxSeperation, textSeperation } from '../../config/utilities.js'
+import { boxSeperationAnim, textSeperationAnim } from '../../config/utilities.js'
 
 const NavWrapper = styled.div`
   box-sizing: border-box;
@@ -29,7 +29,7 @@ const NavWrapper = styled.div`
     width: 100%;
     height: 2px;
     background: ${props => props.theme.hackerGreen};
-    animation: 250ms linear 0s infinite alternate running ${props => boxSeperation(props.theme.hackerGreen, 0.5)};
+    ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
   }
 `;
 
@@ -53,7 +53,6 @@ const NavMenuToggle = styled.button`
     width: 90%;
     height: 2px;
     background: ${props => props.theme.hackerGreen};
-    animation: 250ms linear 0s infinite alternate running ${props => boxSeperation(props.theme.hackerGreen, 0.5)};
     transform-origin: center;
     transition: all 0.1s linear;
     position: absolute;
@@ -66,17 +65,19 @@ const NavMenuToggle = styled.button`
     &:nth-child(3) {
       transform: ${props => props.$active ? `rotate(45deg)` : `translateY(${gap}px)`}
     }
+    ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
   }
 `;
 
 const NavMenu = styled.div`
   opacity: ${props => props.$active ? 1 : 0};
-  height: ${props => props.$active ? 'fit-content' : '0px'};
-  padding: ${props => props.$active ? '10px' : '0px'};
-  transition: opacity 0.1s linear;
+  max-height: ${props => props.$active ? '200px' : '0px'}; /* Set a reasonable max-height */
+  overflow: hidden;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  transition: max-height .2s ease, opacity .2s ease;
 `;
 
 const NavMenuButtonList = styled.ul`
@@ -90,18 +91,10 @@ const NavMenuButton = styled.button`
   outline: none;
   background: none;
   border: none;
-  color: ${props => props.theme.hackerGreen};
   font-size: 20px;
   cursor: pointer;
-  color: ${props => props.$current ? 'inherit' : 'cyan'};
+  color: ${props => props.$current ? props.theme.hackerGreen : 'cyan'};
   padding: 5px;
-  animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerCyan, 0.5)};
-  &:hover {
-    color: blue;
-    -webkit-text-stroke: 1px black;
-    background-color: white;
-    animation: 250ms linear 0s infinite alternate running ${props => textSeperation(props.theme.hackerBlue, 0.5)};
-  }
   &::before {
     display: ${props => props.$current ? 'block' : 'none'};
     content: '>';
@@ -109,6 +102,29 @@ const NavMenuButton = styled.button`
     left: 0;
     top: 50%;
     transform: translate(calc(-100% - 10px), -50%);
+    transition: transform .1s linear;
+  }
+
+  &:hover {
+    ${props =>
+    !props.$current
+    ? css`
+        color: blue;
+        -webkit-text-stroke: 1px black;
+        background-color: white;
+        ${textSeperationAnim(props.theme.hackerBlue, .5)};
+        `
+    : css`
+        &::before {
+          transform: translate(calc(-100% - 2px), -50%);
+        }
+        `
+    }
+  }
+  ${props =>
+    props.$current
+    ? textSeperationAnim(props.theme.hackerGreen, .5)
+    : textSeperationAnim(props.theme.hackerCyan, .5)
   }
 `;
 

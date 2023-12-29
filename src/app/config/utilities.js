@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-components';
+import { keyframes, css } from 'styled-components';
 
 export const hexToRgba = (hex, alpha) => {
   hex = hex.replace(/^#/, '');
@@ -11,42 +11,52 @@ export const hexToRgba = (hex, alpha) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha ? alpha : 1})`;
 }
 
-export const textSeperation = (color, alpha) => {
-  return keyframes`
-  0% {
+export const textSeperationAnim = (color, alpha) => {
+  const anim = keyframes`
+    0% {
+        text-shadow: 0px 0px 3px ${hexToRgba(color, alpha)};
+      }
+
+    33% {
+      text-shadow: 1px 0px 3px ${hexToRgba(color, alpha)};
+    }
+
+    66% {
       text-shadow: 0px 0px 3px ${hexToRgba(color, alpha)};
     }
 
-  33% {
-    text-shadow: 1px 0px 3px ${hexToRgba(color, alpha)};
-  }
-
-  66% {
-    text-shadow: 0px 0px 3px ${hexToRgba(color, alpha)};
-  }
-
-  100% {
-    text-shadow: -1px 0px 3px ${hexToRgba(color, alpha)};
-  }
-`;
+    100% {
+      text-shadow: -1px 0px 3px ${hexToRgba(color, alpha)};
+    }
+  `;
+  return css`
+    @media (prefers-reduced-motion: no-preference) {
+      animation: 250ms linear 0s infinite alternate running ${anim};
+    }
+  `;
 }
 
-export const boxSeperation = (color, alpha) => {
-  return keyframes`
-  0% {
-    box-shadow: 0px 0px 3px 0px ${hexToRgba(color, alpha)};
-  }
+export const boxSeperationAnim = (color, alpha) => {
+  const anim = keyframes`
+    0% {
+      box-shadow: 0px 0px 3px 0px ${hexToRgba(color, alpha)};
+    }
 
-  33% {
-    box-shadow: 1px 0px 3px 0px ${hexToRgba(color, alpha)};
-  }
+    33% {
+      box-shadow: 1px 0px 3px 0px ${hexToRgba(color, alpha)};
+    }
 
-  66% {
-    box-shadow: 0px 0px 3px 0px ${hexToRgba(color, alpha)};
-  }
+    66% {
+      box-shadow: 0px 0px 3px 0px ${hexToRgba(color, alpha)};
+    }
 
-  100% {
-    box-shadow: -1px 0px 3px 0px ${hexToRgba(color, alpha)};
-  }
-`;
+    100% {
+      box-shadow: -1px 0px 3px 0px ${hexToRgba(color, alpha)};
+    }
+  `;
+  return css`
+    @media (prefers-reduced-motion: no-preference) {
+      animation: 250ms linear 0s infinite alternate running ${anim};
+    }
+  `;
 }
