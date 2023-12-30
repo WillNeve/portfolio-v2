@@ -57,13 +57,11 @@ export default function Home() {
   pages['pong'].parent = '~';
 
   const handleTerminalClick = () => {
-    console.log('terminal has been clickkkkkked');
     setTerminalExpanded(true);
   }
 
   const handleMainClick = (e) => {
     if (!e.target.closest(`.${TerminalSection.styledComponentId}`)) {
-      console.log('non terminal clicked');
       setTerminalExpanded(false);
     }
   }
