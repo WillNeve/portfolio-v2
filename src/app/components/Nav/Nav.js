@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react';
 import { PagesContext } from '../../page.js';
 import styled, { css } from 'styled-components';
-import styles from './nav.module.scss';
+import { responsive } from '../../config/utilities.js';
 import { boxSeperationAnim, textSeperationAnim } from '../../config/utilities.js'
 
 const NavWrapper = styled.div`
+  ${responsive};
   box-sizing: border-box;
   height: fit-content;
   position: sticky;
@@ -128,7 +129,7 @@ const NavMenuButton = styled.button`
   }
 `;
 
-const Nav = ({activePage, onPageChange}) => {
+const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const {pages, page, setPage} = useContext(PagesContext);
 
@@ -138,12 +139,11 @@ const Nav = ({activePage, onPageChange}) => {
 
   const handlePageChange = (page) => {
     setPage(page)
-    onPageChange(page)
   }
 
 
   return (
-    <NavWrapper className={styles.wrapper}>
+    <NavWrapper>
       <div>
         <NavMenuToggle $active={menuOpen}
                         onClick={handleMenuClick}>

@@ -2,7 +2,24 @@ import Home from '../../pages/home/home.js';
 import About from '../../pages/about/about.js';
 import Contact from '../../pages/contact/contact.js';
 
-const Viewer = ({page, className}) => {
+import styled from 'styled-components';
+import {responsive} from '../../config/utilities.js';
+
+const ViewerWrapper = styled.div`
+  padding-top: 25px;
+  width: 100%;
+  height: 80%;
+  flex-grow: 1;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & > div {
+    ${responsive};
+  }
+`;
+
+const Viewer = ({page}) => {
   let inner;
 
   switch (page) {
@@ -17,13 +34,12 @@ const Viewer = ({page, className}) => {
       break;
   }
 
-
   return (
-      <div className={className}>
-        <div className='r-container'>
+      <ViewerWrapper>
+        <div>
           {inner}
         </div>
-      </div>
+      </ViewerWrapper>
   );
 }
 

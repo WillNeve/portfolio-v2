@@ -2,8 +2,9 @@
 import { createContext, useState } from 'react';
 
 //styles
-import styles from './page.module.scss';
+import styled from 'styled-components';
 import StyledComponentsConfig from './config/styled-component-config';
+import {boxSeperationAnim, responsive} from './config/utilities'
 //components
 import Terminal from './components/Terminal/Terminal.js';
 import CrtScreen from './components/CrtScreen/CrtScreen.js';
@@ -11,6 +12,27 @@ import Viewer from './components/Viewer/Viewer.js';
 import Nav from './components/Nav/Nav.js';
 
 export const PagesContext = createContext();
+
+const TerminalSection = styled.div`
+  ${responsive};
+  position: relative;
+  height: ${props => props.$expanded ? '20%' : '10%'};
+  transition: height .2s ease;
+  p {
+    margin: 0;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: ${props => props.theme.hackerGreen};
+    ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
+  }
+`;
+
 
 export default function Home() {
   const [terminalExpanded, setTerminalExpanded] = useState(false);
@@ -30,16 +52,14 @@ export default function Home() {
   pages['about'].parent = '~';
   pages['contact'].parent = '~';
 
-  const handlePageChange = (page) => {
-    setPage(page);
-  }
-
   const handleTerminalClick = () => {
+    console.log('terminal has been clickkkkkked');
     setTerminalExpanded(true);
   }
 
   const handleMainClick = (e) => {
-    if (!e.target.closest(`.${styles.terminalSection}`)) {
+    if (!e.target.closest(`.${TerminalSection.styledComponentId}`)) {
+      console.log('non terminal clicked');
       setTerminalExpanded(false);
     }
   }
@@ -47,14 +67,13 @@ export default function Home() {
   return (
     <StyledComponentsConfig>
       <PagesContext.Provider value={{pages, page, setPage}}>
-      <main onClick={handleMainClick}
-            className={styles.main}>
+      <main onClick={handleMainClick}>
         <CrtScreen/>
-        <Nav activePage={page} onPageChange={handlePageChange}/>
-        <Viewer page={page} className={styles.viewWrapper}/>
-          <div onClick={handleTerminalClick} className={terminalExpanded ? `${styles.terminalSection} ${styles.expanded}` : `${styles.terminalSection}`}>
-            <Terminal onPageChange={handlePageChange} className={styles.terminalWrapper}/>
-          </div>
+        <Nav/>
+        <Viewer page={page}/>
+          <TerminalSection $expanded={terminalExpanded} onClick={handleTerminalClick}>
+            <Terminal/>
+          </TerminalSection>
       </main>
       </PagesContext.Provider>
     </StyledComponentsConfig>

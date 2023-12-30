@@ -1,6 +1,6 @@
 import { keyframes, css } from 'styled-components';
 
-export const hexToRgba = (hex, alpha) => {
+const hexToRgba = (hex, alpha) => {
   hex = hex.replace(/^#/, '');
 
   const bigint = parseInt(hex, 16);
@@ -10,6 +10,17 @@ export const hexToRgba = (hex, alpha) => {
 
   return `rgba(${r}, ${g}, ${b}, ${alpha ? alpha : 1})`;
 }
+
+export const responsive = css`
+  width: 95%;
+  @media (min-width: 600px) {
+    width: 80%;
+  }
+  @media (min-width: 1000px) {
+    width: 75%;
+  }
+  margin: 0 auto;
+`;
 
 export const textSeperationAnim = (color, alpha) => {
   const anim = keyframes`

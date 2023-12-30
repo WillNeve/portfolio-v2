@@ -1,16 +1,62 @@
 "use client";
 import { useState, useRef, useEffect, useContext } from 'react';
 import { PagesContext } from '../../page.js';
+//styled
+import styled, {css} from 'styled-components';
 
 //sub-components
 import Input from './input';
 import Line from './line';
 import Prompt from './prompt';
-import Suggestion from './suggestion';
+import Suggestions from './suggestions';
+import { textSeperationAnim } from '@/app/config/utilities.js';
 
-import styles from './terminal.module.scss';
+const TerminalWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  color: ${props => props.theme.hackerGreen};
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: block;
+    background: none;
+  }
 
-const Terminal = ({onPageChange, className}) => {
+  &::-webkit-scrollbar-track {
+    margin-top: 20px;
+    border: 2px solid ${props => props.theme.hackerGreen};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${props => props.theme.hackerGreen};
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${props => props.theme.foregroundWhite};
+}
+`;
+
+const LinesContainer = styled.div`
+font-size: inherit;
+height: fit-content;
+&::-webkit-scrollbar {
+  display: none;
+};
+`;
+
+const LineWrapper = styled.div`
+display: flex;
+column-gap: 8px;
+${props => textSeperationAnim(props.theme.hackerGreen, 0.5)};
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  column-gap: 8px;
+  ${props => textSeperationAnim(props.theme.hackerGreen, 0.5)};
+`;
+
+const Terminal = () => {
   //refs
   const inputRef = useRef(null);
   const wrapper = useRef(null);
@@ -192,32 +238,31 @@ const Terminal = ({onPageChange, className}) => {
   const handleWrapperClick = (e) => {
     inputRef.current.focus();
   };
-
   //view
 
   return (
-    <div className={className}
+    <TerminalWrapper
     onClick={handleWrapperClick}
     ref={wrapper}>
-      <div className={styles.linesContainer}>
+      <LinesContainer>
         {lines.map((line, index) => (
-            <div key={index} className={styles.lineWrapper}>
+            <LineWrapper key={index}>
               {line[2] ? ('') : (<Prompt path={line[1]}/>)}
               <Line content={line[0]}/>
-            </div>
+            </LineWrapper>
           ))}
-      </div>
-      <div className={styles.inputWrapper}>
+      </LinesContainer>
+      <InputWrapper>
         <Prompt path={page}/>
         <Input onSubmit={handleInputSubmit}
                 ref={inputRef}
                 onTab={handleInputTab}
                 onBackSpace={handleInputBackspace}/>
-      </div>
-      <Suggestion paths={pageSuggestions}
+      </InputWrapper>
+      <Suggestions paths={pageSuggestions}
                   active={pageSuggestionsActive}
                   highlighted={highlightedPageSuggestion}/>
-    </div>
+    </TerminalWrapper>
   );
 };
 

@@ -1,7 +1,6 @@
 'use-client';
-
 import { ThemeProvider } from 'styled-components';
-
+import { textSeperationAnim } from './utilities';
 
 const theme = {
   backgroundBlack: '#1B1B1B',
@@ -12,8 +11,85 @@ const theme = {
   hackerOrange: '#FF6542',
 };
 
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+    * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Modeseven', sans-serif;
+  }
+
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  body {
+    background: ${props => props.theme.backgroundBlack};
+    color: ${props => props.theme.foregroundWhite};
+    font-size: 20px;
+    ${props => textSeperationAnim(props.theme.foregroundWhite, .5)};
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 100svw;
+    height: 100svh;
+    overflow: scroll;
+    padding: 20px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  p {
+    margin: 10px 0px;
+    text-align: justify;
+  }
+
+  em {
+    color: $hacker-green;
+    font-style: normal;
+  }
+
+  a {
+    display: block;
+    color: ${props => props.theme.hackerOrange};
+    ${props => textSeperationAnim(props.theme.hackerOrange, .5)};
+    text-decoration: none;
+    width: fit-content;
+    padding: 5px;
+    transition: background .1s ease;
+    svg {
+      animation: $orangeSeperationSvgAnim;
+    }
+    &:hover {
+      background: white;
+    }
+    &.icon {
+      width: 50px;
+      height: auto;
+      aspect-ratio: 1;
+      svg {
+        width: 100%;
+        height: 100%;
+        // object-fit: contain;
+      }
+    }
+  }
+`;
+
 const StyledComponentsSetup = ({ children }) => (
   <ThemeProvider theme={theme}>
+    <GlobalStyle/>
     {children}
   </ThemeProvider>
 );
