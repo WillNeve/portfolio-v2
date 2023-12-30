@@ -1,5 +1,5 @@
-# William Neve Portfolio 2023
-[Deployment](https://portfolio-v2-ten-mu.vercel.app/)
+# William Neve Portfolio 2023 (wneve.dev)
+[Deployment](https://wneve.dev/)
 
 ## What is this?
 A portfolio site built on Nextjs (React), following a retro theme.
