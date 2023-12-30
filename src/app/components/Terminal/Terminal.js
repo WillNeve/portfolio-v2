@@ -189,9 +189,11 @@ const Terminal = () => {
   //effects
 
   useEffect(() => {
-    setTimeout(() => {
-      typeLine('Welcome to my portfolio, I hope you enjoy your stay')
-    }, 500);
+    if (page === '~') {
+      setTimeout(() => {
+        typeLine('Welcome to my portfolio, I hope you enjoy your stay')
+      }, 500);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 

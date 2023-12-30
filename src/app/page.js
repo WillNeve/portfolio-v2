@@ -46,11 +46,15 @@ export default function Home() {
     },
     'contact': {
       pwd: '~/contact'
+    },
+    'pong': {
+      pwd: '~/pong'
     }
   };
 
   pages['about'].parent = '~';
   pages['contact'].parent = '~';
+  pages['pong'].parent = '~';
 
   const handleTerminalClick = () => {
     console.log('terminal has been clickkkkkked');

@@ -1,6 +1,7 @@
 import Home from '../../pages/home/home.js';
 import About from '../../pages/about/about.js';
 import Contact from '../../pages/contact/contact.js';
+import Pong from '../../pages/pong/pong.js';
 
 import styled from 'styled-components';
 import {responsive} from '../../config/utilities.js';
@@ -31,6 +32,9 @@ const Viewer = ({page}) => {
       break;
     case 'contact':
       inner = (<Contact/>);
+      break;
+    case 'pong':
+      inner = (<Pong/>);
       break;
   }
 
