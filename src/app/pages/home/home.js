@@ -12,7 +12,7 @@ const Home = () => {
         <div className={styles.text}>
           <h1>William Neve</h1>
           {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-          <h3>// Full Stack Developer</h3>
+          <h2>// Full Stack Developer</h2>
           <div className={styles.links}>
             <a href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank'>LinkedIn</a>
             <a href='https://github.com/WillNeve' target='_blank'>GitHub</a>

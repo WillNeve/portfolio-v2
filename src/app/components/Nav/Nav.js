@@ -146,7 +146,8 @@ const Nav = () => {
     <NavWrapper>
       <div>
         <NavMenuToggle $active={menuOpen}
-                        onClick={handleMenuClick}>
+                        onClick={handleMenuClick}
+                        aria-label='Toggle Top Navigation Menu'>
           <span></span>
           <span></span>
           <span></span>

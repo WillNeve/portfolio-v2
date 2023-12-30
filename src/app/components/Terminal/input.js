@@ -28,7 +28,7 @@ const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
 
   const handleKeyDown = (e) => {
     // console.log(e.key);
-    
+
     resize();
     switch (e.key) {
       case 'Enter':
@@ -51,6 +51,7 @@ const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               rows='1'
+              aria-label="Terminal Bar Input Field"
               autoCapitalize='none'>
     </InputArea>
   );
