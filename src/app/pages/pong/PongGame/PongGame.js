@@ -91,11 +91,16 @@ const PongGame = () => {
     setScore(0);
   }
 
+  const resizeCanvas = () => {
+    console.log('resizing');
+    canvasRef.current.width = canvasRef.current.offsetWidth;
+    canvasRef.current.height = canvasRef.current.offsetHeight;
+    draw();
+  }
+
   const draw = (timestamp) => {
 
     const canvas = canvasRef.current;
-    canvas.width = canvasRef.current.offsetWidth
-    canvas.height = canvasRef.current.offsetHeight; // adjust canvas logical dimensions to meet actual
 
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
@@ -183,24 +188,27 @@ const PongGame = () => {
   }, [gameReset])
 
   useEffect(() => {
-    draw();
+    setTimeout(() => {
+      resizeCanvas();
+    }, 100);
 
     const mouseMoveListener = (e) => {
       setMouseYPosition(e.clientY);
     };
 
     const touchMoveListener = (e) => {
+      e.preventDefault();
       setMouseYPosition(e.touches[0].clientY);
     };
 
     const resizeListener = (e) => {
-      draw();
+      resizeCanvas();
     };
 
 
 
     window.addEventListener('mousemove', mouseMoveListener);
-    window.addEventListener('touchmove', touchMoveListener);
+    window.addEventListener('touchmove', touchMoveListener, { passive: false });
     window.addEventListener('resize', resizeListener);
 
     return () => {
