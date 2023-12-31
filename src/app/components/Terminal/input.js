@@ -10,10 +10,14 @@ const InputArea = styled.textarea`
   width: 100%;
   height: fit-content;
   font-size: inherit;
-  color: inherit;
+  color: ${props => props.theme.hackerGreen};
   resize: none;
   height: fit-content;
   overflow: hidden;
+  opacity: 1;
+  &::placeholder {
+    opacity: 1;
+  }
   ${props => textSeperationAnim(props.theme.hackerGreen, .5)};
 `;
 
