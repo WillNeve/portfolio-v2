@@ -36,7 +36,7 @@ const TerminalSection = styled.div`
 
 export default function Home() {
   const [terminalExpanded, setTerminalExpanded] = useState(false);
-  const [page, setPage] = useState('pong');
+  const [page, setPage] = useState('~');
   const pages = {
     '~': {
       pwd: '~',
