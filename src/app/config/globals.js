@@ -33,6 +33,19 @@ const GlobalStyle = createGlobalStyle`
     padding: 20px;
   }
 
+  h1 {
+    font-size: 2.5rem;
+    @media (min-width: 450px) {
+      font-size: 3rem;
+    }
+  }
+  h2 {
+    font-size: 1.1rem;
+    @media (min-width: 450px) {
+      font-size: 1.17em;
+    }
+  }
+
   li {
     list-style-type: none;
   }
@@ -40,7 +53,6 @@ const GlobalStyle = createGlobalStyle`
   p {
     margin: 10px 0px;
     text-align: justify;
-    ${props => textSeperationAnim(props.theme.foregroundWhite, .5)};
   }
 
   em {

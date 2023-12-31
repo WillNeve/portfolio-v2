@@ -45,7 +45,7 @@ const Home = () => {
 
           <BodyText>Im French and English, born in the States, raised in London, where I currently reside.</BodyText>
 
-          <BodyText>I&apos;v built this portfolio page to be navigated by terminal below - If you prefer a more traditional navigation style please use the menu <IoMdMenu style={{marginBottom: '-4px', color: '#51e251'}}/> above above to switch pages</BodyText>
+          <BodyText>This portfolio page was designed to be navigated by terminal below (Unix-like syntax), please type <em>help</em> for more info.<br/><br/> If you prefer a more traditional navigation style you can use the menu <IoMdMenu style={{marginBottom: '-4px', color: '#51e251'}}/> above.</BodyText>
         </div>
         <Image
           src="/headshot.jpg"

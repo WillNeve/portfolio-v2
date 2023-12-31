@@ -12,14 +12,21 @@ import { textSeperationAnim } from '@/app/config/utilities';
 //emailjs
 import emailjs from '@emailjs/browser';
 
+const SocialLinks = styled.ul`
+  display: flex;
+`;
+
 const ContactForm = styled.form`
+  /* border: 2px solid purple; */
+  width: 100%;
+  max-width: 500px;
   margin-top: 20px;
   input, textarea {
     background: none;
     border: 2px solid ${props => props.theme.hackerGreen};
     color: ${props => props.theme.hackerGreen};
     font-size: 20px;
-    width: 300px;
+    width: 100%;
     padding: 5px;
     &:focus {
       border-radius: none;
@@ -31,6 +38,7 @@ const ContactForm = styled.form`
     font-size: 20px;
     padding: 5px;
     padding-right: 7px;
+    margin-top: 10px;
     background: none;
     border: 2px solid ${props => props.theme.hackerGreen};
     color: ${props => props.theme.hackerGreen};
@@ -47,7 +55,7 @@ const FormGroup = styled.div`
   flex-direction: column;
   row-gap: 5px;
   align-items: flex-start;
-  margin: 8px 0px;
+  margin: 12px 0px;
   p {
     display: none;
     margin-top: 0;
@@ -155,7 +163,7 @@ const Contact = () => {
     <div>
       <h1>Contact me.</h1>
       <p>Where you can find me</p>
-      <ul className={styles.socialLinks}>
+      <SocialLinks>
         <li>
           <a href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank' className='icon'>
             <FaLinkedin/>
@@ -174,7 +182,7 @@ const Contact = () => {
           </a>
         </li>
 
-      </ul>
+      </SocialLinks>
       <p>Or send me a messsage</p>
       <ContactForm action='#'
                    aria-label='Send me a Message Form'
