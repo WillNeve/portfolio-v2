@@ -56,7 +56,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   em {
-    color: $hacker-green;
+    color: ${props => props.theme.hackerGreen};
     font-style: normal;
   }
 

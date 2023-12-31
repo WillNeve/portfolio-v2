@@ -1,8 +1,11 @@
+import Image from 'next/image';
 import styles from './home.module.scss';
+import { css } from 'styled-components';
 
 //icons
 import { BiBaguette } from "react-icons/bi";
 import { BiCoffee } from "react-icons/bi";
+import { IoMdMenu } from "react-icons/io";
 
 
 const Home = () => {
@@ -22,21 +25,19 @@ const Home = () => {
             <BiBaguette/>
           </div>
         </div>
-        <img className={styles.headshot} src='headshot.jpg' alt='profile headshot of William Neve'></img>
+        <Image
+          src="/headshot.jpg"
+          className={styles.headshot}
+          width={500}
+          height={500}
+          alt="profile headshot of William Neve"
+        />
       </div>
       <p>Hey, I&apos;m William, passionate Full Stack Developer with an interest in creating impactful and exciting user experiences.</p>
 
       <p>Im French and English, born in the States, raised in London, where I currently reside.</p>
 
-      <p>I&apos;v built this portfolio page to be navigated by terminal below - If you prefer a more traditional navigation style please use the menu <em>?</em> above above to switch pages</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt cursus eros et lobortis. Fusce vitae dolor vel elit tristique gravida. Cras quis nisi sapien. Fusce nulla risus, tincidunt in purus non, suscipit porta ex. Sed varius imperdiet tristique. Maecenas porttitor nulla ac consequat suscipit. Fusce sit amet augue arcu. Fusce finibus arcu in metus eleifend, a aliquam nunc vestibulum. Donec in odio convallis eros elementum pretium nec ut ante. Maecenas finibus felis ac metus commodo pharetra. Aliquam erat volutpat. Suspendisse non ullamcorper erat. Fusce eget ultrices lectus.</p>
+      <p>I&apos;v built this portfolio page to be navigated by terminal below - If you prefer a more traditional navigation style please use the menu <IoMdMenu style={{marginBottom: '-4px', color: '#51e251'}}/> above above to switch pages</p>
     </div>
   )
 }
