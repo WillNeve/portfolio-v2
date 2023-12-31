@@ -74,7 +74,7 @@ const NavMenu = styled.div`
   opacity: ${props => props.$active ? 1 : 0};
   max-height: ${props => props.$active ? '200px' : '0px'}; /* Set a reasonable max-height */
   overflow: hidden;
-  padding: 10px;
+  padding: 0px 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

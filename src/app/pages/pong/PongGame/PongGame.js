@@ -22,11 +22,16 @@ const CanvasWrapper = styled.div`
 
 const Controls = styled.div`
   display: flex;
+  column-gap: 5px;
   position: absolute;
-  top: 25px;
+  top: 30px;
   left: 50%;
   transform: translate(-50%, 0);
   color: ${props => props.theme.hackerGreen};
+  font-size: 16px;
+  @media (min-width: 575px) {
+    font-size: 20px;
+  }
   & > button {
     color: inherit;
   }
@@ -39,8 +44,8 @@ const ControlButton = styled.button`
   display: ${props => props.$disabled ? 'none' : 'block'};
   outline: none;
   background: none;
-  border: none;
-  font-size: 20px;
+  border: 2px solid ${props => props.theme.hackerGreen};
+  font-size: inherit;
   padding: 5px;
   transition: background .1s linear;
   cursor: pointer;
