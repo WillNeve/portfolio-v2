@@ -2,7 +2,6 @@ import PongGame from './PongGame/PongGame';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  border: 1px dashed purple;
   height: 100%;
 `;
 
@@ -12,7 +11,6 @@ const Subtle = styled.p`
 
 const Top = styled.div`
   height: 20%;
-  border: 2px dashed red;
 `;
 
 const Pong = () => {

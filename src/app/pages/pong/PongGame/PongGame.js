@@ -16,7 +16,6 @@ const CanvasWrapper = styled.div`
   width: 100%;
   height: 80%;
   max-width: 600px;
-  border: 2px dashed yellow;
   /* margin: 0 auto; */
   padding: 20px;
 `;
