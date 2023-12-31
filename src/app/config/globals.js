@@ -1,17 +1,5 @@
-'use-client';
-import { ThemeProvider } from 'styled-components';
-import { textSeperationAnim } from './utilities';
-
-const theme = {
-  backgroundBlack: '#1B1B1B',
-  foregroundWhite: '#FFFFFF',
-  hackerGreen: '#51e251',
-  hackerCyan: '#00ffff',
-  hackerBlue: '#0000ff',
-  hackerOrange: '#FF6542',
-};
-
 import { createGlobalStyle } from 'styled-components';
+import { textSeperationAnim } from './utilities';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -62,8 +50,11 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     display: block;
-    color: ${props => props.theme.hackerOrange};
-    ${props => textSeperationAnim(props.theme.hackerOrange, .5)};
+    color: ${props => props.theme.hackerGreen};
+    ${props => textSeperationAnim(props.theme.hackerGreen, .5)};
+    &:not(.icon) {
+      border: 2px solid ${props => props.theme.hackerGreen};
+    }
     text-decoration: none;
     width: fit-content;
     padding: 5px;
@@ -78,17 +69,9 @@ const GlobalStyle = createGlobalStyle`
       svg {
         width: 100%;
         height: 100%;
-        // object-fit: contain;
       }
     }
   }
 `;
 
-const StyledComponentsSetup = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle/>
-    {children}
-  </ThemeProvider>
-);
-
-export default StyledComponentsSetup;
+export default GlobalStyle;

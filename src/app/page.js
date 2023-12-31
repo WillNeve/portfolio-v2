@@ -3,7 +3,8 @@ import { createContext, useState } from 'react';
 
 //styles
 import styled from 'styled-components';
-import StyledComponentsConfig from './config/styled-component-config';
+import Theme from './config/theme';
+import GlobalStyle from './config/globals';
 import {boxSeperationAnim, responsive} from './config/utilities'
 //components
 import Terminal from './components/Terminal/Terminal.js';
@@ -36,7 +37,7 @@ const TerminalSection = styled.div`
 
 export default function Home() {
   const [terminalExpanded, setTerminalExpanded] = useState(false);
-  const [page, setPage] = useState('~');
+  const [page, setPage] = useState('contact');
   const pages = {
     '~': {
       pwd: '~',
@@ -67,7 +68,8 @@ export default function Home() {
   }
 
   return (
-    <StyledComponentsConfig>
+    <Theme>
+      <GlobalStyle/>
       <PagesContext.Provider value={{pages, page, setPage}}>
       <main onClick={handleMainClick}>
         <CrtScreen/>
@@ -78,6 +80,6 @@ export default function Home() {
           </TerminalSection>
       </main>
       </PagesContext.Provider>
-    </StyledComponentsConfig>
+    </Theme>
   );
 }

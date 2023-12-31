@@ -17,7 +17,7 @@ const CanvasWrapper = styled.div`
   height: 80%;
   max-width: 600px;
   /* margin: 0 auto; */
-  padding: 20px;
+  /* padding: 20px; */
 `;
 
 const Controls = styled.div`

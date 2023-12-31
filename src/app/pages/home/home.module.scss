@@ -5,12 +5,12 @@
 
 .links {
   display: flex;
-  column-gap: 5px;
-  margin: 5px 0px;
+  column-gap: 8px;
+  margin: 16px 0px;
 }
 
 .icons {
-  display: none;
+  display: flex;
   margin: 5px 0px;
   font-size: 40px;
 }
@@ -22,36 +22,51 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  column-gap: 20px;
+  column-gap: 30px;
   .text {
     width: 100%;
+    h1 {
+      font-size: 3rem;
+    }
     h2 {
       font-size: 1.17em;
     }
+    .top {
+      display: flex;
+      flex-direction: column;
+      column-gap: 20px;
+      img {
+        margin-bottom: 20px;
+        @media (max-width: 750px) {
+        order: 2;
+        width: 300px;
+        }
+      }
+      @media (min-width: 750px) {
+        flex-direction: row;
+      }
+    }
   }
   img {
-    width: 100%;
-    max-width: 310px;
     flex-grow: 1;
-    object-fit: container;
+    object-fit: contain;
   }
-  @media (min-width: 600px) {
+  @media (min-width: 875px) {
     flex-direction: row;
     .text {
-      width: 70%;
-    }
-    img {
-      width: 20%;
-    }
-    .icons {
-      display: flex;
+      h1 {
+        font-size: 3rem;
+      }
+      h2 {
+        font-size: 1.17em;
+      }
     }
   }
   margin-bottom: 10px;
 }
 
 .headshot {
-  max-width: 450px;
+
   height: auto;
   aspect-ratio: 1;
   object-fit: contain;
@@ -59,5 +74,26 @@
   transition: filter .2s ease;
   &:hover {
     filter: saturate(1);
+  }
+
+  &.right {
+    max-width: 330px;
+    flex-grow: 1;
+    align-self: stretch;
+    display: none;
+    @media (min-width: 1500px) {
+      display: block;
+    }
+  }
+
+  &.inline {
+    max-width: 310px;
+    width: 150px;
+    @media (min-width: 875px) {
+      width: 200px;
+    }
+    @media (min-width: 1500px) {
+      display: none;
+    }
   }
 }
