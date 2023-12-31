@@ -34,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
     background: ${props => props.theme.backgroundBlack};
     color: ${props => props.theme.foregroundWhite};
     font-size: 20px;
-    ${props => textSeperationAnim(props.theme.foregroundWhite, .5)};
   }
 
   main {
@@ -53,6 +52,7 @@ const GlobalStyle = createGlobalStyle`
   p {
     margin: 10px 0px;
     text-align: justify;
+    ${props => textSeperationAnim(props.theme.foregroundWhite, .5)};
   }
 
   em {
@@ -68,9 +68,6 @@ const GlobalStyle = createGlobalStyle`
     width: fit-content;
     padding: 5px;
     transition: background .1s ease;
-    svg {
-      animation: $orangeSeperationSvgAnim;
-    }
     &:hover {
       background: white;
     }

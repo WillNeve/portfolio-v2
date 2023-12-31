@@ -1,6 +1,6 @@
 import { keyframes, css } from 'styled-components';
 
-const hexToRgba = (hex, alpha) => {
+export const hexToRgba = (hex, alpha) => {
   hex = hex.replace(/^#/, '');
 
   const bigint = parseInt(hex, 16);

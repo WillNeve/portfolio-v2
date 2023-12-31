@@ -138,7 +138,8 @@ const Nav = () => {
   }
 
   const handlePageChange = (page) => {
-    setPage(page)
+    setPage(page);
+    setMenuOpen(false);
   }
 
 
