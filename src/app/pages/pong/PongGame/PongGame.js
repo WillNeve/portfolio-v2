@@ -92,14 +92,12 @@ const PongGame = () => {
   }
 
   const resizeCanvas = () => {
-    console.log('resizing');
     canvasRef.current.width = canvasRef.current.offsetWidth;
     canvasRef.current.height = canvasRef.current.offsetHeight;
     draw();
   }
 
   const draw = (timestamp) => {
-
     const canvas = canvasRef.current;
 
     const canvasWidth = canvas.width;
