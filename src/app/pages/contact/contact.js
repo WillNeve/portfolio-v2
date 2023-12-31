@@ -1,7 +1,5 @@
 import { useRef, useState } from 'react';
 
-import styles from './contact.module.scss';
-
 //icons
 import { FaLinkedin } from "react-icons/fa6";
 import { FaSquareGithub } from "react-icons/fa6";
@@ -24,6 +22,7 @@ const ContactForm = styled.form`
   input, textarea {
     background: none;
     border: 2px solid ${props => props.theme.hackerGreen};
+    border-radius: 0px; // to override some IOS default radius
     color: ${props => props.theme.hackerGreen};
     font-size: 20px;
     width: 100%;
