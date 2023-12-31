@@ -17,6 +17,7 @@ const ViewerWrapper = styled.div`
   }
   & > div {
     ${responsive};
+    height: 100%;
   }
 `;
 

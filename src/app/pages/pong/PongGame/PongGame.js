@@ -4,6 +4,8 @@ import { boxSeperationAnim, hexToRgba, textSeperationAnim } from '@/app/config/u
 
 const Canvas = styled.canvas`
   width: 100%;
+  height: 100%;
+  max-height: 500px;
   background: ${props => props.theme.backgroundBlack};
   border: 2px solid ${props => props.theme.hackerGreen};
   ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
@@ -12,9 +14,10 @@ const Canvas = styled.canvas`
 const CanvasWrapper = styled.div`
   position: relative;
   width: 100%;
+  height: 80%;
   max-width: 600px;
+  border: 2px dashed yellow;
   /* margin: 0 auto; */
-  margin-top: 20px;
   padding: 20px;
 `;
 
@@ -49,6 +52,7 @@ const ControlButton = styled.button`
 
 const Score = styled.p`
   display: ${props => props.$disabled ? 'none' : 'block'};
+  width: fit-content;
   animation: none;
 `;
 
@@ -71,7 +75,6 @@ const PongGame = () => {
   const [gameReset, setGameReset] = useState(true);
 
   const startGame = () => {
-    console.log('start pressed');
     setGameRunning(true);
     setGameReset(false);
     draw();
@@ -83,7 +86,6 @@ const PongGame = () => {
   }
 
   const resetGame = () => {
-    console.log('reset pressed');
     setGameReset(true);
     setBallPosition([20,20]);
     setBallVelocity([3,6]);
@@ -91,10 +93,10 @@ const PongGame = () => {
   }
 
   const draw = (timestamp) => {
-    console.log('Rendering Frame...');
 
     const canvas = canvasRef.current;
-    canvas.width = canvasRef.current.offsetWidth; // adjust canvas logical dimensions to meet actual
+    canvas.width = canvasRef.current.offsetWidth
+    canvas.height = canvasRef.current.offsetHeight; // adjust canvas logical dimensions to meet actual
 
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
@@ -188,27 +190,33 @@ const PongGame = () => {
       setMouseYPosition(e.clientY);
     };
 
+    const touchMoveListener = (e) => {
+      setMouseYPosition(e.touches[0].clientY);
+    };
+
     const resizeListener = (e) => {
       draw();
     };
 
+
+
     window.addEventListener('mousemove', mouseMoveListener);
+    window.addEventListener('touchmove', touchMoveListener);
     window.addEventListener('resize', resizeListener);
 
     return () => {
       window.removeEventListener('mousemove', mouseMoveListener);
+      window.removeEventListener('touchmove', touchMoveListener);
       window.removeEventListener('resize', resizeListener);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handlePlayButtonClick = () => {
-    console.log('starting game');
     startGame();
   }
 
   const handleResetButtonClick = () => {
-    console.log('resetting game');
     resetGame();
   }
 
