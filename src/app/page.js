@@ -37,7 +37,7 @@ const TerminalSection = styled.div`
 
 export default function Home() {
   const [terminalExpanded, setTerminalExpanded] = useState(false);
-  const [page, setPage] = useState('contact');
+  const [page, setPage] = useState('~');
   const pages = {
     '~': {
       pwd: '~',
