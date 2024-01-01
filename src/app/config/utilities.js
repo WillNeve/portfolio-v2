@@ -13,6 +13,7 @@ export const hexToRgba = (hex, alpha) => {
 
 export const responsive = css`
   width: 95%;
+  max-width: 1250px;
   @media (min-width: 600px) {
     width: 80%;
   }
@@ -41,9 +42,9 @@ export const textSeperationAnim = (color, alpha) => {
     }
   `;
   return css`
-    @media (prefers-reduced-motion: no-preference) {
+    /* @media (prefers-reduced-motion: no-preference) {
       animation: 250ms linear 0s infinite alternate running ${anim};
-    }
+    } */
   `;
 }
 
@@ -66,8 +67,8 @@ export const boxSeperationAnim = (color, alpha) => {
     }
   `;
   return css`
-    @media (prefers-reduced-motion: no-preference) {
+    /* @media (prefers-reduced-motion: no-preference) {
       animation: 250ms linear 0s infinite alternate running ${anim};
-    }
+    } */
   `;
 }

@@ -27,7 +27,8 @@ const NavWrapper = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 105%;
+    margin-left: -2.5%;
     height: 2px;
     background: ${props => props.theme.hackerGreen};
     ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
