@@ -1,12 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
 import { textSeperationAnim } from './utilities';
-
 const GlobalStyle = createGlobalStyle`
-    * {
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+  
+  @font-face {
+    font-family: 'Modeseven'; // Specify the font family name
+    src: url('fonts/Modeseven-L3n5.ttf') format('truetype');// Specify the path to your font file
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: 'Modeseven', sans-serif;
   }
 
   html,
@@ -16,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
       display: none;
     }
+    font-family: 'Modeseven', sans-serif;
+  }
+
+  input, textarea, button {
+    font-family: 'Modeseven', sans-serif;
   }
 
   body {
@@ -52,37 +64,6 @@ const GlobalStyle = createGlobalStyle`
 
   p {
     margin: 10px 0px;
-    text-align: justify;
-  }
-
-  em {
-    color: ${props => props.theme.hackerGreen};
-    font-style: normal;
-  }
-
-  a {
-    display: block;
-    color: ${props => props.theme.hackerGreen};
-    ${props => textSeperationAnim(props.theme.hackerGreen, .5)};
-    &:not(.icon) {
-      border: 2px solid ${props => props.theme.hackerGreen};
-    }
-    text-decoration: none;
-    width: fit-content;
-    padding: 5px;
-    transition: background .1s ease;
-    &:hover {
-      background: white;
-    }
-    &.icon {
-      width: 50px;
-      height: auto;
-      aspect-ratio: 1;
-      svg {
-        width: 100%;
-        height: 100%;
-      }
-    }
   }
 `;
 

@@ -3,6 +3,14 @@ import { useState, forwardRef, useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import Prompt from './Prompt';
+
+const InputWrapper = styled.div`
+  display: flex;
+  column-gap: 8px;
+  ${props => textSeperationAnim(props.theme.hackerGreen, 0.5)};
+`;
+
 const InputArea = styled.textarea`
   border: none;
   outline: none;
@@ -21,7 +29,7 @@ const InputArea = styled.textarea`
   ${props => textSeperationAnim(props.theme.hackerGreen, .5)};
 `;
 
-const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
+const Input = forwardRef(({ onSubmit, onTab, onBackSpace, path }, inputRef) => {
   const [inputValue, setInputValue] = useState('');
 
   const resize = () => {
@@ -50,14 +58,17 @@ const Input = forwardRef(({ onSubmit, onTab, onBackSpace }, inputRef) => {
   }
 
   return (
-    <InputArea ref={inputRef}
-              onKeyDown={handleKeyDown}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              rows='1'
-              aria-label="Terminal Bar Input Field"
-              autoCapitalize='none'>
-    </InputArea>
+    <InputWrapper>
+      <Prompt path={path}/>
+      <InputArea ref={inputRef}
+                onKeyDown={handleKeyDown}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                rows='1'
+                aria-label="Terminal Bar Input Field"
+                autoCapitalize='none'>
+      </InputArea>
+    </InputWrapper>
   );
 })
 

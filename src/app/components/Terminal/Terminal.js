@@ -1,15 +1,39 @@
 "use client";
 import { useState, useRef, useEffect, useContext } from 'react';
 import { PagesContext } from '../../page.js';
+
 //styled
 import styled, {css} from 'styled-components';
 
 //sub-components
-import Input from './input';
-import Line from './line';
-import Prompt from './prompt';
-import Suggestions from './suggestions';
-import { textSeperationAnim } from '@/app/config/utilities.js';
+import Input from './Input';
+import Lines from './Lines';
+import Prompt from './Prompt';
+import Suggestions from './Suggestions';
+import ToolTip from './Tooltip';
+import { responsive } from '@/app/config/utilities.js';
+import { textSeperationAnim, boxSeperationAnim } from '@/app/config/utilities.js';
+
+const TerminalSection = styled.div`
+  ${responsive};
+  position: relative;
+  height: ${props => props.$expanded ? '20%' : '10%'};
+  transition: height .2s ease;
+  p {
+    margin: 0;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 105%;
+    margin-left: -2.5%;
+    height: 2px;
+    background: ${props => props.theme.hackerGreen};
+    ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
+  }
+`;
 
 const TerminalWrapper = styled.div`
   width: 100%;
@@ -36,30 +60,11 @@ const TerminalWrapper = styled.div`
 }
 `;
 
-const LinesContainer = styled.div`
-font-size: inherit;
-height: fit-content;
-&::-webkit-scrollbar {
-  display: none;
-};
-`;
-
-const LineWrapper = styled.div`
-display: flex;
-column-gap: 8px;
-${props => textSeperationAnim(props.theme.hackerGreen, 0.5)};
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  column-gap: 8px;
-  ${props => textSeperationAnim(props.theme.hackerGreen, 0.5)};
-`;
-
 const Terminal = () => {
   //refs
   const inputRef = useRef(null);
   const wrapper = useRef(null);
+  const tooltipRef = useRef(null);
   //context
   const {pages, page, setPage} = useContext(PagesContext);
   //state
@@ -69,6 +74,8 @@ const Terminal = () => {
   const [pageSuggestions, setPageSuggestions] = useState([]);
   const [highlightedPageSuggestion, setHighlightedPageSuggestion] = useState(-1);
   const [pageSuggestionsActive, setPageSuggestionsActive] = useState(false);
+
+  const [terminalExpanded, setTerminalExpanded] = useState(false);
 
   const commands = {
     'help': {
@@ -194,6 +201,18 @@ const Terminal = () => {
         typeLine('Welcome to my portfolio, I hope you enjoy your stay')
       }, 500);
     }
+
+    const clickListener = (e) => {
+      if (!e.target.closest(`.${TerminalSection.styledComponentId}`)) {
+        setTerminalExpanded(false);
+      }
+    }
+
+    window.addEventListener('click', clickListener);
+
+    return () => {
+      window.removeEventListener('click', clickListener);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -242,29 +261,29 @@ const Terminal = () => {
   };
   //view
 
+  const handleTerminalClick = (e) => {
+    if (!(tooltipRef.current && tooltipRef.current.contains(e.target))) {
+      setTerminalExpanded(true);
+    }
+  }
+
   return (
-    <TerminalWrapper
-    onClick={handleWrapperClick}
-    ref={wrapper}>
-      <LinesContainer>
-        {lines.map((line, index) => (
-            <LineWrapper key={index}>
-              {line[2] ? ('') : (<Prompt path={line[1]}/>)}
-              <Line content={line[0]}/>
-            </LineWrapper>
-          ))}
-      </LinesContainer>
-      <InputWrapper>
-        <Prompt path={page}/>
+    <TerminalSection $expanded={terminalExpanded} onClick={handleTerminalClick}>
+      <TerminalWrapper
+      onClick={handleWrapperClick}
+      ref={wrapper}>
+        <Lines lines={lines}/>
         <Input onSubmit={handleInputSubmit}
                 ref={inputRef}
                 onTab={handleInputTab}
-                onBackSpace={handleInputBackspace}/>
-      </InputWrapper>
-      <Suggestions paths={pageSuggestions}
-                  active={pageSuggestionsActive}
-                  highlighted={highlightedPageSuggestion}/>
-    </TerminalWrapper>
+                onBackSpace={handleInputBackspace}
+                path={page}/>
+        <Suggestions paths={pageSuggestions}
+                    active={pageSuggestionsActive}
+                    highlighted={highlightedPageSuggestion}/>
+        <ToolTip ref={tooltipRef}/>
+      </TerminalWrapper>
+    </TerminalSection>
   );
 };
 

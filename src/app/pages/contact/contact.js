@@ -6,6 +6,7 @@ import { FaSquareGithub } from "react-icons/fa6";
 import { FaEnvelope } from "react-icons/fa6";
 import styled, { keyframes } from 'styled-components';
 import { textSeperationAnim } from '@/app/config/utilities';
+import { ButtonIcon } from '@/app/components/Styles/Buttons';
 
 //emailjs
 import emailjs from '@emailjs/browser';
@@ -164,21 +165,21 @@ const Contact = () => {
       <p>Where you can find me</p>
       <SocialLinks>
         <li>
-          <a href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank' className='icon'>
+          <ButtonIcon href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank' className='icon'>
             <FaLinkedin/>
-          </a>
+          </ButtonIcon>
         </li>
 
         <li>
-          <a href='https://github.com/WillNeve' target='_blank' className='icon'>
+          <ButtonIcon href='https://github.com/WillNeve' target='_blank' className='icon'>
             <FaSquareGithub/>
-          </a>
+          </ButtonIcon>
         </li>
 
         <li>
-          <a href='mailto:williamneve6000@gmail.com' target='_blank' className='icon'>
+          <ButtonIcon href='mailto:williamneve6000@gmail.com' target='_blank' className='icon'>
             <FaEnvelope/>
-          </a>
+          </ButtonIcon>
         </li>
 
       </SocialLinks>

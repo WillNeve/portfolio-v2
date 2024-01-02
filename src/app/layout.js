@@ -1,5 +1,3 @@
-import './globals.scss';
-
 export const metadata = {
   title: 'William Neve',
   description: 'William Neve Portfolio Site 2023, made with love on Nextjs',

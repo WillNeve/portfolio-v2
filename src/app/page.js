@@ -14,27 +14,6 @@ import Nav from './components/Nav/Nav.js';
 
 export const PagesContext = createContext();
 
-const TerminalSection = styled.div`
-  ${responsive};
-  position: relative;
-  height: ${props => props.$expanded ? '20%' : '10%'};
-  transition: height .2s ease;
-  p {
-    margin: 0;
-  }
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 105%;
-    margin-left: -2.5%;
-    height: 2px;
-    background: ${props => props.theme.hackerGreen};
-    ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
-  }
-`;
-
 
 export default function Home() {
   const [terminalExpanded, setTerminalExpanded] = useState(false);
@@ -58,27 +37,15 @@ export default function Home() {
   pages['contact'].parent = '~';
   pages['pong'].parent = '~';
 
-  const handleTerminalClick = () => {
-    setTerminalExpanded(true);
-  }
-
-  const handleMainClick = (e) => {
-    if (!e.target.closest(`.${TerminalSection.styledComponentId}`)) {
-      setTerminalExpanded(false);
-    }
-  }
-
   return (
     <Theme>
       <GlobalStyle/>
       <PagesContext.Provider value={{pages, page, setPage}}>
-      <main onClick={handleMainClick}>
+      <main>
         <CrtScreen/>
         <Nav/>
         <Viewer page={page}/>
-          <TerminalSection $expanded={terminalExpanded} onClick={handleTerminalClick}>
-            <Terminal/>
-          </TerminalSection>
+        <Terminal/>
       </main>
       </PagesContext.Provider>
     </Theme>

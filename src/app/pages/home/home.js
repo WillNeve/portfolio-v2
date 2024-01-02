@@ -5,14 +5,10 @@ import styled, { css } from 'styled-components';
 //icons
 import { BiBaguette } from "react-icons/bi";
 import { BiCoffee } from "react-icons/bi";
-import { IoMdMenu } from "react-icons/io";
 
-const BodyText = styled.p`
-  max-width: 1000px;
-  opacity: .9;
-  animation: none;
-`;
-
+//components
+import { BodyText, EmphasisedText, InlineLink } from '@/app/components/Styles/Text';
+import { ButtonSquare } from '@/app/components/Styles/Buttons';
 
 const Home = () => {
   return (
@@ -26,14 +22,15 @@ const Home = () => {
               width={500}
               height={500}
               alt="profile headshot of William Neve"
+              priority
             />
             <div>
               <h1>William Neve</h1>
               {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
               <h2>// Full Stack Developer</h2>
               <div className={styles.links}>
-                <a href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank'>LinkedIn</a>
-                <a href='https://github.com/WillNeve' target='_blank'>GitHub</a>
+                <ButtonSquare href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank'>LinkedIn</ButtonSquare>
+                <ButtonSquare href='https://github.com/WillNeve' target='_blank'>GitHub</ButtonSquare>
               </div>
               <div className={styles.icons}>
                 <BiCoffee/>
@@ -41,11 +38,12 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <BodyText>Hey, I&apos;m William, passionate Full Stack Developer with an interest in creating impactful and exciting user experiences.</BodyText>
+          <BodyText>Hey &#128512;, I&apos;m William, zealous <EmphasisedText>Full Stack Developer</EmphasisedText> with an interest in creating impactful and exciting user experiences.</BodyText>
 
-          <BodyText>Im French and English, born in the States, raised in London, where I currently reside.</BodyText>
+          <BodyText>Im <EmphasisedText>French</EmphasisedText> and <EmphasisedText>English</EmphasisedText>, born in the States, raised in London, where I currently reside.</BodyText>
 
-          <BodyText>This portfolio page was designed to be navigated by terminal below (Unix-like syntax), please type <em>help</em> for more info.<br/><br/> If you prefer a more traditional navigation style you can use the menu <IoMdMenu style={{marginBottom: '-4px', color: '#51e251'}}/> above.</BodyText>
+          <BodyText><EmphasisedText>Lead Teacher</EmphasisedText> @ <InlineLink href='https://www.lewagon.com/web-development-course'>Le Wagon London</InlineLink>, sharing my passion and proficiency in Full Stack Development with aspiring techies.</BodyText>
+
         </div>
         <Image
           src="/headshot.jpg"
@@ -53,6 +51,7 @@ const Home = () => {
           width={500}
           height={500}
           alt="profile headshot of William Neve"
+          priority
         />
       </div>
     </div>
