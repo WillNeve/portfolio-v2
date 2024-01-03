@@ -59,7 +59,7 @@ const SectionGroup = styled.div`
 const TimeLineSide = styled.div`
   position: relative;
   width: 10%;
-  min-width: 100px;
+  min-width: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
