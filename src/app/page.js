@@ -17,7 +17,7 @@ export const PagesContext = createContext();
 
 export default function Home() {
   const [terminalExpanded, setTerminalExpanded] = useState(false);
-  const [page, setPage] = useState('~');
+  const [page, setPage] = useState('about');
   const pages = {
     '~': {
       pwd: '~',
