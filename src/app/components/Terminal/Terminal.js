@@ -38,6 +38,7 @@ const TerminalSection = styled.div`
 const TerminalWrapper = styled.div`
   width: 100%;
   height: 100%;
+  /* border: 2px solid purple; */
   padding-top: 20px;
   color: ${props => props.theme.hackerGreen};
   overflow-y: auto;
@@ -76,6 +77,9 @@ const Terminal = () => {
   const [pageSuggestionsActive, setPageSuggestionsActive] = useState(false);
 
   const [terminalExpanded, setTerminalExpanded] = useState(false);
+
+  const introActive = useRef(true);
+  const typingTimeouts = useRef([]);
 
   const commands = {
     'help': {
@@ -119,11 +123,15 @@ const Terminal = () => {
         if (Object.keys(pages).includes(requestedPage)) {
           setPage(requestedPage);
           appendNewLine(value);
+          inputRef.current.blur();
+          setTerminalExpanded(false);
         } else if (requestedPage === '../') {
           if (pages[page].parent) {
             setPage(pages[page].parent);
           }
           appendNewLine(value);
+          inputRef.current.blur();
+          setTerminalExpanded(false);
         } else {
           appendNewLine(value, `no such file or directory: ${requestedPage}`);
         }
@@ -167,30 +175,31 @@ const Terminal = () => {
 
   const typeLine = (text, speed) => {
     // lock input for no interference during message
-    inputRef.current.disabled = true;
     const typingSpeed = speed ? speed : 50;
     const removalDelay = 2000;
 
     const chars = text.split('');
     for (let i = 0; i < chars.length; i++) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         inputRef.current.value += chars[i];
         resizeInput();
       }, i * typingSpeed);
+      typingTimeouts.current.push(timeout);
     }
 
     setTimeout(() => {
       for (let i = 1; i <= chars.length; i++) {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
           inputRef.current.value = inputRef.current.value.slice(0,-1);
           resizeInput();
         }, (typingSpeed * 0.5) * (i - 1));
+        typingTimeouts.current.push(timeout);
       }
     }, ((chars.length - 1) * typingSpeed) + removalDelay);
 
     // unlock input after message appended and cleared
     setTimeout(() => {
-      inputRef.current.disabled = false;
+      introActive.current = false;
     }, (typingSpeed * (chars.length * 1.5) + removalDelay));
   }
   //effects
@@ -207,7 +216,6 @@ const Terminal = () => {
         setTerminalExpanded(false);
       }
     }
-
     window.addEventListener('click', clickListener);
 
     return () => {
@@ -264,20 +272,34 @@ const Terminal = () => {
   const handleTerminalClick = (e) => {
     if (!(tooltipRef.current && tooltipRef.current.contains(e.target))) {
       setTerminalExpanded(true);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Optional: to make the scrolling smooth
+      });
+
+      if (introActive.current) {
+        console.log(typingTimeouts.current);
+        typingTimeouts.current.forEach(timeout => clearTimeout(timeout))
+        inputRef.current.value = '';
+        introActive.current = false;
+      }
     }
   }
 
   return (
-    <TerminalSection $expanded={terminalExpanded} onClick={handleTerminalClick}>
+    <TerminalSection $expanded={terminalExpanded}
+                     onClick={handleTerminalClick}
+                     onTouchStart={handleTerminalClick}>
       <TerminalWrapper
       onClick={handleWrapperClick}
       ref={wrapper}>
         <Lines lines={lines}/>
-        <Input onSubmit={handleInputSubmit}
+        <Input  onSubmit={handleInputSubmit}
                 ref={inputRef}
                 onTab={handleInputTab}
                 onBackSpace={handleInputBackspace}
-                path={page}/>
+                path={page}
+                />
         <Suggestions paths={pageSuggestions}
                     active={pageSuggestionsActive}
                     highlighted={highlightedPageSuggestion}/>

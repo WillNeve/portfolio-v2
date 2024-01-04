@@ -1,7 +1,7 @@
 import { textSeperationAnim } from '@/app/config/utilities';
 import { useState, forwardRef, useEffect } from 'react';
 
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 import Prompt from './Prompt';
 

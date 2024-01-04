@@ -7,8 +7,8 @@ import { EmphasisedText } from "../Styles/Text";
 const ToolTipWrapper = styled.div`
   border: 2px solid ${props => props.theme.hackerGreen};
   position: absolute;
-  top: 18px;
-  right: 0px;
+  top: 20px;
+  right: 21px;
   &:hover {
     background: ${props => props.theme.foregroundWhite};
   }
