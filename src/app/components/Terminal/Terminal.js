@@ -274,11 +274,10 @@ const Terminal = () => {
       setTerminalExpanded(true);
       window.scrollTo({
         top: 0,
-        behavior: 'smooth' // Optional: to make the scrolling smooth
+        behavior: 'smooth'
       });
 
       if (introActive.current) {
-        console.log(typingTimeouts.current);
         typingTimeouts.current.forEach(timeout => clearTimeout(timeout))
         inputRef.current.value = '';
         introActive.current = false;
