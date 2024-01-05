@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import Image from 'next/image';
 import { hexToRgba } from "@/app/config/utilities";
 import { ButtonIcon } from "@/app/components/Styles/Buttons";
@@ -6,30 +6,76 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 
 
+const loadingAnim = keyframes`
+  0% {
+    background-position: -1000px;
+  }
+  100% {
+    background-position: 1000px;
+  }
+`;
+
+const LoadingCardWrapper = styled.div`
+  & > div {
+    width: 300px;
+    height: 200px;
+    background-color: rgba(81,226,81,0.1);
+    
+  }
+  .animated {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(5,7,8,0) 40%, rgba(81,226,81,0.2) 55%, rgba(81,226,81,0.2) 66%, rgba(5,7,8,0) 82%);
+    background-size: 1000px 70px;
+    /* border: 1px dashed purple; */
+    animation: ${loadingAnim} 2s linear 0s infinite forwards;
+  }
+`;
+
+export const LoadingCard = () => {
+  return (
+    <LoadingCardWrapper>
+      <div>
+        <div className="animated"></div>
+      </div>
+    </LoadingCardWrapper>
+  );
+}
+
+
 const ProjectCardWrapper = styled.div`
   border: 1px dashed yellow;
   display: flex;
-  width: 488px;
-  padding: 10px;
+  width: 80%;
+  min-width: 310px;
+  max-width: 475px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
   border: 1px solid ${props => props.theme.foregroundWhite};
   .top {
     display: flex;
+    padding: 10px;
     align-items: start;
     column-gap: 10px;
   }
   .links {
     display: flex;
     height: fit-content;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     svg {
       width: 30px;
     }
   }
 
   h3 {
+    font-size: 26px;
     color: ${props => props.theme.hackerGreen};
+    margin-bottom: 5px;
   }
   ul {
     display: flex;
@@ -59,13 +105,14 @@ const ProjectCardWrapper = styled.div`
   }
   img {
     width: 100%;
+    border-top: 1px solid ${props => props.theme.foregroundWhite};
     height: 184px;
     object-fit: cover;
   }
 `;
 
 
-const ProjectCard = ({title, desc, skills, imgSrc}) => {
+export const ProjectCard = ({title, desc, skills, imgSrc}) => {
 
   return (
     <ProjectCardWrapper>
@@ -81,10 +128,10 @@ const ProjectCard = ({title, desc, skills, imgSrc}) => {
         </div>
         <div className="links">
           <ButtonIcon href='https://github.com/WillNeve' target='_blank' className='icon'>
-            <FaExternalLinkAlt />
+            <FaSquareGithub/>
           </ButtonIcon>
           <ButtonIcon href='https://github.com/WillNeve' target='_blank' className='icon'>
-            <FaSquareGithub/>
+            <FaExternalLinkAlt />
           </ButtonIcon>
         </div>
       </div>
@@ -96,5 +143,3 @@ const ProjectCard = ({title, desc, skills, imgSrc}) => {
     </ProjectCardWrapper>
   )
 }
-
-export default ProjectCard;
