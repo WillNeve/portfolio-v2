@@ -10,6 +10,17 @@ import { BiCoffee } from "react-icons/bi";
 import { BodyText, EmphasisedText, InlineLink } from '@/app/components/Styles/Text';
 import { ButtonSquare } from '@/app/components/Styles/Buttons';
 
+import Skills from './Skills/Skills';
+import Projects from './Projects/Projects';
+
+const Seperator = styled.span`
+  display: block;
+  width: 90%;
+  height: 1px;
+  background: ${props => props.theme.foregroundWhite};
+  margin: 20px auto;
+`;
+
 const Home = () => {
   return (
     <>
@@ -56,6 +67,13 @@ const Home = () => {
           />
         </div>
       </div>
+      <Seperator/>
+
+      <Skills/>
+
+      <Seperator/>
+
+      <Projects/>
     </>
   )
 }
