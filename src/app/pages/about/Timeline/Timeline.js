@@ -127,9 +127,6 @@ const TimeLine = () => {
                                                       });
 
   const getTimeLineItems = async () => {
-    // await new Promise(resolve => setTimeout(() => {
-    //   resolve();
-    // }, 300000));
     const res = await fetch(`/api/timeline-items`, { cache: 'no-store', revalidate: 0 })
     const data = await res.json();
     const rows = data.rows;
