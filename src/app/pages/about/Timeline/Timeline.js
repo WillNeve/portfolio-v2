@@ -11,7 +11,7 @@ const Timeline = styled.div`
   flex-grow: 1;
   display: flex;
   overflow: auto;
-  padding: 20px 0px;
+  padding-top: 20px;
 `;
 
 const Sections = styled.div`
