@@ -11,7 +11,10 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     customKey: 'my-value',
-  }
+  },
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
 }
 
 module.exports = nextConfig

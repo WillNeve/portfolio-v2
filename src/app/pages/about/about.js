@@ -20,7 +20,7 @@ const About = () => {
   return (
     <>
       <AboutContainer>
-        <div class='pageTitle'>
+        <div className='pageTitle'>
           <h1>About me.</h1>
           <h2>Heres a bit more about me</h2>
         </div>

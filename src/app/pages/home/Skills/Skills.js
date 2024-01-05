@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const SkillsWrapper = styled.div`
   position: relative;
-  padding: 10px;
   padding-top: 20px;
   max-width: 750px;
   font-family: 'Montserrat', sans-serif;
@@ -38,14 +37,16 @@ const SkillsWrapper = styled.div`
     padding: 5px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    & > div {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+      }
     @media (min-width: 1000px) {
       flex-direction: row;
       justify-content: space-between;
       & > div {
-        display: flex;
-        flex-direction: column;
-        row-gap: 10px;
         width: 50%;
       }
     }
