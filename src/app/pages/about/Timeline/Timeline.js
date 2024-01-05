@@ -63,10 +63,11 @@ const Section = styled.div`
 `;
 
 const SectionGroup = styled.div`
-
   h2 {
     color: ${props => props.theme.hackerGreen};
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 24px;
+    color: ${props => props.$focused ? props.theme.hackerGreen : props.theme.foregroundWhite};
   }
   margin: 10px 0px;
   /* border: ${props => props.$focused ? `2px solid ${props.theme.hackerGreen}` : 'none'}; */
