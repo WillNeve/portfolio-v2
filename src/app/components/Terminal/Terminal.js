@@ -38,7 +38,7 @@ const TerminalSection = styled.div`
 const TerminalWrapper = styled.div`
   width: 100%;
   height: 100%;
-  /* border: 2px solid purple; */
+  padding-right: 50px;
   padding-top: 20px;
   color: ${props => props.theme.hackerGreen};
   overflow-y: auto;

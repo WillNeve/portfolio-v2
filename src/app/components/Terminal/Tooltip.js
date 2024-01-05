@@ -13,6 +13,9 @@ const ToolTipWrapper = styled.div`
     background: ${props => props.theme.foregroundWhite};
   }
   button {
+    width: 25px;
+    height: auto;
+    aspect-ratio: 1;
     font-size: 16px;
     padding: 4px 8px;
     background: none;

@@ -37,7 +37,7 @@ const Section = styled.div`
     row-gap: 6px;
     h3 {
       margin: 0;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 400;
     }
     p {
@@ -58,7 +58,7 @@ const Section = styled.div`
   .body {
     margin-top: 10px;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 20px;
   }
 `;
 
@@ -234,7 +234,7 @@ const TimeLine = () => {
                   <h3>{title}</h3>
                   <p>{dateToGB(date)}</p>
                 </div>
-                <p>{body}</p>
+                <p className='body'>{body}</p>
               </Section>
             ))
           )}
@@ -255,7 +255,7 @@ const TimeLine = () => {
                   <h3>{title}</h3>
                   <p>{dateToGB(date)}</p>
                 </div>
-                <p>{body}</p>
+                <p className='body'>{body}</p>
               </Section>
             ))
           )}
