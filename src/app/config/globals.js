@@ -26,20 +26,25 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Modeseven', sans-serif;
   }
 
+  html {
+    overflow: hidden;
+    height: 100%;
+  }
+
   body {
     background: ${props => props.theme.backgroundBlack};
     color: ${props => props.theme.foregroundWhite};
     font-size: 20px;
+    overflow: hidden;
   }
-
 
   main {
     display: flex;
     flex-direction: column;
     width: 100svw;
     height: 100svh;
-    overflow: scroll;
-    padding: 20px;
+    overflow: hidden;
+    padding: 20px 0px;
   }
 
   input, textarea, button {

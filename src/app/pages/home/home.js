@@ -18,7 +18,7 @@ const Seperator = styled.span`
   width: 90%;
   height: 1px;
   background: ${props => props.theme.foregroundWhite};
-  margin: 20px auto;
+  margin: 20px 0px;
 `;
 
 const Home = () => {

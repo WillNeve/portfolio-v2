@@ -5,11 +5,18 @@ import { FaLinkedin } from "react-icons/fa6";
 import { FaSquareGithub } from "react-icons/fa6";
 import { FaEnvelope } from "react-icons/fa6";
 import styled, { keyframes } from 'styled-components';
-import { textSeperationAnim } from '@/app/config/utilities';
+import { hexToRgba, textSeperationAnim } from '@/app/config/utilities';
 import { ButtonIcon } from '@/app/components/Styles/Buttons';
 
 //emailjs
 import emailjs from '@emailjs/browser';
+
+const ContactWrapper = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  .header {
+    font-family: 'Modeseven', sans-serif;
+  }
+`;
 
 const SocialLinks = styled.ul`
   display: flex;
@@ -24,7 +31,8 @@ const ContactForm = styled.form`
     background: none;
     border: 2px solid ${props => props.theme.hackerGreen};
     border-radius: 0px; // to override some IOS default radius
-    color: ${props => props.theme.hackerGreen};
+    color: ${props => hexToRgba(props.theme.foregroundWhite, .9)};
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     width: 100%;
     padding: 5px;
@@ -160,9 +168,11 @@ const Contact = () => {
   }
 
   return (
-    <div>
-      <h1>Contact me.</h1>
-      <p>Where you can find me</p>
+    <ContactWrapper>
+      <div className="header">
+        <h1>Contact me.</h1>
+        <p>Where you can find me</p>
+      </div>
       <SocialLinks>
         <li>
           <ButtonIcon href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank' className='icon'>
@@ -207,7 +217,7 @@ const Contact = () => {
         <button type='submit' ref={sendButton}>{messageSent ? 'SENT' : 'SEND'}</button>
         <Notice $disabled={!messageSent}>Your Message has been sent</Notice>
       </ContactForm>
-    </div>
+    </ContactWrapper>
   )
 }
 

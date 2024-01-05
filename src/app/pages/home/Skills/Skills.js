@@ -13,6 +13,8 @@ const SkillsWrapper = styled.div`
   ul {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 5px;
+    row-gap: 5px;
     list-style-type: none;
   }
   li {
@@ -32,12 +34,15 @@ const SkillsWrapper = styled.div`
       opacity: 0.9;
     }
   }
+  .soft, .technical {
+    justify-content: space-between;
+  }
   .container {
     margin-top: 20px;
     padding: 5px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     & > div {
         display: flex;
         flex-direction: column;
@@ -59,36 +64,39 @@ const Skills = () => {
       <h2>Skills</h2>
       <div className="container">
         <div className="technical">
-        <div>
-          <h3>Front-End</h3>
-          <ul>
-            <li>HTML5</li>
-            <li>CSS3</li>
-            <li>SASS</li>
-            <li>Bootstrap</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>React</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Back-End</h3>
-          <ul>
-            <li>Ruby</li>
-            <li>Ruby on Rails</li>
-            <li>Node.js</li>
-            <li>SQL</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Tools and Technologies</h3>
-          <ul>
-            <li>Git</li>
-            <li>Figma</li>
-            <li>ZSH/Bash</li>
-          </ul>
-        </div>
+          <div>
+            <h3>Front-End</h3>
+            <ul>
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>SASS</li>
+              <li>Tailwind / Bootstrap</li>
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+              <li>React.js</li>
+              <li>Next.js</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Back-End</h3>
+            <ul>
+              <li>Ruby</li>
+              <li>Ruby on Rails</li>
+              <li>Node.js</li>
+              <li>Express.js</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Tools and Technologies</h3>
+            <ul>
+              <li>Git</li>
+              <li>Github</li>
+              <li>Figma</li>
+              <li>ZSH/Bash</li>
+              <li>Postgres</li>
+            </ul>
+          </div>
         </div>
 
         <div className="soft">

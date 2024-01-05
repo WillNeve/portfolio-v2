@@ -27,8 +27,11 @@ const TerminalSection = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 105%;
-    margin-left: -2.5%;
+    width: 100%;
+    @media (min-width: 600px) {
+      width: 105%;
+    }
+    margin: 0 auto;
     height: 2px;
     background: ${props => props.theme.hackerGreen};
     ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};

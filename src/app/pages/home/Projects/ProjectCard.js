@@ -9,8 +9,9 @@ import { FaSquareGithub } from "react-icons/fa6";
 const ProjectCardWrapper = styled.div`
   border: 1px dashed yellow;
   display: flex;
-  width: 488px;
-  padding: 10px;
+  min-width: 320px;
+  width: calc(100% - 30px);
+  max-width: 600px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -19,12 +20,21 @@ const ProjectCardWrapper = styled.div`
     display: flex;
     align-items: start;
     column-gap: 10px;
+    padding: 10px;
   }
   .links {
     display: flex;
     height: fit-content;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     svg {
       width: 30px;
+    }
+    img {
+      margin-top: 1px solid ${props => props.theme.foregroundWhite};
     }
   }
 

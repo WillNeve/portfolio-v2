@@ -9,7 +9,7 @@ const ProjectsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    padding: 20px;
+    padding: 20px 0px;
   }
   h2 {
     color: ${props => props.theme.hackerGreen};

@@ -39,7 +39,12 @@ const ToolTipWrapper = styled.div`
     transition: all .1s linear;
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    font-size: 18px;
+    p {
+      font-size: 18px;
+      @media (min-width: 800px) {
+        font-size: 16px;
+      }
+    }
     pointer-events: ${props => props.$active ? 'all' : 'none'};
   }
 `;

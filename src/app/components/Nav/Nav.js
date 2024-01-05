@@ -7,14 +7,17 @@ import { boxSeperationAnim, textSeperationAnim } from '../../config/utilities.js
 const NavWrapper = styled.div`
   ${responsive};
   box-sizing: border-box;
+  min-height: 8%;
   height: fit-content;
-  position: sticky;
+  max-height: ${props => props.$active ? '600px' : '8%'};
+  position: fixed;
   z-index: 1;
-  top: 0;
-  left: 0;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   color: ${props => props.theme.hackerGreen};
   background: ${props => props.theme.backgroundBlack};
-  transition: height .2s ease;
+  transition: height .2s ease, max-height .2s ease;
   padding-bottom: 10px;
   & > div:nth-child(1) {
     display: flex;
@@ -27,8 +30,11 @@ const NavWrapper = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 105%;
-    margin-left: -2.5%;
+    width: 100%;
+    @media (min-width: 600px) {
+      width: 105%;
+    }
+    margin: 0 auto;
     height: 2px;
     background: ${props => props.theme.hackerGreen};
     ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
@@ -145,7 +151,7 @@ const Nav = () => {
 
 
   return (
-    <NavWrapper>
+    <NavWrapper $active={menuOpen}>
       <div>
         <NavMenuToggle $active={menuOpen}
                         onClick={handleMenuClick}

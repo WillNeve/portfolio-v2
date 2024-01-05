@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 //styles
 import styled from 'styled-components';
