@@ -8,7 +8,10 @@ const sassOptions = {
 
 const nextConfig = {
   sassOptions,
-  reactStrictMode: false,
+  reactStrictMode: true,
+  env: {
+    customKey: 'my-value',
+  }
 }
 
 module.exports = nextConfig

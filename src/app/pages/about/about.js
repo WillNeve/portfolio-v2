@@ -1,7 +1,6 @@
-import styles from './about.module.scss';
 import styled from 'styled-components';
 import { hexToRgba } from '@/app/config/utilities';
-import TimeLine from './timeline';
+import TimeLine from './Timeline/Timeline';
 
 const AboutContainer = styled.div`
   width: 100%;
@@ -9,6 +8,9 @@ const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
+  .pageTitle {
+    font-family: 'Modeseven', sans-serif;
+  }
   p {
     color: ${props => hexToRgba(props.theme.foregroundWhite, 0.9)};
   }
@@ -17,9 +19,8 @@ const AboutContainer = styled.div`
 const About = () => {
   return (
     <>
-
       <AboutContainer>
-        <div>
+        <div class='pageTitle'>
           <h1>About me.</h1>
           <h2>Heres a bit more about me</h2>
         </div>
