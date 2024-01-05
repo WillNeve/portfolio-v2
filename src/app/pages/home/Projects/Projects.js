@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components"
 
-import ProjectCard from "./ProjectCard";
+import {ProjectCard, LoadingCard} from "./ProjectCard";
 
 const ProjectsWrapper = styled.div`
   font-family: 'Montserrat', sans-serif;
+  h2 {
+    color: ${props => props.theme.hackerGreen};
+    margin-bottom: 20px;
+  }
+
   & > div {
     display: flex;
     flex-direction: column;
@@ -17,13 +22,12 @@ const ProjectsWrapper = styled.div`
 `;
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(null);
 
   const getProjects = async () => {
     const res = await fetch(`/api/projects`, { cache: 'no-store', revalidate: 0 })
     const data = await res.json();
     const rows = data.rows;
-    console.log(rows);
     setProjects(rows);
   }
 
@@ -35,13 +39,22 @@ const Projects = () => {
     <ProjectsWrapper>
       <h2>Projects</h2>
       <div>
-        {projects.map(({title, description, imgsrc, skills}, index) => (
+        {projects === null ? (
+          <>
+            <LoadingCard/>
+            <LoadingCard/>
+            <LoadingCard/>
+          </>
+        ) :
+        projects.map(({title, description, imgsrc, skills}, index) => (
           <ProjectCard key={index}
                        title={title}
                        desc={description}
                        skills={skills.split(', ')}
                        imgSrc={imgsrc}/>
-        ))}
+        ))
+      }
+
       </div>
     </ProjectsWrapper>
   )

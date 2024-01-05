@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const SkillsWrapper = styled.div`
   position: relative;
-  padding-top: 20px;
+  padding: 20px 0px;
   max-width: 750px;
   font-family: 'Montserrat', sans-serif;
   /* border: 2px solid ${props => hexToRgba(props.theme.foregroundWhite, 1)}; */
