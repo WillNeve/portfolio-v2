@@ -16,11 +16,45 @@ const loadingAnim = keyframes`
 `;
 
 const LoadingCardWrapper = styled.div`
-  & > div {
-    width: 300px;
-    height: 200px;
+  min-width: 310px;
+  width: calc(100% - 30px);
+  max-width: 500px;
+  height: 150px;
+  display: flex;
+  background-color: rgba(81,226,81,0.1);
+  .text {
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    & > div {
+      background-color: rgba(81,226,81,0.1);
+    }
+    .title {
+      width: 70%;
+      height: 30px;
+    }
+    .tech {
+      background: none;
+      margin: 10px 0px;
+      display: flex;
+      justify-content: space-between;
+      column-gap: 5px;
+      height: 20px;
+      width: 50%;
+      div {
+        background-color: rgba(81,226,81,0.1);
+        width: 30%;
+      }
+    }
+    .desc {
+      width: 80%;
+      height: 50px;
+    }
+  }
+  .img {
     background-color: rgba(81,226,81,0.1);
-
+    width: 30%;
+    height: 100%;
   }
   .animated {
     width: 100%;
@@ -35,9 +69,22 @@ const LoadingCardWrapper = styled.div`
 export const LoadingCard = () => {
   return (
     <LoadingCardWrapper>
-      <div>
-        <div className="animated"></div>
-      </div>
+        <div className="text">
+          <div className="title">
+            <div className="animated"></div>
+          </div>
+          <div className="tech">
+            <div className="animated"></div>
+            <div className="animated"></div>
+            <div className="animated"></div>
+          </div>
+          <div className="desc">
+            <div className="animated"></div>
+          </div>
+        </div>
+        <div className="img">
+          <div className="animated"></div>
+        </div>
     </LoadingCardWrapper>
   );
 }

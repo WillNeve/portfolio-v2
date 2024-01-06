@@ -208,6 +208,14 @@ const Terminal = () => {
   //effects
 
   useEffect(() => {
+    if (!terminalExpanded) {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  }, [terminalExpanded])
+
+  useEffect(() => {
     if (page === '~') {
       setTimeout(() => {
         typeLine('Welcome to my portfolio, I hope you enjoy your stay')
