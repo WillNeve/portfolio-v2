@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useContext, useCallback } from 'react';
 import { PagesContext } from '../../page.js';
 
 //styled
@@ -207,13 +207,24 @@ const Terminal = () => {
   }
   //effects
 
-  useEffect(() => {
+  const scrollToTop = useCallback(() => {
     if (!terminalExpanded) {
       window.scrollTo(0, 0);
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
-  }, [terminalExpanded])
+  }, [terminalExpanded]);
+
+  useEffect(() => {
+    scrollToTop()
+  }, [terminalExpanded, scrollToTop])
+
+  useEffect(() => {
+    inputRef.current.addEventListener('focusout', () => {
+      setTerminalExpanded(false);
+      scrollToTop();
+    });
+  }, [scrollToTop])
 
   useEffect(() => {
     if (page === '~') {
@@ -227,6 +238,7 @@ const Terminal = () => {
         setTerminalExpanded(false);
       }
     }
+
     window.addEventListener('click', clickListener);
 
     return () => {
@@ -283,10 +295,6 @@ const Terminal = () => {
   const handleTerminalClick = (e) => {
     if (!(tooltipRef.current && tooltipRef.current.contains(e.target))) {
       setTerminalExpanded(true);
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
 
       if (introActive.current) {
         typingTimeouts.current.forEach(timeout => clearTimeout(timeout))
