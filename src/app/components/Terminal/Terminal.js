@@ -8,11 +8,10 @@ import styled, {css} from 'styled-components';
 //sub-components
 import Input from './Input';
 import Lines from './Lines';
-import Prompt from './Prompt';
 import Suggestions from './Suggestions';
 import ToolTip from './Tooltip';
 import { responsive } from '@/app/config/utilities.js';
-import { textSeperationAnim, boxSeperationAnim } from '@/app/config/utilities.js';
+import { boxSeperationAnim } from '@/app/config/utilities.js';
 
 const TerminalSection = styled.div`
   ${responsive};
@@ -45,6 +44,9 @@ const TerminalWrapper = styled.div`
   padding-top: 20px;
   color: ${props => props.theme.hackerGreen};
   overflow-y: auto;
+  .inner {
+    border: 2px solid blue;
+  }
   &::-webkit-scrollbar {
     display: block;
     background: none;
@@ -67,7 +69,6 @@ const TerminalWrapper = styled.div`
 const Terminal = () => {
   //refs
   const inputRef = useRef(null);
-  const wrapper = useRef(null);
   const tooltipRef = useRef(null);
   //context
   const {pages, page, setPage} = useContext(PagesContext);
@@ -286,43 +287,39 @@ const Terminal = () => {
     setPageSuggestionsActive(false);
     setHighlightedPageSuggestion(-1);
   };
-
-  const handleWrapperClick = (e) => {
-    inputRef.current.focus();
-  };
   //view
 
   const handleTerminalClick = (e) => {
-    if (!(tooltipRef.current && tooltipRef.current.contains(e.target))) {
-      setTerminalExpanded(true);
+    console.log('terminal click handler');
+    setTerminalExpanded(true);
+    inputRef.current.focus();
 
-      if (introActive.current) {
-        typingTimeouts.current.forEach(timeout => clearTimeout(timeout))
-        inputRef.current.value = '';
-        introActive.current = false;
-      }
+    if (introActive.current) {
+      typingTimeouts.current.forEach(timeout => clearTimeout(timeout))
+      inputRef.current.value = '';
+      introActive.current = false;
     }
   }
 
   return (
-    <TerminalSection $expanded={terminalExpanded}
-                     onClick={handleTerminalClick}
-                     onTouchStart={handleTerminalClick}>
-      <TerminalWrapper
-      onClick={handleWrapperClick}
-      ref={wrapper}>
-        <Lines lines={lines}/>
-        <Input  onSubmit={handleInputSubmit}
-                ref={inputRef}
-                onTab={handleInputTab}
-                onBackSpace={handleInputBackspace}
-                path={page}
-                />
-        <Suggestions paths={pageSuggestions}
-                    active={pageSuggestionsActive}
-                    highlighted={highlightedPageSuggestion}/>
-        <ToolTip ref={tooltipRef}/>
-      </TerminalWrapper>
+    <TerminalSection $expanded={terminalExpanded}>
+      <div className="inner"
+           onClick={handleTerminalClick}
+           onTouchStart={handleTerminalClick}>
+        <TerminalWrapper>
+            <Lines lines={lines}/>
+            <Input  onSubmit={handleInputSubmit}
+                    ref={inputRef}
+                    onTab={handleInputTab}
+                    onBackSpace={handleInputBackspace}
+                    path={page}
+                    />
+            <Suggestions paths={pageSuggestions}
+                        active={pageSuggestionsActive}
+                        highlighted={highlightedPageSuggestion}/>
+        </TerminalWrapper>
+      </div>
+      <ToolTip ref={tooltipRef}/>
     </TerminalSection>
   );
 };
