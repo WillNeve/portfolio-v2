@@ -29,7 +29,8 @@ const NavWrapper = styled.div`
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     @media (min-width: 600px) {
       width: 105%;

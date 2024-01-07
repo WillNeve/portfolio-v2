@@ -25,15 +25,18 @@ const TerminalSection = styled.div`
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
     width: 100%;
     @media (min-width: 600px) {
       width: 105%;
     }
-    margin: 0 auto;
+    transform: translateX(-50%);
     height: 2px;
     background: ${props => props.theme.hackerGreen};
     ${props => boxSeperationAnim(props.theme.hackerGreen, .5)};
+  }
+  .inner {
+    height: 100%;
   }
 `;
 
@@ -217,6 +220,7 @@ const Terminal = () => {
   }, [terminalExpanded]);
 
   useEffect(() => {
+    // console.log(terminalExpanded);
     scrollToTop()
   }, [terminalExpanded, scrollToTop])
 
@@ -290,6 +294,7 @@ const Terminal = () => {
   //view
 
   const handleTerminalClick = (e) => {
+    // console.log('expanding terminal');
     setTerminalExpanded(true);
     inputRef.current.focus();
 
@@ -305,7 +310,7 @@ const Terminal = () => {
       <div className="inner"
            onClick={handleTerminalClick}
            onTouchStart={handleTerminalClick}>
-        <TerminalWrapper>
+        <TerminalWrapper className='test'>
             <Lines lines={lines}/>
             <Input  onSubmit={handleInputSubmit}
                     ref={inputRef}
