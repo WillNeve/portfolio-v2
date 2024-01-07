@@ -222,8 +222,6 @@ const Terminal = () => {
 
   useEffect(() => {
     inputRef.current.addEventListener('blur', (e) => {
-      console.log(e);
-      console.log('focus out detected on terminal input');
       setTerminalExpanded(false);
       scrollToTop();
     });
@@ -292,8 +290,6 @@ const Terminal = () => {
   //view
 
   const handleTerminalClick = (e) => {
-    e.preventDefault()
-    console.log('terminal clicked, setting terminal expanded and focused');
     setTerminalExpanded(true);
     inputRef.current.focus();
 
