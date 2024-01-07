@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { textSeperationAnim } from "@/app/config/utilities";
 
 export const ButtonSquare = styled.a`
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: ${props => props.theme.hackerGreen};
   ${props => textSeperationAnim(props.theme.hackerGreen, .5)};
   border: 2px solid ${props => props.theme.hackerGreen};

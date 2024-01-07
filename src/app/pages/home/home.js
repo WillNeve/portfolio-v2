@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './home.module.scss';
 import styled, { css } from 'styled-components';
 
@@ -41,6 +42,7 @@ const Home = () => {
                 {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
                 <h2>// Full Stack Developer</h2>
                 <div className={styles.links}>
+                  <ButtonSquare href="/cv.pdf" target="_blank">CV</ButtonSquare>
                   <ButtonSquare href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank'>LinkedIn</ButtonSquare>
                   <ButtonSquare href='https://github.com/WillNeve' target='_blank'>GitHub</ButtonSquare>
                 </div>
