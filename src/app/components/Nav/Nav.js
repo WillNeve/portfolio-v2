@@ -7,7 +7,7 @@ import { boxSeperationAnim, textSeperationAnim } from '../../config/utilities.js
 const NavWrapper = styled.div`
   ${responsive};
   box-sizing: border-box;
-  min-height: 8%;
+  min-height: 8svh;
   height: fit-content;
   max-height: ${props => props.$active ? '600px' : '8%'};
   position: fixed;

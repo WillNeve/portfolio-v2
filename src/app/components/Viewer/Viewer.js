@@ -8,10 +8,7 @@ import {responsive} from '../../config/utilities.js';
 
 const ViewerWrapper = styled.div`
   padding: 0px 2px;
-  padding-top: calc(50px + 8%);
-  @media (min-width: 800px) {
-    padding-top: calc(25px + 8%);
-  }
+  padding-top: calc(25px + 8svh);
   width: 100%;
   height: 80%;
   flex-grow: 1;
