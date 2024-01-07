@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     src: url('fonts/Modeseven-L3n5.ttf') format('truetype');// Specify the path to your font file
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
 
   * {
