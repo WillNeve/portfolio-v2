@@ -68,13 +68,12 @@ const Skills = () => {
             <h3>Front-End</h3>
             <ul>
               <li>HTML5</li>
-              <li>CSS3</li>
-              <li>SASS</li>
-              <li>Tailwind / Bootstrap</li>
+              <li>CSS3/SASS</li>
+              <li>Bootstrap</li>
               <li>JavaScript</li>
-              <li>TypeScript</li>
               <li>React.js</li>
               <li>Next.js</li>
+              <li>TypeScript</li>
             </ul>
           </div>
           <div>
@@ -85,6 +84,7 @@ const Skills = () => {
               <li>Node.js</li>
               <li>Express.js</li>
               <li>SQL</li>
+              <li>Postgres</li>
             </ul>
           </div>
           <div>
@@ -93,24 +93,22 @@ const Skills = () => {
               <li>Git</li>
               <li>Github</li>
               <li>Figma</li>
-              <li>ZSH/Bash</li>
-              <li>Postgres</li>
+              <li>Unix</li>
             </ul>
           </div>
         </div>
 
         <div className="soft">
           <div>
-          <h3>Soft Skills</h3>
-          <ul>
+            <h3>Soft Skills</h3>
+            <ul>
               <li>Project Management</li>
-              <li>Problem-Solving</li>
-              <li>Attention to Detail</li>
               <li>Adaptability</li>
-              <li>Team Management</li>
-              <li>Time Management</li>
-              <li>User-Centric Design</li>
-          </ul>
+              <li>Critical Thinking</li>
+              <li>Client Communication</li>
+              <li>Teaching</li>
+              <li>Mentorship</li>
+            </ul>
           </div>
         </div>
       </div>

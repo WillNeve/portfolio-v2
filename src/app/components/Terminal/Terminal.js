@@ -221,11 +221,13 @@ const Terminal = () => {
   }, [terminalExpanded, scrollToTop])
 
   useEffect(() => {
-    inputRef.current.addEventListener('focusout', () => {
+    inputRef.current.addEventListener('blur', (e) => {
+      console.log(e);
+      console.log('focus out detected on terminal input');
       setTerminalExpanded(false);
       scrollToTop();
     });
-  }, [scrollToTop])
+  }, [scrollToTop, terminalExpanded])
 
   useEffect(() => {
     if (page === '~') {
@@ -290,7 +292,8 @@ const Terminal = () => {
   //view
 
   const handleTerminalClick = (e) => {
-    console.log('terminal click handler');
+    e.preventDefault()
+    console.log('terminal clicked, setting terminal expanded and focused');
     setTerminalExpanded(true);
     inputRef.current.focus();
 
