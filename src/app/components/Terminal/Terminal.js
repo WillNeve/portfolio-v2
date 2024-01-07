@@ -84,6 +84,7 @@ const Terminal = () => {
   const [pageSuggestionsActive, setPageSuggestionsActive] = useState(false);
 
   const [terminalExpanded, setTerminalExpanded] = useState(false);
+  const [expandingTerminal, setExpandingTerminal] = useState(false);
 
   const introActive = useRef(true);
   const typingTimeouts = useRef([]);
@@ -224,12 +225,15 @@ const Terminal = () => {
     scrollToTop()
   }, [terminalExpanded, scrollToTop])
 
-  useEffect(() => {
-    inputRef.current.addEventListener('blur', (e) => {
+  const handleInputBlur = () => {
+    if (!expandingTerminal) {
+      console.log('closing terminal');
       setTerminalExpanded(false);
       scrollToTop();
-    });
-  }, [scrollToTop, terminalExpanded])
+    } else {
+      console.log('tried to close but terminal locked')
+    }
+  }
 
   useEffect(() => {
     if (page === '~') {
@@ -294,9 +298,13 @@ const Terminal = () => {
   //view
 
   const handleTerminalClick = (e) => {
-    // console.log('expanding terminal');
+    console.log('expanding terminal');
+    setExpandingTerminal(true);
     setTerminalExpanded(true);
     inputRef.current.focus();
+    setTimeout(() => {
+      setExpandingTerminal(false);
+    }, 200);
 
     if (introActive.current) {
       typingTimeouts.current.forEach(timeout => clearTimeout(timeout))
@@ -316,6 +324,7 @@ const Terminal = () => {
                     ref={inputRef}
                     onTab={handleInputTab}
                     onBackSpace={handleInputBackspace}
+                    onBlur={handleInputBlur}
                     path={page}
                     />
             <Suggestions paths={pageSuggestions}

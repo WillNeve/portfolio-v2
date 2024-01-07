@@ -29,7 +29,7 @@ const InputArea = styled.textarea`
   ${props => textSeperationAnim(props.theme.hackerGreen, .5)};
 `;
 
-const Input = forwardRef(({ onSubmit, onTab, onBackSpace, path }, inputRef) => {
+const Input = forwardRef(({ onSubmit, onTab, onBackSpace, onBlur, path }, inputRef) => {
   const [inputValue, setInputValue] = useState('');
 
   const resize = () => {
@@ -62,6 +62,7 @@ const Input = forwardRef(({ onSubmit, onTab, onBackSpace, path }, inputRef) => {
       <Prompt path={path}/>
       <InputArea ref={inputRef}
                 onKeyDown={handleKeyDown}
+                onBlur={onBlur}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 rows='1'
