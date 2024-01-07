@@ -1,11 +1,10 @@
 'use client';
 import { createContext, useState, useEffect } from 'react';
-
 //styles
-import styled from 'styled-components';
 import Theme from './config/theme';
 import GlobalStyle from './config/globals';
 import {boxSeperationAnim, responsive} from './config/utilities'
+
 //components
 import Terminal from './components/Terminal/Terminal.js';
 import CrtScreen from './components/CrtScreen/CrtScreen.js';

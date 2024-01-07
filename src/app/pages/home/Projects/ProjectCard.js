@@ -168,7 +168,7 @@ const ProjectCardWrapper = styled.div`
 `;
 
 
-export const ProjectCard = ({title, desc, skills, imgSrc}) => {
+export const ProjectCard = ({title, desc, skills, githubUrl, deployUrl, imgSrc}) => {
 
   return (
     <ProjectCardWrapper>
@@ -183,10 +183,10 @@ export const ProjectCard = ({title, desc, skills, imgSrc}) => {
       </div>
 
       <div className="links">
-          <ButtonIcon href='https://github.com/WillNeve' target='_blank' className='icon' aria-label={`Github Repository Link for ${title} project`}>
+          <ButtonIcon href={githubUrl ? githubUrl : '#'} target='_blank' className='icon' aria-label={`Github Repository Link for ${title} project`}>
             <FaSquareGithub/>
           </ButtonIcon>
-          <ButtonIcon href='https://github.com/WillNeve' target='_blank' className='icon' aria-label={`Live deployment link for ${title} project`}>
+          <ButtonIcon href={deployUrl ? deployUrl : '#'} target='_blank' className='icon' aria-label={`Live deployment link for ${title} project`}>
             <FaExternalLinkAlt />
           </ButtonIcon>
         </div>

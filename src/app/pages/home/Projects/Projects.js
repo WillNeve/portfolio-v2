@@ -46,11 +46,13 @@ const Projects = () => {
             <LoadingCard/>
           </>
         ) :
-        projects.map(({title, description, imgsrc, skills}, index) => (
+        projects.map(({title, description, imgsrc, skills, deploy_url, github_url}, index) => (
           <ProjectCard key={index}
                        title={title}
                        desc={description}
                        skills={skills.split(', ')}
+                       deployUrl={deploy_url}
+                       githubUrl={github_url}
                        imgSrc={imgsrc}/>
         ))
       }
