@@ -9,6 +9,7 @@ const ToolTipWrapper = styled.div`
   position: absolute;
   top: 20px;
   right: 21px;
+  z-index: 2;
   &:hover {
     background: ${props => props.theme.foregroundWhite};
   }
