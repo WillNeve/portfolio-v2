@@ -133,7 +133,7 @@ const Terminal = () => {
           appendNewLine(value);
           inputRef.current.blur();
           setTerminalExpanded(false);
-        } else if (requestedPage === '../') {
+        } else if (requestedPage === '../' || requestedPage === '..' ) {
           if (pages[page].parent) {
             setPage(pages[page].parent);
           }
