@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
-  const query = sql`SELECT * FROM projects;`;
+  const query = sql`SELECT * FROM projects ORDER BY project_order ASC;`;
   try {
     const result = await query;
     return NextResponse.json({ rows: result.rows }, { status: 200});

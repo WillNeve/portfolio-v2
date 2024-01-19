@@ -52,9 +52,9 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <BodyText>Hey &#128512;, I&apos;m William, zealous <EmphasisedText>Full Stack Developer</EmphasisedText> with an interest in creating impactful and exciting user experiences.</BodyText>
+            <BodyText>Hey &#128512;, I&apos;m William, driven <EmphasisedText>Full Stack Developer</EmphasisedText> with experience building impactful and exciting progressive web apps.</BodyText>
 
-            <BodyText>Im <EmphasisedText>French</EmphasisedText> and <EmphasisedText>English</EmphasisedText>, born in the States, raised in London, where I currently reside.</BodyText>
+            <BodyText>Im <EmphasisedText>French</EmphasisedText> and <EmphasisedText>American</EmphasisedText>, born in the United States, raised in London, where I currently reside.</BodyText>
 
             <BodyText><EmphasisedText>Lead Teacher</EmphasisedText> @ <InlineLink href='https://www.lewagon.com/web-development-course'>Le Wagon London</InlineLink>, sharing my passion and proficiency in Full Stack Development with aspiring techies.</BodyText>
 
