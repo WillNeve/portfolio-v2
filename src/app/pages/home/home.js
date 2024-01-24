@@ -71,11 +71,11 @@ const Home = () => {
       </div>
       <Seperator/>
 
-      <Skills/>
+      <Projects/>
 
       <Seperator/>
 
-      <Projects/>
+      <Skills/>
     </>
   )
 }
