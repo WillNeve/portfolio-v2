@@ -124,7 +124,7 @@ const Terminal = () => {
       }
     },
     'cd': {
-      expression: /^\s?cd ((\w+|~)\/?|\.\.\/) *$/,
+      expression: /^\s?cd ((\w+|~|..)\/?) *$/,
       help: 'cd - change directory; usage: cd {path} | cd ../ (back one level)',
       run(value) {
         const requestedPage = value.match(this.expression)[1];
