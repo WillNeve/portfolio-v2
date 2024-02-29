@@ -11,7 +11,7 @@ const NavWrapper = styled.div`
   height: fit-content;
   max-height: ${props => props.$active ? '600px' : '8%'};
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
