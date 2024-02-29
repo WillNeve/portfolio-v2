@@ -82,6 +82,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 300;
     font-size: 20px;
   }
+
+  em {
+    font-style: normal;
+  }
 `;
 
 export default GlobalStyle;

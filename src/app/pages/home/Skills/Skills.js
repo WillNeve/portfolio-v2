@@ -65,23 +65,30 @@ const Skills = () => {
       <div className="container">
         <div className="technical">
           <div>
-            <h3>Front-End</h3>
+            <h3>Languages</h3>
             <ul>
               <li>TypeScript</li>
-              <li>React.js</li>
-              <li>Next.js</li>
+              <li>JavaScript</li>
+              <li>Ruby</li>
+              <li>SQL</li>
               <li>CSS3/SASS</li>
-              <li>Tailwind</li>
               <li>HTML5</li>
             </ul>
           </div>
           <div>
-            <h3>Back-End</h3>
+            <h3>Frameworks</h3>
             <ul>
+              <li>React.js</li>
+              <li>Next.js</li>
+              <li>Ruby on Rails</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Back End/ Databases</h3>
+            <ul>
+              <li>Firebase</li>
               <li>Node.js</li>
               <li>Express.js</li>
-              <li>Ruby on Rails</li>
-              <li>SQL</li>
               <li>Postgres</li>
               <li>MongoDB</li>
             </ul>
@@ -89,6 +96,9 @@ const Skills = () => {
           <div>
             <h3>Tools and Technologies</h3>
             <ul>
+              <li>Tailwind</li>
+              <li>NPM</li>
+              <li>Webpack</li>
               <li>Git</li>
               <li>Github</li>
               <li>Docker</li>
