@@ -54,7 +54,16 @@ const Home = () => {
             </div>
             <BodyText>Hey &#128512;, I&apos;m William, dynamic and adaptable <EmphasisedText>Software Developer</EmphasisedText> with 2 years experience building impactful web apps.</BodyText>
 
-            <BodyText>Currently specializing in: <em style={{color: '#2F73C0', fontWeight: 'bold'}}>Typescript</em>/<em style={{color: '#61DBFB', fontWeight: 'bold'}}>React</em>/<em style={{color: '#FECB31', fontWeight: 'bold'}}>Firebase</em>/<em style={{color: '#75AD5E', fontWeight: 'bold'}}>Node.js</em>/<em style={{color: '#31648C', fontWeight: 'bold'}}>Postgres</em>/<em style={{color: '#06E561', fontWeight: 'bold'}}>MongoDB</em>.</BodyText>
+            <BodyText>
+              Currently specializing in:{" "}
+              <em style={{color: '#2F73C0', fontWeight: 'bold'}}>Typescript</em>{" / "}
+              <em style={{color: '#61DBFB', fontWeight: 'bold'}}>React</em>{" / "}
+              <em style={{color: '#FECB31', fontWeight: 'bold'}}>Firebase</em>{" / "}
+              <em style={{color: '#75AD5E', fontWeight: 'bold'}}>Node.js</em>{" / "}
+              <em style={{color: '#31648C', fontWeight: 'bold'}}>Postgres</em>{" / "}
+              <em style={{color: '#06E561', fontWeight: 'bold'}}>MongoDB</em>.
+            </BodyText>
+
 
             <BodyText>Im <EmphasisedText>French</EmphasisedText> and <EmphasisedText>American</EmphasisedText>, born in the United States, raised in London, where I currently reside.</BodyText>
 

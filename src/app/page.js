@@ -13,7 +13,6 @@ import Nav from './components/Nav/Nav.js';
 
 export const PagesContext = createContext();
 
-
 export default function Home() {
   const [page, setPage] = useState('~');
   const pages = {
