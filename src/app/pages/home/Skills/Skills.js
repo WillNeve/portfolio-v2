@@ -96,14 +96,14 @@ const Skills = () => {
           <div>
             <h3>Tools and Technologies</h3>
             <ul>
-              <li>Tailwind</li>
+              <li>Git</li>
               <li>NPM</li>
               <li>Webpack</li>
-              <li>Git</li>
+              <li>Unix Sys/Shell Scripting</li>
+              <li>Tailwind</li>
               <li>Github</li>
               <li>Docker</li>
               <li>Figma</li>
-              <li>Unix</li>
             </ul>
           </div>
         </div>

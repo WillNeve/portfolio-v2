@@ -68,7 +68,7 @@ const Home = () => {
             <BodyText>Im <EmphasisedText>French</EmphasisedText> and <EmphasisedText>American</EmphasisedText>, born in the United States, raised in London, where I currently reside.</BodyText>
 
             <BodyText>
-              - <EmphasisedText>Software Developer</EmphasisedText>
+              - <EmphasisedText>Lead Software Developer</EmphasisedText>
               {' @ '} <InlineLink href='https://www.linkedin.com/company/ggversus/'>Versus</InlineLink>
               : collaborating with a dynamic team to craft an innovative esports platform, accessable to all.
             </BodyText>
