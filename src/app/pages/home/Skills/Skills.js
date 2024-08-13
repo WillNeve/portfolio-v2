@@ -84,7 +84,7 @@ const Skills = () => {
             </ul>
           </div>
           <div>
-            <h3>Back End/ Databases</h3>
+            <h3>Back End / Databases</h3>
             <ul>
               <li>Firebase</li>
               <li>Node.js</li>
@@ -97,12 +97,14 @@ const Skills = () => {
             <h3>Tools and Technologies</h3>
             <ul>
               <li>Git</li>
+              <li>Unix Sys/Shell Scripting</li>
+              <li>Google Cloud</li>
+              <li>Docker</li>
+              <li>Kubernetes</li>
+              <li>Github</li>
               <li>NPM</li>
               <li>Webpack</li>
-              <li>Unix Sys/Shell Scripting</li>
               <li>Tailwind</li>
-              <li>Github</li>
-              <li>Docker</li>
               <li>Figma</li>
             </ul>
           </div>
