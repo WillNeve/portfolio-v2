@@ -54,6 +54,8 @@ const SkillsWrapper = styled.div`
       grid-template-columns: repeat(3, 1fr);
     }
   }
+
+  padding-bottom: 20px;
 `;
 
 const Skills = () => {

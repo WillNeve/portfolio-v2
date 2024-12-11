@@ -11,11 +11,16 @@ const WorkWrapper = styled.div`
     color: ${(props) => props.theme.hackerGreen};
   }
 
-  & > .container {
+  .container {
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: 10px;
   }
+
+  .container > p {
+    margin-bottom: 0;
+  }
+
   h2 {
     color: ${(props) => props.theme.hackerGreen};
   }
@@ -23,9 +28,9 @@ const WorkWrapper = styled.div`
 
 const TitleWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  column-gap: 10px;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 5px;
   margin-bottom: 10px;
 `;
 
@@ -40,7 +45,7 @@ const Work = () => {
   return (
     <WorkWrapper>
       <TitleWrapper>
-        <h2>Work:</h2>
+        <h2>Current Work:</h2>
         <MutedText>
           See my <InlineLink href="/cv.pdf">CV</InlineLink> for{" "}
           <EmphasisedText>past</EmphasisedText> work
@@ -63,7 +68,7 @@ const Work = () => {
         </BodyText>
 
         <BodyText>
-          - <EmphasisedText>Lectuerer | Lead Teacher</EmphasisedText>
+          - <EmphasisedText>Lecturer | Lead Teacher</EmphasisedText>
           {" @ "}{" "}
           <InlineLink href="https://www.lewagon.com/web-development-course">
             Le Wagon London
