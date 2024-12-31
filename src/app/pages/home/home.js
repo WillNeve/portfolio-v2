@@ -51,7 +51,7 @@ const Home = () => {
                     CV
                   </ButtonSquare>
                   <ButtonSquare
-                    href="https://www.linkedin.com/in/william-neve-66a13819a/"
+                    href="https://www.linkedin.com/in/wneve/"
                     target="_blank"
                   >
                     LinkedIn
