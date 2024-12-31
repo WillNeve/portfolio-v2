@@ -60,14 +60,6 @@ const Work = () => {
         </BodyText>
 
         <BodyText>
-          - <EmphasisedText>Lead Software Developer</EmphasisedText>
-          {" @ "}{" "}
-          <InlineLink href="https://versusgaming.gg/">Versus</InlineLink>:
-          collaborating with a dynamic team to craft an innovative esports
-          platform, accessable to all.
-        </BodyText>
-
-        <BodyText>
           - <EmphasisedText>Lecturer | Lead Teacher</EmphasisedText>
           {" @ "}{" "}
           <InlineLink href="https://www.lewagon.com/web-development-course">
