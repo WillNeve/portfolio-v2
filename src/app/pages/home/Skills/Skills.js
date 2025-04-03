@@ -1,14 +1,13 @@
-import { hexToRgba } from '@/app/config/utilities';
-import styled from 'styled-components';
+import { hexToRgba } from "@/app/config/utilities";
+import styled from "styled-components";
 
 const SkillsWrapper = styled.div`
   position: relative;
-  padding: 20px 0px;
-  max-width: 750px;
-  font-family: 'Montserrat', sans-serif;
-  /* border: 2px solid ${props => hexToRgba(props.theme.foregroundWhite, 1)}; */
+  font-family: "Montserrat", sans-serif;
+  /* border: 2px solid ${(props) =>
+    hexToRgba(props.theme.foregroundWhite, 1)}; */
   h2 {
-    color: ${props => props.theme.hackerGreen};
+    color: ${(props) => props.theme.hackerGreen};
   }
   ul {
     display: flex;
@@ -23,39 +22,40 @@ const SkillsWrapper = styled.div`
     font-weight: 200;
     margin-left: 21px;
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       left: 0px;
       top: 50%;
       transform: translate(calc(-100% - 6px), -50%);
       width: 5px;
       height: 1px;
-      background: ${props => props.theme.foregroundWhite};
+      background: ${(props) => props.theme.foregroundWhite};
       opacity: 0.9;
     }
   }
-  .soft, .technical {
-    justify-content: space-between;
-  }
+
   .container {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr;
     margin-top: 20px;
     padding: 5px;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
     & > div {
-        display: flex;
-        flex-direction: column;
-        row-gap: 20px;
-      }
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+    }
+    @media (min-width: 700px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
     @media (min-width: 1000px) {
-      flex-direction: row;
-      justify-content: space-between;
-      & > div {
-        width: 50%;
-      }
+      grid-template-columns: repeat(3, 1fr);
     }
   }
+
+  padding-bottom: 20px;
 `;
 
 const Skills = () => {
@@ -63,70 +63,65 @@ const Skills = () => {
     <SkillsWrapper>
       <h2>Skills</h2>
       <div className="container">
-        <div className="technical">
-          <div>
-            <h3>Languages</h3>
-            <ul>
-              <li>TypeScript</li>
-              <li>JavaScript</li>
-              <li>Ruby</li>
-              <li>SQL</li>
-              <li>CSS3/SASS</li>
-              <li>HTML5</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Frameworks</h3>
-            <ul>
-              <li>React.js</li>
-              <li>Next.js</li>
-              <li>Ruby on Rails</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Back End / Databases</h3>
-            <ul>
-              <li>Firebase</li>
-              <li>Node.js</li>
-              <li>Express.js</li>
-              <li>Postgres</li>
-              <li>MongoDB</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Tools and Technologies</h3>
-            <ul>
-              <li>Git</li>
-              <li>Unix Sys/Shell Scripting</li>
-              <li>Google Cloud</li>
-              <li>Docker</li>
-              <li>Kubernetes</li>
-              <li>Github</li>
-              <li>NPM</li>
-              <li>Webpack</li>
-              <li>Tailwind</li>
-              <li>Figma</li>
-            </ul>
-          </div>
+        <div>
+          <h3>Languages</h3>
+          <ul>
+            <li>TypeScript</li>
+            <li>JavaScript</li>
+            <li>SQL</li>
+            <li>Ruby</li>
+          </ul>
         </div>
-
-        <div className="soft">
-          <div>
-            <h3>Soft Skills</h3>
-            <ul>
-              <li>Agile Development</li>
-              <li>Project Management</li>
-              <li>Adaptability</li>
-              <li>Critical Thinking</li>
-              <li>Client Communication</li>
-              <li>Teaching</li>
-              <li>Mentorship</li>
-            </ul>
-          </div>
+        <div>
+          <h3>Frameworks/SDKs</h3>
+          <ul>
+            <li>React</li>
+            <li>Remix</li>
+            <li>Firebase</li>
+            <li>Next</li>
+            <li>Vue</li>
+            <li>Ruby on Rails</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Back End / Databases</h3>
+          <ul>
+            <li>Node.js</li>
+            <li>Express.js</li>
+            <li>Postgres</li>
+            <li>Firestore</li>
+            <li>MongoDB</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tools and Technologies</h3>
+          <ul>
+            <li>Git</li>
+            <li>Github</li>
+            <li>Prisma</li>
+            <li>Tailwind</li>
+            <li>Unix Systems</li>
+            <li>Bash | Shell Scripting</li>
+            <li>Google Cloud</li>
+            <li>Docker</li>
+            <li>Kubernetes</li>
+            <li>NPM</li>
+            <li>Webpack</li>
+            <li>Figma</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Extras</h3>
+          <ul>
+            <li>Teaching | Mentorship</li>
+            <li>Product Management</li>
+            <li>System Design</li>
+            <li>UX/UI</li>
+          </ul>
         </div>
       </div>
     </SkillsWrapper>
-  )
-}
+  );
+};
 
 export default Skills;

@@ -1,24 +1,29 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './home.module.scss';
-import styled, { css } from 'styled-components';
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./home.module.scss";
+import styled, { css } from "styled-components";
 
 //icons
 import { BiBaguette } from "react-icons/bi";
 import { BiCoffee } from "react-icons/bi";
 
 //components
-import { BodyText, EmphasisedText, InlineLink } from '@/app/components/Styles/Text';
-import { ButtonSquare } from '@/app/components/Styles/Buttons';
+import {
+  BodyText,
+  EmphasisedText,
+  InlineLink,
+} from "@/app/components/Styles/Text";
+import { ButtonSquare } from "@/app/components/Styles/Buttons";
 
-import Skills from './Skills/Skills';
-import Projects from './Projects/Projects';
+import Skills from "./Skills/Skills";
+import Projects from "./Projects/Projects";
+import Work from "./Work/Work";
 
 const Seperator = styled.span`
   display: block;
   width: 90%;
   height: 1px;
-  background: ${props => props.theme.foregroundWhite};
+  background: ${(props) => props.theme.foregroundWhite};
   margin: 20px 0px;
 `;
 
@@ -29,7 +34,7 @@ const Home = () => {
         <div className={styles.intro}>
           <div className={styles.text}>
             <div className={styles.top}>
-                <Image
+              <Image
                 src="/headshot.jpg"
                 className={`${styles.headshot} ${styles.inline}`}
                 width={500}
@@ -42,44 +47,57 @@ const Home = () => {
                 {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
                 <h2>// Software Developer</h2>
                 <div className={styles.links}>
-                  <ButtonSquare href="/cv.pdf" target="_blank">CV</ButtonSquare>
-                  <ButtonSquare href='https://www.linkedin.com/in/william-neve-66a13819a/' target='_blank'>LinkedIn</ButtonSquare>
-                  <ButtonSquare href='https://github.com/WillNeve' target='_blank'>GitHub</ButtonSquare>
+                  <ButtonSquare href="/cv.pdf" target="_blank">
+                    CV
+                  </ButtonSquare>
+                  <ButtonSquare
+                    href="https://www.linkedin.com/in/wneve/"
+                    target="_blank"
+                  >
+                    LinkedIn
+                  </ButtonSquare>
+                  <ButtonSquare
+                    href="https://github.com/WillNeve"
+                    target="_blank"
+                  >
+                    GitHub
+                  </ButtonSquare>
                 </div>
                 <div className={styles.icons}>
-                  <BiCoffee/>
-                  <BiBaguette/>
+                  <BiCoffee />
+                  <BiBaguette />
                 </div>
               </div>
             </div>
-            <BodyText>Hey &#128512;, I&apos;m William, dynamic and adaptable <EmphasisedText>Software Developer</EmphasisedText> with 2 years experience building impactful web apps.</BodyText>
-
             <BodyText>
-              Currently specializing in:{" "}
-              <em style={{color: '#2F73C0', fontWeight: 'bold'}}>Typescript</em>{" / "}
-              <em style={{color: '#61DBFB', fontWeight: 'bold'}}>React</em>{" / "}
-              <em style={{color: '#FECB31', fontWeight: 'bold'}}>Firebase</em>{" / "}
-              <em style={{color: '#75AD5E', fontWeight: 'bold'}}>Node.js</em>{" / "}
-              <em style={{color: '#31648C', fontWeight: 'bold'}}>Postgres</em>{" / "}
-              <em style={{color: '#06E561', fontWeight: 'bold'}}>MongoDB</em>.
-            </BodyText>
-
-
-            <BodyText>Im <EmphasisedText>French</EmphasisedText> and <EmphasisedText>American</EmphasisedText>, born in the United States, raised in London, where I currently reside.</BodyText>
-
-            <BodyText>
-              - <EmphasisedText>Lead Software Developer</EmphasisedText>
-              {' @ '} <InlineLink href='https://www.linkedin.com/company/ggversus/'>Versus</InlineLink>
-              : collaborating with a dynamic team to craft an innovative esports platform, accessable to all.
+              Hey &#128512; 👋, I&apos;m William, dynamic and adaptable{" "}
+              <EmphasisedText>Software Developer</EmphasisedText> with{" "}
+              <EmphasisedText>over 3 years experience</EmphasisedText> building
+              impactful web apps.
             </BodyText>
 
             <BodyText>
-              - <EmphasisedText>Lead Teacher</EmphasisedText>
-              {' @ '} <InlineLink href='https://www.lewagon.com/web-development-course'>Le Wagon London</InlineLink>
-              : sharing passion and expertise to facilitate student comprehension of technical topics via engaging lectures, personalized support, code reviews, and project management.
+              What I work with everyday:{" "}
+              <em style={{ color: "#2F73C0", fontWeight: "bold" }}>
+                Typescript
+              </em>
+              {" / "}
+              <em style={{ color: "#61DBFB", fontWeight: "bold" }}>React</em>
+              {" / "}
+              <em style={{ color: "#d45da2", fontWeight: "bold" }}>Remix</em>
+              {" / "}
+              <em style={{ color: "#75AD5E", fontWeight: "bold" }}>Node.js</em>
+              {" / "}
+              <em style={{ color: "#31648C", fontWeight: "bold" }}>Postgres</em>
+              {" / "}
+              <em style={{ color: "#FECB31", fontWeight: "bold" }}>Firebase</em>
             </BodyText>
 
-
+            <BodyText>
+              Im <EmphasisedText>French &#x1f1eb;&#x1f1f7;</EmphasisedText> and{" "}
+              <EmphasisedText>American &#x1f1fa;&#x1f1f8;</EmphasisedText>, born
+              in the United States, raised in London, where I currently reside.
+            </BodyText>
           </div>
           <Image
             src="/headshot.jpg"
@@ -91,15 +109,19 @@ const Home = () => {
           />
         </div>
       </div>
-      <Seperator/>
+      <Seperator />
 
-      <Projects/>
+      <Work />
 
-      <Seperator/>
+      <Seperator />
 
-      <Skills/>
+      <Projects />
+
+      <Seperator />
+
+      <Skills />
     </>
-  )
-}
+  );
+};
 
 export default Home;
