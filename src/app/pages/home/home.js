@@ -6,6 +6,7 @@ import styled, { css } from "styled-components";
 //icons
 import { BiBaguette } from "react-icons/bi";
 import { BiCoffee } from "react-icons/bi";
+import { BiGame } from "react-icons/bi";
 
 //components
 import {
@@ -45,7 +46,7 @@ const Home = () => {
               <div>
                 <h1>William Neve</h1>
                 {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-                <h2>// Software Developer</h2>
+                <h2>// Software Engineer</h2>
                 <div className={styles.links}>
                   <ButtonSquare href="/cv.pdf" target="_blank">
                     CV
@@ -65,15 +66,16 @@ const Home = () => {
                 </div>
                 <div className={styles.icons}>
                   <BiCoffee />
+                  <BiGame />
                   <BiBaguette />
                 </div>
               </div>
             </div>
             <BodyText>
-              Hey &#128512; 👋, I&apos;m William, dynamic and adaptable{" "}
-              <EmphasisedText>Software Developer</EmphasisedText> with{" "}
+              Hey &#128512; 👋, I&apos;m William, ardent and adaptable{" "}
+              <EmphasisedText>Software Engineer</EmphasisedText> with{" "}
               <EmphasisedText>over 3 years experience</EmphasisedText> building
-              impactful web apps.
+              impactful products on the web.
             </BodyText>
 
             <BodyText>
@@ -84,17 +86,20 @@ const Home = () => {
               {" / "}
               <em style={{ color: "#61DBFB", fontWeight: "bold" }}>React</em>
               {" / "}
-              <em style={{ color: "#d45da2", fontWeight: "bold" }}>Remix</em>
+              <em style={{ color: "#FECB31", fontWeight: "bold" }}>Firebase</em>
+              {" / "}
+              <em style={{ color: "#d45da2", fontWeight: "bold" }}>
+                React-Router/Remix
+              </em>
               {" / "}
               <em style={{ color: "#75AD5E", fontWeight: "bold" }}>Node.js</em>
               {" / "}
               <em style={{ color: "#31648C", fontWeight: "bold" }}>Postgres</em>
-              {" / "}
-              <em style={{ color: "#FECB31", fontWeight: "bold" }}>Firebase</em>
             </BodyText>
 
             <BodyText>
-              Im <EmphasisedText>French &#x1f1eb;&#x1f1f7;</EmphasisedText> and{" "}
+              Im <EmphasisedText>French &#x1f1eb;&#x1f1f7;</EmphasisedText>,
+              <EmphasisedText> English 🇬🇧 </EmphasisedText>and{" "}
               <EmphasisedText>American &#x1f1fa;&#x1f1f8;</EmphasisedText>, born
               in the United States, raised in London, where I currently reside.
             </BodyText>

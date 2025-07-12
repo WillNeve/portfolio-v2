@@ -76,8 +76,8 @@ const Skills = () => {
           <h3>Frameworks/SDKs</h3>
           <ul>
             <li>React</li>
-            <li>Remix</li>
             <li>Firebase</li>
+            <li>React-Router (Remix)</li>
             <li>Next</li>
             <li>Vue</li>
             <li>Ruby on Rails</li>
@@ -88,8 +88,8 @@ const Skills = () => {
           <ul>
             <li>Node.js</li>
             <li>Express.js</li>
-            <li>Postgres</li>
             <li>Firestore</li>
+            <li>Postgres</li>
             <li>MongoDB</li>
           </ul>
         </div>
@@ -98,16 +98,18 @@ const Skills = () => {
           <ul>
             <li>Git</li>
             <li>Github</li>
-            <li>Prisma</li>
             <li>Tailwind</li>
+            <li>Google Cloud</li>
+            <li>Sentry</li>
+            <li>Prisma</li>
             <li>Unix Systems</li>
             <li>Bash | Shell Scripting</li>
-            <li>Google Cloud</li>
             <li>Docker</li>
             <li>Kubernetes</li>
             <li>NPM</li>
             <li>Webpack</li>
             <li>Figma</li>
+            <li>Posthog</li>
           </ul>
         </div>
         <div>

@@ -53,10 +53,10 @@ const Work = () => {
       </TitleWrapper>
       <div className="container">
         <BodyText>
-          - <EmphasisedText>Software Developer</EmphasisedText>
+          - <EmphasisedText>Software Engineer</EmphasisedText>
           {" @ "}{" "}
           <InlineLink href="https://www.localista.ai/">Localista</InlineLink>:
-          Taking the pain out of event planning
+          building event/lead management and analytics tools
         </BodyText>
 
         <BodyText>
