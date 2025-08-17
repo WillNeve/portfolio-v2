@@ -70,16 +70,20 @@ const Skills = () => {
             <li>JavaScript</li>
             <li>SQL</li>
             <li>Ruby</li>
+            <li>Bash</li>
+            <li>Python</li>
+            <li>Vibe Prompting</li>
+            <li>French</li>
           </ul>
         </div>
         <div>
           <h3>Frameworks/SDKs</h3>
           <ul>
-            <li>React</li>
+            <li>React.js</li>
             <li>Firebase</li>
             <li>React-Router (Remix)</li>
-            <li>Next</li>
-            <li>Vue</li>
+            <li>Next.js</li>
+            <li>Vue.js</li>
             <li>Ruby on Rails</li>
           </ul>
         </div>
@@ -103,7 +107,7 @@ const Skills = () => {
             <li>Sentry</li>
             <li>Prisma</li>
             <li>Unix Systems</li>
-            <li>Bash | Shell Scripting</li>
+            <li>Shell Scripting</li>
             <li>Docker</li>
             <li>Kubernetes</li>
             <li>NPM</li>
@@ -115,10 +119,16 @@ const Skills = () => {
         <div>
           <h3>Extras</h3>
           <ul>
-            <li>Teaching | Mentorship</li>
-            <li>Product Management</li>
+            <li>A/B Testing</li>
+            <li>Data Analysis - Visualisation</li>
+            <li>Growth Engineering</li>
+            <li>Product Marketing</li>
             <li>System Design</li>
             <li>UX/UI</li>
+            <li>Teaching | Mentorship</li>
+            <li>SEO</li>
+            <li>MCP (LLM)</li>
+            <li>Prompting (LLM)</li>
           </ul>
         </div>
       </div>

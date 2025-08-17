@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const BodyText = styled.p`
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 200;
+  margin-bottom: 20px;
 `;
 
 export const EmphasisedText = styled.em`
@@ -13,6 +14,6 @@ export const EmphasisedText = styled.em`
 export const InlineLink = styled.a`
   display: inline;
   text-decoration: none;
-  color: ${props => props.theme.hackerGreen};
+  color: ${(props) => props.theme.hackerGreen};
   cursor: pointer;
 `;

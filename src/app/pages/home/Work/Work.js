@@ -53,21 +53,19 @@ const Work = () => {
       </TitleWrapper>
       <div className="container">
         <BodyText>
-          - <EmphasisedText>Software Engineer</EmphasisedText>
-          {" @ "}{" "}
-          <InlineLink href="https://www.localista.ai/">Localista</InlineLink>:
-          building event/lead management and analytics tools
+          - <EmphasisedText>Growth Engineer</EmphasisedText>
+          {" @ "} <InlineLink href="https://www.fyxer.ai/">Fyxer</InlineLink>:
+          growing the AI Executive Assistant.
         </BodyText>
 
         <BodyText>
-          - <EmphasisedText>Lecturer | Lead Teacher</EmphasisedText>
+          - <EmphasisedText>Lecturer</EmphasisedText>
           {" @ "}{" "}
           <InlineLink href="https://www.lewagon.com/web-development-course">
-            Le Wagon London
+            Le Wagon
           </InlineLink>
-          : sharing passion and expertise to facilitate student comprehension of
-          technical topics via engaging lectures, personalized support, code
-          reviews, and project management.
+          : supporting students in mastering web development through lectures,
+          mentorship, and projects.
         </BodyText>
       </div>
     </WorkWrapper>

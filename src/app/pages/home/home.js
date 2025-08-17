@@ -9,11 +9,7 @@ import { BiCoffee } from "react-icons/bi";
 import { BiGame } from "react-icons/bi";
 
 //components
-import {
-  BodyText,
-  EmphasisedText,
-  InlineLink,
-} from "@/app/components/Styles/Text";
+import { BodyText, EmphasisedText } from "@/app/components/Styles/Text";
 import { ButtonSquare } from "@/app/components/Styles/Buttons";
 
 import Skills from "./Skills/Skills";
@@ -72,33 +68,38 @@ const Home = () => {
               </div>
             </div>
             <BodyText>
-              Hey &#128512; 👋, I&apos;m William, ardent and adaptable{" "}
+              Hey 👋, I&apos;m William,{" "}
               <EmphasisedText>Software Engineer</EmphasisedText> with{" "}
-              <EmphasisedText>over 3 years experience</EmphasisedText> building
-              impactful products on the web.
+              <EmphasisedText> 3+ years experience</EmphasisedText> building
+              impactful web products.
+            </BodyText>
+            <BodyText>
+              Highly autonomous, eagerly collaborative, delivering end-to-end
+              technical results in fast-paced environments, with a special focus
+              on simplicity & scalability.
             </BodyText>
 
             <BodyText>
-              What I work with everyday:{" "}
+              I work with these everyday:{" "}
               <em style={{ color: "#2F73C0", fontWeight: "bold" }}>
                 Typescript
               </em>
               {" / "}
               <em style={{ color: "#61DBFB", fontWeight: "bold" }}>React</em>
               {" / "}
-              <em style={{ color: "#FECB31", fontWeight: "bold" }}>Firebase</em>
-              {" / "}
-              <em style={{ color: "#d45da2", fontWeight: "bold" }}>
-                React-Router/Remix
-              </em>
-              {" / "}
               <em style={{ color: "#75AD5E", fontWeight: "bold" }}>Node.js</em>
               {" / "}
-              <em style={{ color: "#31648C", fontWeight: "bold" }}>Postgres</em>
+              <em style={{ color: "#d45da2", fontWeight: "bold" }}>Next.js</em>
+              {" / "}
+              <em style={{ color: "#FECB31", fontWeight: "bold" }}>Firebase</em>
+              {" / "}
+              <em style={{ color: "#31648C", fontWeight: "bold" }}>
+                PostgreSQL
+              </em>
             </BodyText>
 
             <BodyText>
-              Im <EmphasisedText>French &#x1f1eb;&#x1f1f7;</EmphasisedText>,
+              <EmphasisedText>French &#x1f1eb;&#x1f1f7;</EmphasisedText>,
               <EmphasisedText> English 🇬🇧 </EmphasisedText>and{" "}
               <EmphasisedText>American &#x1f1fa;&#x1f1f8;</EmphasisedText>, born
               in the United States, raised in London, where I currently reside.
@@ -118,9 +119,9 @@ const Home = () => {
 
       <Work />
 
-      <Seperator />
-
-      <Projects />
+      {/* <Seperator /> */}
+      {/*
+      <Projects /> */}
 
       <Seperator />
 

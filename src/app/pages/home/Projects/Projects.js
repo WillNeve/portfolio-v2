@@ -47,8 +47,8 @@ const Projects = () => {
   return (
     <ProjectsWrapper>
       <h2>Projects</h2>
-      <p className="notice">*Outdated, update coming soon!</p>
-      <div>
+      <p className="notice">*Coming soon!</p>
+      {/* <div>
         {projects === null ? (
           <>
             <LoadingCard />
@@ -73,7 +73,7 @@ const Projects = () => {
             )
           )
         )}
-      </div>
+      </div> */}
     </ProjectsWrapper>
   );
 };
