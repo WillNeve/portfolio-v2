@@ -64,25 +64,26 @@ const Skills = () => {
       <h2>Skills</h2>
       <div className="container">
         <div>
-          <h3>Languages</h3>
+          <h3>Languages & Fundamentals</h3>
           <ul>
             <li>TypeScript</li>
             <li>JavaScript</li>
+            <li>HTML5 / SEO</li>
+            <li>CSS3 / Tailwind</li>
             <li>SQL</li>
             <li>Ruby</li>
             <li>Bash</li>
             <li>Python</li>
-            <li>Vibe Prompting</li>
-            <li>French</li>
           </ul>
         </div>
         <div>
-          <h3>Frameworks/SDKs</h3>
+          <h3>Frameworks / SDKs</h3>
           <ul>
             <li>React.js</li>
-            <li>Firebase</li>
-            <li>React-Router (Remix)</li>
+            <li>React-Router / Remix</li>
             <li>Next.js</li>
+            <li>Firebase</li>
+            <li>Node.js</li>
             <li>Vue.js</li>
             <li>Ruby on Rails</li>
           </ul>
@@ -90,45 +91,46 @@ const Skills = () => {
         <div>
           <h3>Back End / Databases</h3>
           <ul>
-            <li>Node.js</li>
-            <li>Express.js</li>
+            <li>PostgreSQL</li>
             <li>Firestore</li>
-            <li>Postgres</li>
-            <li>MongoDB</li>
+            <li>REST / API Design</li>
+            <li>Serverless</li>
+            <li>Express.js</li>
+            <li>Prisma</li>
           </ul>
         </div>
         <div>
-          <h3>Tools and Technologies</h3>
+          <h3>Tools & Infrastructure</h3>
           <ul>
             <li>Git</li>
-            <li>Github</li>
-            <li>Tailwind</li>
-            <li>Google Cloud</li>
-            <li>Sentry</li>
-            <li>Prisma</li>
-            <li>Unix Systems</li>
-            <li>Shell Scripting</li>
+            <li>Unix / Bash</li>
             <li>Docker</li>
-            <li>Kubernetes</li>
-            <li>NPM</li>
-            <li>Webpack</li>
+            <li>GCP</li>
+            <li>CI/CD</li>
+            <li>Sentry</li>
             <li>Figma</li>
             <li>Posthog</li>
           </ul>
         </div>
         <div>
-          <h3>Extras</h3>
+          <h3>Practices & Paradigms</h3>
           <ul>
-            <li>A/B Testing</li>
-            <li>Data Analysis - Visualisation</li>
-            <li>Growth Engineering</li>
-            <li>Product Marketing</li>
-            <li>System Design</li>
-            <li>UX/UI</li>
-            <li>Teaching | Mentorship</li>
+            <li>Functional Programming</li>
+            <li>Object-Oriented Programming (OOP)</li>
+            <li>Test-Driven Development (TDD/BDD)</li>
+            <li>UX/UI Design</li>
+            <li>DSA</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Growth & Product</h3>
+          <ul>
+            <li>Experimentation</li>
+            <li>Hypothesis Development</li>
+            <li>Data Analysis</li>
+            <li>Product Analytics</li>
             <li>SEO</li>
-            <li>MCP (LLM)</li>
-            <li>Prompting (LLM)</li>
+            <li>A/B Testing</li>
           </ul>
         </div>
       </div>

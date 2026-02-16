@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./home.module.scss";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 //icons
 import { BiBaguette } from "react-icons/bi";
@@ -13,7 +12,6 @@ import { BodyText, EmphasisedText } from "@/app/components/Styles/Text";
 import { ButtonSquare } from "@/app/components/Styles/Buttons";
 
 import Skills from "./Skills/Skills";
-import Projects from "./Projects/Projects";
 import Work from "./Work/Work";
 
 const Seperator = styled.span`
@@ -32,7 +30,7 @@ const Home = () => {
           <div className={styles.text}>
             <div className={styles.top}>
               <Image
-                src="/headshot.jpg"
+                src="/headshot.png"
                 className={`${styles.headshot} ${styles.inline}`}
                 width={500}
                 height={500}
@@ -42,7 +40,7 @@ const Home = () => {
               <div>
                 <h1>William Neve</h1>
                 {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-                <h2>// Software Engineer</h2>
+                <h2>// Growth / Software Engineer</h2>
                 <div className={styles.links}>
                   <ButtonSquare href="/cv.pdf" target="_blank">
                     CV
@@ -69,14 +67,14 @@ const Home = () => {
             </div>
             <BodyText>
               Hey 👋, I&apos;m William,{" "}
-              <EmphasisedText>Software Engineer</EmphasisedText> with{" "}
-              <EmphasisedText> 3+ years experience</EmphasisedText> building
-              impactful web products.
+              <EmphasisedText>Growth Engineer</EmphasisedText> with{" "}
+              <EmphasisedText> 4+ years experience</EmphasisedText>{" "}
+              developing/optimising impactful web products to drive growth
             </BodyText>
             <BodyText>
-              Highly autonomous, eagerly collaborative, delivering end-to-end
-              technical results in fast-paced environments, with a special focus
-              on simplicity & scalability.
+              Highly autonomous, eager collaborator, specialising in delivering
+              metric-driven results end-to-end, emphasising simplicity and
+              speed.
             </BodyText>
 
             <BodyText>
@@ -106,7 +104,7 @@ const Home = () => {
             </BodyText>
           </div>
           <Image
-            src="/headshot.jpg"
+            src="/headshot.png"
             className={`${styles.headshot} ${styles.right}`}
             width={500}
             height={500}
@@ -118,10 +116,6 @@ const Home = () => {
       <Seperator />
 
       <Work />
-
-      {/* <Seperator /> */}
-      {/*
-      <Projects /> */}
 
       <Seperator />
 

@@ -59,7 +59,7 @@ const Work = () => {
         </BodyText>
 
         <BodyText>
-          - <EmphasisedText>Lecturer</EmphasisedText>
+          - (inactive) <EmphasisedText>Lecturer</EmphasisedText>
           {" @ "}{" "}
           <InlineLink href="https://www.lewagon.com/web-development-course">
             Le Wagon

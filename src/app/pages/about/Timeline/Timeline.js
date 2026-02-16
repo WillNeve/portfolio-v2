@@ -1,11 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import styled from 'styled-components';
-import { hexToRgba } from '@/app/config/utilities';
-import { dateToGB } from '@/app/utilities/date';
+import styled from "styled-components";
+import { hexToRgba } from "@/app/config/utilities";
+import { dateToGB } from "@/app/utilities/date";
 
-import LoadingSection from './LoadingSection';
-import { BodyText } from '@/app/components/Styles/Text';
+import { TIMELINE_ITEMS } from "@/data/timelineItems";
+
+//icons
+import { MdOutlineWorkOutline } from "react-icons/md";
+import { IoSchool } from "react-icons/io5";
+import { FaSeedling } from "react-icons/fa";
 
 const Timeline = styled.div`
   flex-grow: 1;
@@ -19,6 +23,8 @@ const Sections = styled.div`
   flex-direction: column;
   padding: 10px;
   padding-left: 20px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   height: 100%;
   width: 100%;
   overflow-y: scroll;
@@ -44,7 +50,7 @@ const Section = styled.div`
       margin: 0;
       font-size: 18px;
       font-weight: 400;
-      color: ${props => hexToRgba(props.theme.foregroundWhite, .7)};
+      color: ${(props) => hexToRgba(props.theme.foregroundWhite, 0.7)};
     }
     @media (min-width: 800px) {
       h3 {
@@ -64,13 +70,12 @@ const Section = styled.div`
 
 const SectionGroup = styled.div`
   h2 {
-    color: ${props => props.theme.hackerGreen};
     font-weight: 400;
     font-size: 24px;
-    color: ${props => props.$focused ? props.theme.hackerGreen : props.theme.foregroundWhite};
+    color: ${(props) =>
+      props.$focused ? props.theme.hackerGreen : props.theme.foregroundWhite};
   }
-  margin: 10px 0px;
-  /* border: ${props => props.$focused ? `2px solid ${props.theme.hackerGreen}` : 'none'}; */
+  margin: 5px 0px;
 `;
 
 const TimeLineSide = styled.div`
@@ -82,10 +87,10 @@ const TimeLineSide = styled.div`
   justify-content: space-around;
   padding-right: 10px;
   &::after {
-    content: '';
+    content: "";
     height: 90%;
     width: 2px;
-    background: ${props => props.theme.hackerGreen};
+    background: ${(props) => props.theme.hackerGreen};
     position: absolute;
     right: 0px;
     top: 50%;
@@ -93,176 +98,140 @@ const TimeLineSide = styled.div`
   }
 `;
 
-
 const SectionIcon = styled.div`
   .icon {
     width: 30px;
     height: auto;
     aspect-ratio: 1;
-    transition: color .2s ease;
-    color: ${props => props.$focused ? props.theme.hackerGreen : props.theme.foregroundWhite};
+    transition: color 0.2s ease;
+    color: ${(props) =>
+      props.$focused ? props.theme.hackerGreen : props.theme.foregroundWhite};
   }
 `;
 
-//icons
-import { MdOutlineWorkOutline } from "react-icons/md";
-import { IoSchool } from "react-icons/io5";
-import { MdChildCare } from "react-icons/md";
-import { TbMoodKid } from "react-icons/tb";
-import { FaSeedling } from "react-icons/fa";
-
+const SECTION_KEYS = ["journey", "education", "work"];
 
 const TimeLine = () => {
   const sectionsRef = useRef(null);
+  const journeyRef = useRef(null);
+  const educationRef = useRef(null);
+  const workRef = useRef(null);
 
-  const journeyGroupsRef = useRef(null);
-  const eduGroupsRef = useRef(null);
-  const workGroupsRef = useRef(null);
+  const [focusedSection, setFocusedSection] = useState("journey");
 
-  const [focusedSection, setFocusedSection] = useState(journeyGroupsRef.current);
+  const refMap = {
+    journey: journeyRef,
+    education: educationRef,
+    work: workRef,
+  };
 
-  const [timeLineItems, setTimeLineItems] = useState({
-                                                        journey: null,
-                                                        education: null,
-                                                        work: null
-                                                      });
+  useEffect(() => {
+    const container = sectionsRef.current;
+    if (!container) return;
 
-  const getTimeLineItems = async () => {
-    const res = await fetch(`/api/timeline-items`, { cache: 'no-store', revalidate: 0 })
-    const data = await res.json();
-    const rows = data.rows;
+    const refs = [
+      { key: "journey", ref: journeyRef },
+      { key: "education", ref: educationRef },
+      { key: "work", ref: workRef },
+    ];
 
-    const education = rows.filter(item => item.category === 'Education');
-    const work = rows.filter(item => item.category === 'Work');
-    const journey = rows.filter(item => item.category === 'Journey');
-    setTimeLineItems({
-      education: education,
-      work: work,
-      journey: journey
-    })
-  }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the entry with the highest intersection ratio
+        let best = null;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!best || entry.intersectionRatio > best.intersectionRatio) {
+              best = entry;
+            }
+          }
+        });
 
-  const processGroupIntersect = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setFocusedSection(entry.target);
+        if (best) {
+          const match = refs.find((r) => r.ref.current === best.target);
+          if (match) {
+            setFocusedSection(match.key);
+          }
+        }
+      },
+      {
+        root: container,
+        rootMargin: "-30% 0px -30% 0px",
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
       }
-    })
-  }
+    );
 
-  const startObserver = () => {
-    const options = {
-      root: sectionsRef.current,
-      rootMargin: "-200px 0px",
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver(processGroupIntersect, options);
-
-    const sections = [journeyGroupsRef, eduGroupsRef, workGroupsRef];
-    sections.forEach((section) => {
-      observer.observe(section.current)
+    refs.forEach(({ ref }) => {
+      if (ref.current) observer.observe(ref.current);
     });
 
-    return observer;
-  }
-
-  useEffect(() => {
-    getTimeLineItems();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    if (timeLineItems.journey !== null) {
-      const observer = startObserver();
-
-      return () => {
-        observer.disconnect();
-      }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLineItems])
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <Timeline>
       <TimeLineSide>
-        <SectionIcon $focused={focusedSection === journeyGroupsRef.current}>
-          <FaSeedling className='icon'/>
+        <SectionIcon $focused={focusedSection === "journey"}>
+          <FaSeedling className="icon" />
         </SectionIcon>
-        <SectionIcon  $focused={focusedSection === eduGroupsRef.current}>
-          <IoSchool className='icon'/>
+        <SectionIcon $focused={focusedSection === "education"}>
+          <IoSchool className="icon" />
         </SectionIcon>
-        <SectionIcon  $focused={focusedSection === workGroupsRef.current}>
-          <MdOutlineWorkOutline className='icon'/>
+        <SectionIcon $focused={focusedSection === "work"}>
+          <MdOutlineWorkOutline className="icon" />
         </SectionIcon>
       </TimeLineSide>
       <Sections ref={sectionsRef}>
-        <SectionGroup ref={journeyGroupsRef} $focused={focusedSection === journeyGroupsRef.current}>
+        <SectionGroup
+          ref={journeyRef}
+          $focused={focusedSection === "journey"}
+        >
           <h2>Journey</h2>
-          {timeLineItems.journey === null ? (
-            <LoadingSection></LoadingSection>
-          ) : timeLineItems.journey.length === 0 ? (
-            <Section>
-              <p>no items...</p>
+          {TIMELINE_ITEMS.journey.map(({ title, date, body }, index) => (
+            <Section key={index}>
+              <div>
+                <h3>{title}</h3>
+                <p>{dateToGB(date)}</p>
+              </div>
+              <p className="body">{body}</p>
             </Section>
-          ) : (
-            timeLineItems.journey.map(({ title, date, body }, index) => (
-              <Section key={index}>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{dateToGB(date)}</p>
-                </div>
-                <p className='body'>{body}</p>
-              </Section>
-            ))
-          )}
-
+          ))}
         </SectionGroup>
 
-        <SectionGroup ref={eduGroupsRef} $focused={focusedSection === eduGroupsRef.current}>
+        <SectionGroup
+          ref={educationRef}
+          $focused={focusedSection === "education"}
+        >
           <h2>Education</h2>
-          {timeLineItems.education === null ? (
-            <LoadingSection></LoadingSection>
-          ) : timeLineItems.education.length === 0 ? (
-            <Section>
-              <p>no items...</p>
+          {TIMELINE_ITEMS.education.map(({ title, date, body }, index) => (
+            <Section key={index}>
+              <div>
+                <h3>{title}</h3>
+                <p>{dateToGB(date)}</p>
+              </div>
+              <p className="body">{body}</p>
             </Section>
-          ) : (
-            timeLineItems.education.map(({ title, date, body }, index) => (
-              <Section key={index}>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{dateToGB(date)}</p>
-                </div>
-                <p className='body'>{body}</p>
-              </Section>
-            ))
-          )}
+          ))}
         </SectionGroup>
 
-        <SectionGroup ref={workGroupsRef} $focused={focusedSection === workGroupsRef.current}>
+        <SectionGroup
+          ref={workRef}
+          $focused={focusedSection === "work"}
+        >
           <h2>Work</h2>
-          {timeLineItems.work === null ? (
-            <LoadingSection></LoadingSection>
-          ) : timeLineItems.work.length === 0 ? (
-            <Section>
-              <p>no items...</p>
+          {TIMELINE_ITEMS.work.map(({ title, date, body }, index) => (
+            <Section key={index}>
+              <div>
+                <h3>{title}</h3>
+                <p>{dateToGB(date)}</p>
+              </div>
+              <p className="body">{body}</p>
             </Section>
-          ) : (
-            timeLineItems.work.map(({ title, date, body }, index) => (
-              <Section key={index}>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{dateToGB(date)}</p>
-                </div>
-                <p className='body'>{body}</p>
-              </Section>
-            ))
-          )}
+          ))}
         </SectionGroup>
       </Sections>
     </Timeline>
-  )
-}
+  );
+};
 
-export default TimeLine
+export default TimeLine;
